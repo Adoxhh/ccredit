@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt">
+	<!--初始化分页-->
+	<select id="getFin2007incomestatementprofitappropriationsgmtListByCondition" resultType="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt" parameterType="map">
+		SELECT
+			fin_2007incomestatementprofitappropriationsgmt_id,
+			revenueofsales,
+			costofsales,
+			businessandothertaxes,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpense,
+			impairmentlossofassets,
+			profitorlossarisingfromchangesinfairvalue,
+			investmentincome,
+			investmentincomefbaenterprise,
+			operatingprofits,
+			nonoperatingincome,
+			nonoperatingexpenses,
+			noncurrentassets,
+			profitbeforetax,
+			incometaxexpense,
+			netprofit,
+			basicearningspershare,
+			dilutedearningspershare,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007incomestatementprofitappropriationsgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFin2007incomestatementprofitappropriationsgmtById" resultType="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt" parameterType="string">
+		SELECT
+			fin_2007incomestatementprofitappropriationsgmt_id,
+			revenueofsales,
+			costofsales,
+			businessandothertaxes,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpense,
+			impairmentlossofassets,
+			profitorlossarisingfromchangesinfairvalue,
+			investmentincome,
+			investmentincomefbaenterprise,
+			operatingprofits,
+			nonoperatingincome,
+			nonoperatingexpenses,
+			noncurrentassets,
+			profitbeforetax,
+			incometaxexpense,
+			netprofit,
+			basicearningspershare,
+			dilutedearningspershare,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007incomestatementprofitappropriationsgmt
+		WHERE fin_2007incomestatementprofitappropriationsgmt_id=#{fin_2007incomestatementprofitappropriationsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFin2007incomestatementprofitappropriationsgmt" parameterType="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt">
+		INSERT INTO
+			fin_2007incomestatementprofitappropriationsgmt
+			(
+			fin_2007incomestatementprofitappropriationsgmt_id,
+			revenueofsales,
+			costofsales,
+			businessandothertaxes,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpense,
+			impairmentlossofassets,
+			profitorlossarisingfromchangesinfairvalue,
+			investmentincome,
+			investmentincomefbaenterprise,
+			operatingprofits,
+			nonoperatingincome,
+			nonoperatingexpenses,
+			noncurrentassets,
+			profitbeforetax,
+			incometaxexpense,
+			netprofit,
+			basicearningspershare,
+			dilutedearningspershare,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_2007incomestatementprofitappropriationsgmt_id},
+			#{revenueofsales},
+			#{costofsales},
+			#{businessandothertaxes},
+			#{sellingexpenses},
+			#{generalandadministrativeexpenses},
+			#{financialexpense},
+			#{impairmentlossofassets},
+			#{profitorlossarisingfromchangesinfairvalue},
+			#{investmentincome},
+			#{investmentincomefbaenterprise},
+			#{operatingprofits},
+			#{nonoperatingincome},
+			#{nonoperatingexpenses},
+			#{noncurrentassets},
+			#{profitbeforetax},
+			#{incometaxexpense},
+			#{netprofit},
+			#{basicearningspershare},
+			#{dilutedearningspershare},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFin2007incomestatementprofitappropriationsgmt" parameterType="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt">
+		UPDATE
+			fin_2007incomestatementprofitappropriationsgmt
+		SET
+			revenueofsales = #{revenueofsales},
+			costofsales = #{costofsales},
+			businessandothertaxes = #{businessandothertaxes},
+			sellingexpenses = #{sellingexpenses},
+			generalandadministrativeexpenses = #{generalandadministrativeexpenses},
+			financialexpense = #{financialexpense},
+			impairmentlossofassets = #{impairmentlossofassets},
+			profitorlossarisingfromchangesinfairvalue = #{profitorlossarisingfromchangesinfairvalue},
+			investmentincome = #{investmentincome},
+			investmentincomefbaenterprise = #{investmentincomefbaenterprise},
+			operatingprofits = #{operatingprofits},
+			nonoperatingincome = #{nonoperatingincome},
+			nonoperatingexpenses = #{nonoperatingexpenses},
+			noncurrentassets = #{noncurrentassets},
+			profitbeforetax = #{profitbeforetax},
+			incometaxexpense = #{incometaxexpense},
+			netprofit = #{netprofit},
+			basicearningspershare = #{basicearningspershare},
+			dilutedearningspershare = #{dilutedearningspershare},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_2007incomestatementprofitappropriationsgmt_id=#{fin_2007incomestatementprofitappropriationsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFin2007incomestatementprofitappropriationsgmtBySelective" parameterType="ccredit.finmodules.finmodel.Fin2007incomestatementprofitappropriationsgmt">
+		UPDATE
+			fin_2007incomestatementprofitappropriationsgmt
+		<set>
+			<if test="revenueofsales != null">
+				revenueofsales = #{revenueofsales},
+			</if>
+			<if test="costofsales != null">
+				costofsales = #{costofsales},
+			</if>
+			<if test="businessandothertaxes != null">
+				businessandothertaxes = #{businessandothertaxes},
+			</if>
+			<if test="sellingexpenses != null">
+				sellingexpenses = #{sellingexpenses},
+			</if>
+			<if test="generalandadministrativeexpenses != null">
+				generalandadministrativeexpenses = #{generalandadministrativeexpenses},
+			</if>
+			<if test="financialexpense != null">
+				financialexpense = #{financialexpense},
+			</if>
+			<if test="impairmentlossofassets != null">
+				impairmentlossofassets = #{impairmentlossofassets},
+			</if>
+			<if test="profitorlossarisingfromchangesinfairvalue != null">
+				profitorlossarisingfromchangesinfairvalue = #{profitorlossarisingfromchangesinfairvalue},
+			</if>
+			<if test="investmentincome != null">
+				investmentincome = #{investmentincome},
+			</if>
+			<if test="investmentincomefbaenterprise != null">
+				investmentincomefbaenterprise = #{investmentincomefbaenterprise},
+			</if>
+			<if test="operatingprofits != null">
+				operatingprofits = #{operatingprofits},
+			</if>
+			<if test="nonoperatingincome != null">
+				nonoperatingincome = #{nonoperatingincome},
+			</if>
+			<if test="nonoperatingexpenses != null">
+				nonoperatingexpenses = #{nonoperatingexpenses},
+			</if>
+			<if test="noncurrentassets != null">
+				noncurrentassets = #{noncurrentassets},
+			</if>
+			<if test="profitbeforetax != null">
+				profitbeforetax = #{profitbeforetax},
+			</if>
+			<if test="incometaxexpense != null">
+				incometaxexpense = #{incometaxexpense},
+			</if>
+			<if test="netprofit != null">
+				netprofit = #{netprofit},
+			</if>
+			<if test="basicearningspershare != null">
+				basicearningspershare = #{basicearningspershare},
+			</if>
+			<if test="dilutedearningspershare != null">
+				dilutedearningspershare = #{dilutedearningspershare},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_2007incomestatementprofitappropriationsgmt_id=#{fin_2007incomestatementprofitappropriationsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFin2007incomestatementprofitappropriationsgmt" parameterType="map">
+		DELETE FROM fin_2007incomestatementprofitappropriationsgmt WHERE fin_2007incomestatementprofitappropriationsgmt_id IN
+		<foreach item="item" index="index" collection="fin_2007incomestatementprofitappropriationsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFin2007incomestatementprofitappropriationsgmt" parameterType="list">
+		INSERT INTO
+			fin_2007incomestatementprofitappropriationsgmt
+			(
+			fin_2007incomestatementprofitappropriationsgmt_id,
+			revenueofsales,
+			costofsales,
+			businessandothertaxes,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpense,
+			impairmentlossofassets,
+			profitorlossarisingfromchangesinfairvalue,
+			investmentincome,
+			investmentincomefbaenterprise,
+			operatingprofits,
+			nonoperatingincome,
+			nonoperatingexpenses,
+			noncurrentassets,
+			profitbeforetax,
+			incometaxexpense,
+			netprofit,
+			basicearningspershare,
+			dilutedearningspershare,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_2007incomestatementprofitappropriationsgmt_id},
+			#{item.revenueofsales},
+			#{item.costofsales},
+			#{item.businessandothertaxes},
+			#{item.sellingexpenses},
+			#{item.generalandadministrativeexpenses},
+			#{item.financialexpense},
+			#{item.impairmentlossofassets},
+			#{item.profitorlossarisingfromchangesinfairvalue},
+			#{item.investmentincome},
+			#{item.investmentincomefbaenterprise},
+			#{item.operatingprofits},
+			#{item.nonoperatingincome},
+			#{item.nonoperatingexpenses},
+			#{item.noncurrentassets},
+			#{item.profitbeforetax},
+			#{item.incometaxexpense},
+			#{item.netprofit},
+			#{item.basicearningspershare},
+			#{item.dilutedearningspershare},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFin2007incomestatementprofitappropriationsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007incomestatementprofitappropriationsgmt
+			SET
+				revenueofsales = #{item.revenueofsales},
+				costofsales = #{item.costofsales},
+				businessandothertaxes = #{item.businessandothertaxes},
+				sellingexpenses = #{item.sellingexpenses},
+				generalandadministrativeexpenses = #{item.generalandadministrativeexpenses},
+				financialexpense = #{item.financialexpense},
+				impairmentlossofassets = #{item.impairmentlossofassets},
+				profitorlossarisingfromchangesinfairvalue = #{item.profitorlossarisingfromchangesinfairvalue},
+				investmentincome = #{item.investmentincome},
+				investmentincomefbaenterprise = #{item.investmentincomefbaenterprise},
+				operatingprofits = #{item.operatingprofits},
+				nonoperatingincome = #{item.nonoperatingincome},
+				nonoperatingexpenses = #{item.nonoperatingexpenses},
+				noncurrentassets = #{item.noncurrentassets},
+				profitbeforetax = #{item.profitbeforetax},
+				incometaxexpense = #{item.incometaxexpense},
+				netprofit = #{item.netprofit},
+				basicearningspershare = #{item.basicearningspershare},
+				dilutedearningspershare = #{item.dilutedearningspershare},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_2007incomestatementprofitappropriationsgmt_id=#{item.fin_2007incomestatementprofitappropriationsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFin2007incomestatementprofitappropriationsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007incomestatementprofitappropriationsgmt
+			<set>
+				<if test="item.revenueofsales != null">
+					revenueofsales = #{item.revenueofsales},
+				</if>
+				<if test="item.costofsales != null">
+					costofsales = #{item.costofsales},
+				</if>
+				<if test="item.businessandothertaxes != null">
+					businessandothertaxes = #{item.businessandothertaxes},
+				</if>
+				<if test="item.sellingexpenses != null">
+					sellingexpenses = #{item.sellingexpenses},
+				</if>
+				<if test="item.generalandadministrativeexpenses != null">
+					generalandadministrativeexpenses = #{item.generalandadministrativeexpenses},
+				</if>
+				<if test="item.financialexpense != null">
+					financialexpense = #{item.financialexpense},
+				</if>
+				<if test="item.impairmentlossofassets != null">
+					impairmentlossofassets = #{item.impairmentlossofassets},
+				</if>
+				<if test="item.profitorlossarisingfromchangesinfairvalue != null">
+					profitorlossarisingfromchangesinfairvalue = #{item.profitorlossarisingfromchangesinfairvalue},
+				</if>
+				<if test="item.investmentincome != null">
+					investmentincome = #{item.investmentincome},
+				</if>
+				<if test="item.investmentincomefbaenterprise != null">
+					investmentincomefbaenterprise = #{item.investmentincomefbaenterprise},
+				</if>
+				<if test="item.operatingprofits != null">
+					operatingprofits = #{item.operatingprofits},
+				</if>
+				<if test="item.nonoperatingincome != null">
+					nonoperatingincome = #{item.nonoperatingincome},
+				</if>
+				<if test="item.nonoperatingexpenses != null">
+					nonoperatingexpenses = #{item.nonoperatingexpenses},
+				</if>
+				<if test="item.noncurrentassets != null">
+					noncurrentassets = #{item.noncurrentassets},
+				</if>
+				<if test="item.profitbeforetax != null">
+					profitbeforetax = #{item.profitbeforetax},
+				</if>
+				<if test="item.incometaxexpense != null">
+					incometaxexpense = #{item.incometaxexpense},
+				</if>
+				<if test="item.netprofit != null">
+					netprofit = #{item.netprofit},
+				</if>
+				<if test="item.basicearningspershare != null">
+					basicearningspershare = #{item.basicearningspershare},
+				</if>
+				<if test="item.dilutedearningspershare != null">
+					dilutedearningspershare = #{item.dilutedearningspershare},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_2007incomestatementprofitappropriationsgmt_id=#{item.fin_2007incomestatementprofitappropriationsgmt_id}
+		</foreach>
+	</update>
+</mapper>

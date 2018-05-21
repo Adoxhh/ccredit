@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt">
+	<!--初始化分页-->
+	<select id="getAsGuaracctbsinfsgmtListByCondition" resultType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt" parameterType="map">
+		SELECT
+			guaracctbsinfsgmt_id,
+			serialno,
+			customid,
+			busilines,
+			busidtillines,
+			opendate,
+			guaramt,
+			cy,
+			duedate,
+			guarmode,
+			othrepyguarway,
+			secdep,
+			ctrcttxtcode,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctbsinfsgmt
+		WHERE 1=1
+		<if test="null != busilines">
+			AND busilines = #{busilines}
+		</if>
+		<if test="null != busidtillines">
+			AND busidtillines = #{busidtillines}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getAsGuaracctbsinfsgmtById" resultType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt" parameterType="string">
+		SELECT
+			guaracctbsinfsgmt_id,
+			serialno,
+			customid,
+			busilines,
+			busidtillines,
+			opendate,
+			guaramt,
+			cy,
+			duedate,
+			guarmode,
+			othrepyguarway,
+			secdep,
+			ctrcttxtcode,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctbsinfsgmt
+		WHERE guaracctbsinfsgmt_id=#{guaracctbsinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addAsGuaracctbsinfsgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt">
+		INSERT INTO
+			as_guaracctbsinfsgmt
+			(
+			guaracctbsinfsgmt_id,
+			serialno,
+			customid,
+			busilines,
+			busidtillines,
+			opendate,
+			guaramt,
+			cy,
+			duedate,
+			guarmode,
+			othrepyguarway,
+			secdep,
+			ctrcttxtcode,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{guaracctbsinfsgmt_id},
+			#{serialno},
+			#{customid},
+			#{busilines},
+			#{busidtillines},
+			#{opendate},
+			#{guaramt},
+			#{cy},
+			#{duedate},
+			#{guarmode},
+			#{othrepyguarway},
+			#{secdep},
+			#{ctrcttxtcode},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateAsGuaracctbsinfsgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt">
+		UPDATE
+			as_guaracctbsinfsgmt
+		SET
+			serialno = #{serialno},
+			customid = #{customid},
+			busilines = #{busilines},
+			busidtillines = #{busidtillines},
+			opendate = #{opendate},
+			guaramt = #{guaramt},
+			cy = #{cy},
+			duedate = #{duedate},
+			guarmode = #{guarmode},
+			othrepyguarway = #{othrepyguarway},
+			secdep = #{secdep},
+			ctrcttxtcode = #{ctrcttxtcode},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE guaracctbsinfsgmt_id=#{guaracctbsinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateAsGuaracctbsinfsgmtBySelective" parameterType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt">
+		UPDATE
+			as_guaracctbsinfsgmt
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="busilines != null">
+				busilines = #{busilines},
+			</if>
+			<if test="busidtillines != null">
+				busidtillines = #{busidtillines},
+			</if>
+			<if test="opendate != null">
+				opendate = #{opendate},
+			</if>
+			<if test="guaramt != null">
+				guaramt = #{guaramt},
+			</if>
+			<if test="cy != null">
+				cy = #{cy},
+			</if>
+			<if test="duedate != null">
+				duedate = #{duedate},
+			</if>
+			<if test="guarmode != null">
+				guarmode = #{guarmode},
+			</if>
+			<if test="othrepyguarway != null">
+				othrepyguarway = #{othrepyguarway},
+			</if>
+			<if test="secdep != null">
+				secdep = #{secdep},
+			</if>
+			<if test="ctrcttxtcode != null">
+				ctrcttxtcode = #{ctrcttxtcode},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE guaracctbsinfsgmt_id=#{guaracctbsinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delAsGuaracctbsinfsgmt" parameterType="map">
+		DELETE FROM as_guaracctbsinfsgmt WHERE guaracctbsinfsgmt_id IN
+		<foreach item="item" index="index" collection="guaracctbsinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchAsGuaracctbsinfsgmt" parameterType="list">
+		INSERT INTO
+			as_guaracctbsinfsgmt
+			(
+			guaracctbsinfsgmt_id,
+			serialno,
+			customid,
+			busilines,
+			busidtillines,
+			opendate,
+			guaramt,
+			cy,
+			duedate,
+			guarmode,
+			othrepyguarway,
+			secdep,
+			ctrcttxtcode,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.guaracctbsinfsgmt_id},
+			#{item.serialno},
+			#{item.customid},
+			#{item.busilines},
+			#{item.busidtillines},
+			#{item.opendate},
+			#{item.guaramt},
+			#{item.cy},
+			#{item.duedate},
+			#{item.guarmode},
+			#{item.othrepyguarway},
+			#{item.secdep},
+			#{item.ctrcttxtcode},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchAsGuaracctbsinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctbsinfsgmt
+			SET
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				busilines = #{item.busilines},
+				busidtillines = #{item.busidtillines},
+				opendate = #{item.opendate},
+				guaramt = #{item.guaramt},
+				cy = #{item.cy},
+				duedate = #{item.duedate},
+				guarmode = #{item.guarmode},
+				othrepyguarway = #{item.othrepyguarway},
+				secdep = #{item.secdep},
+				ctrcttxtcode = #{item.ctrcttxtcode},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE guaracctbsinfsgmt_id=#{item.guaracctbsinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchAsGuaracctbsinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctbsinfsgmt
+			<set>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.busilines != null">
+					busilines = #{item.busilines},
+				</if>
+				<if test="item.busidtillines != null">
+					busidtillines = #{item.busidtillines},
+				</if>
+				<if test="item.opendate != null">
+					opendate = #{item.opendate},
+				</if>
+				<if test="item.guaramt != null">
+					guaramt = #{item.guaramt},
+				</if>
+				<if test="item.cy != null">
+					cy = #{item.cy},
+				</if>
+				<if test="item.duedate != null">
+					duedate = #{item.duedate},
+				</if>
+				<if test="item.guarmode != null">
+					guarmode = #{item.guarmode},
+				</if>
+				<if test="item.othrepyguarway != null">
+					othrepyguarway = #{item.othrepyguarway},
+				</if>
+				<if test="item.secdep != null">
+					secdep = #{item.secdep},
+				</if>
+				<if test="item.ctrcttxtcode != null">
+					ctrcttxtcode = #{item.ctrcttxtcode},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE guaracctbsinfsgmt_id=#{item.guaracctbsinfsgmt_id}
+		</foreach>
+	</update>
+	
+	
+	<!--查询历史信息 begin-->
+	<!-- 企业担保账户基本信息段his_as_guaracctbsinfsgmt -->
+	<select id="his_as_guaracctbsinfsgmt" resultType="ccredit.asmodules.asmodel.AsGuaracctbsinfsgmt" parameterType="map">
+		SELECT
+			guaracctbsinfsgmt_id,
+			serialno,
+			customid,
+			busilines,
+			busidtillines,
+			opendate,
+			guaramt,
+			cy,
+			duedate,
+			guarmode,
+			othrepyguarway,
+			secdep,
+			ctrcttxtcode,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_guaracctbsinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_guaracctbsinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	<!-- 企业担保账户记录his_as_guaracctbssgmt -->
+	<select id="his_as_guaracctbssgmt" resultType="ccredit.asmodules.asmodel.AsGuaracctbssgmt" parameterType="map">
+		SELECT
+			guaracctbssgmt_id,
+			serialno,
+			customid,
+			infrectype,
+			accttype,
+			acctcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_guaracctbssgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_guaracctbssgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业担保账户授信额度息段his_as_guaracctcredsgmt -->
+	<select id="his_as_guaracctcredsgmt" resultType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt" parameterType="map">
+		SELECT
+			guaracctcredsgmt_id,
+			serialno,
+			customid,
+			mcc,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_guaracctcredsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_guaracctcredsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业担保账户抵质押物信息段his_as_guarmotgtalctrctinf -->
+	<select id="his_as_guarmotgtalctrctinf" resultType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf" parameterType="map">
+		SELECT
+			guarmotgtalctrctinf_id,
+			serialno,
+			customid,
+			ccnm,
+			ccc,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_guarmotgtalctrctinf
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_guarmotgtalctrctinf
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业担保账户在保责任信息段his_as_guarrltrepymtinf -->
+	<select id="his_as_guarrltrepymtinf" resultType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf" parameterType="map">
+		SELECT
+			guarrltrepymtinf_id,
+			serialno,
+			customid,
+			acctstatus,
+			loanamt,
+			repayprd,
+			fivecate,
+			fivecateadjdate,
+			riex,
+			compadvflag,
+			closedate,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_guarrltrepymtinf
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_guarrltrepymtinf
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业担保账户相关还款责任人信息段his_as_rltrepymtinfsgmt -->
+	<select id="his_as_rltrepymtinfsgmt" resultType="ccredit.asmodules.asmodel.AsRltrepymtinfsgmt" parameterType="map">
+		SELECT
+			rltrepymtinfsgmt_id,
+			serialno,
+			customid,
+			rltrepymtnm,
+			infoidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			lastdate,
+			changeflag
+		FROM 
+			his_as_rltrepymtinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_as_rltrepymtinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!--查询历史信息 end-->
+</mapper>

@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt">
+	<!--初始化分页-->
+	<select id="getFin2002incomestatementprofitappropriationsgmtListByCondition" resultType="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt" parameterType="map">
+		SELECT
+			fin_2002incomestatementprofitappropriationsgmt_id,
+			mainrevenuefrevenue,
+			salesincomeofexportgoodsproducts,
+			salesincomeofimportgoodsproducts,
+			discountandallowance,
+			netamountofincomefrommainbusiness,
+			mainoperatingcost,
+			salesincomeofexportproducts,
+			principlebusinesstaxandextracharge,
+			operationexpense,
+			othersoperatingcost,
+			deferredincome,
+			incomefromsalesagency,
+			otheroperatingincome,
+			principlebusinessprofit,
+			otherbusinessprofit,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpenses,
+			othersexpenses,
+			operatingprofits,
+			investmentincome,
+			futuresincome,
+			allowanceincome,
+			allowanceincomebeforeallowance,
+			nonoperatingincome,
+			netgainondisposaloffixedassets,
+			incomefromnoncurrencytrade,
+			incomefromsalesofintangibleassets,
+			incomefrompenalty,
+			othersincome,
+			calculatingfromthecontentsalarybefore,
+			nonoperatingexpenses,
+			lossfromdisposaloffixedassets,
+			exchangeofnonmonetaryassetsloss,
+			lossoflawsuits,
+			paymentfordonation,
+			otherpayments,
+			balanceofcontentsalary,
+			totalprofit,
+			incometax,
+			imparimentloss,
+			unrealizedinvestmentlosses,
+			netprofit,
+			profitdistributionatbeginningofperiod,
+			compensationofsurplusreserve,
+			otheradjustmentfactors,
+			profitavailablefordistribution,
+			profitreservedforasingleitem,
+			supplementarycurrentcapital,
+			appropriationofstatutorysurplusreserves,
+			appropriationofstatutorywelfarefund,
+			appropriationofstaffincentiveandwelfarefund,
+			appropriationofreservefund,
+			appropriationofenterpriseexpansionfund,
+			profitscapitalizadon,
+			returnofinvestmentothers,
+			profitavailableforownersdistribution,
+			preferredstockdividendspayable,
+			withdrawalothercommonaccumulationfund,
+			payabledividendsofcommonstock,
+			transferfromordinarysharesdividendtopaidincapitalorstock,
+			others,
+			unappropriatedprofit,
+			losscompensatedbeforethetax,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2002incomestatementprofitappropriationsgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFin2002incomestatementprofitappropriationsgmtById" resultType="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt" parameterType="string">
+		SELECT
+			fin_2002incomestatementprofitappropriationsgmt_id,
+			mainrevenuefrevenue,
+			salesincomeofexportgoodsproducts,
+			salesincomeofimportgoodsproducts,
+			discountandallowance,
+			netamountofincomefrommainbusiness,
+			mainoperatingcost,
+			salesincomeofexportproducts,
+			principlebusinesstaxandextracharge,
+			operationexpense,
+			othersoperatingcost,
+			deferredincome,
+			incomefromsalesagency,
+			otheroperatingincome,
+			principlebusinessprofit,
+			otherbusinessprofit,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpenses,
+			othersexpenses,
+			operatingprofits,
+			investmentincome,
+			futuresincome,
+			allowanceincome,
+			allowanceincomebeforeallowance,
+			nonoperatingincome,
+			netgainondisposaloffixedassets,
+			incomefromnoncurrencytrade,
+			incomefromsalesofintangibleassets,
+			incomefrompenalty,
+			othersincome,
+			calculatingfromthecontentsalarybefore,
+			nonoperatingexpenses,
+			lossfromdisposaloffixedassets,
+			exchangeofnonmonetaryassetsloss,
+			lossoflawsuits,
+			paymentfordonation,
+			otherpayments,
+			balanceofcontentsalary,
+			totalprofit,
+			incometax,
+			imparimentloss,
+			unrealizedinvestmentlosses,
+			netprofit,
+			profitdistributionatbeginningofperiod,
+			compensationofsurplusreserve,
+			otheradjustmentfactors,
+			profitavailablefordistribution,
+			profitreservedforasingleitem,
+			supplementarycurrentcapital,
+			appropriationofstatutorysurplusreserves,
+			appropriationofstatutorywelfarefund,
+			appropriationofstaffincentiveandwelfarefund,
+			appropriationofreservefund,
+			appropriationofenterpriseexpansionfund,
+			profitscapitalizadon,
+			returnofinvestmentothers,
+			profitavailableforownersdistribution,
+			preferredstockdividendspayable,
+			withdrawalothercommonaccumulationfund,
+			payabledividendsofcommonstock,
+			transferfromordinarysharesdividendtopaidincapitalorstock,
+			others,
+			unappropriatedprofit,
+			losscompensatedbeforethetax,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2002incomestatementprofitappropriationsgmt
+		WHERE fin_2002incomestatementprofitappropriationsgmt_id=#{fin_2002incomestatementprofitappropriationsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFin2002incomestatementprofitappropriationsgmt" parameterType="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt">
+		INSERT INTO
+			fin_2002incomestatementprofitappropriationsgmt
+			(
+			fin_2002incomestatementprofitappropriationsgmt_id,
+			mainrevenuefrevenue,
+			salesincomeofexportgoodsproducts,
+			salesincomeofimportgoodsproducts,
+			discountandallowance,
+			netamountofincomefrommainbusiness,
+			mainoperatingcost,
+			salesincomeofexportproducts,
+			principlebusinesstaxandextracharge,
+			operationexpense,
+			othersoperatingcost,
+			deferredincome,
+			incomefromsalesagency,
+			otheroperatingincome,
+			principlebusinessprofit,
+			otherbusinessprofit,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpenses,
+			othersexpenses,
+			operatingprofits,
+			investmentincome,
+			futuresincome,
+			allowanceincome,
+			allowanceincomebeforeallowance,
+			nonoperatingincome,
+			netgainondisposaloffixedassets,
+			incomefromnoncurrencytrade,
+			incomefromsalesofintangibleassets,
+			incomefrompenalty,
+			othersincome,
+			calculatingfromthecontentsalarybefore,
+			nonoperatingexpenses,
+			lossfromdisposaloffixedassets,
+			exchangeofnonmonetaryassetsloss,
+			lossoflawsuits,
+			paymentfordonation,
+			otherpayments,
+			balanceofcontentsalary,
+			totalprofit,
+			incometax,
+			imparimentloss,
+			unrealizedinvestmentlosses,
+			netprofit,
+			profitdistributionatbeginningofperiod,
+			compensationofsurplusreserve,
+			otheradjustmentfactors,
+			profitavailablefordistribution,
+			profitreservedforasingleitem,
+			supplementarycurrentcapital,
+			appropriationofstatutorysurplusreserves,
+			appropriationofstatutorywelfarefund,
+			appropriationofstaffincentiveandwelfarefund,
+			appropriationofreservefund,
+			appropriationofenterpriseexpansionfund,
+			profitscapitalizadon,
+			returnofinvestmentothers,
+			profitavailableforownersdistribution,
+			preferredstockdividendspayable,
+			withdrawalothercommonaccumulationfund,
+			payabledividendsofcommonstock,
+			transferfromordinarysharesdividendtopaidincapitalorstock,
+			others,
+			unappropriatedprofit,
+			losscompensatedbeforethetax,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_2002incomestatementprofitappropriationsgmt_id},
+			#{mainrevenuefrevenue},
+			#{salesincomeofexportgoodsproducts},
+			#{salesincomeofimportgoodsproducts},
+			#{discountandallowance},
+			#{netamountofincomefrommainbusiness},
+			#{mainoperatingcost},
+			#{salesincomeofexportproducts},
+			#{principlebusinesstaxandextracharge},
+			#{operationexpense},
+			#{othersoperatingcost},
+			#{deferredincome},
+			#{incomefromsalesagency},
+			#{otheroperatingincome},
+			#{principlebusinessprofit},
+			#{otherbusinessprofit},
+			#{sellingexpenses},
+			#{generalandadministrativeexpenses},
+			#{financialexpenses},
+			#{othersexpenses},
+			#{operatingprofits},
+			#{investmentincome},
+			#{futuresincome},
+			#{allowanceincome},
+			#{allowanceincomebeforeallowance},
+			#{nonoperatingincome},
+			#{netgainondisposaloffixedassets},
+			#{incomefromnoncurrencytrade},
+			#{incomefromsalesofintangibleassets},
+			#{incomefrompenalty},
+			#{othersincome},
+			#{calculatingfromthecontentsalarybefore},
+			#{nonoperatingexpenses},
+			#{lossfromdisposaloffixedassets},
+			#{exchangeofnonmonetaryassetsloss},
+			#{lossoflawsuits},
+			#{paymentfordonation},
+			#{otherpayments},
+			#{balanceofcontentsalary},
+			#{totalprofit},
+			#{incometax},
+			#{imparimentloss},
+			#{unrealizedinvestmentlosses},
+			#{netprofit},
+			#{profitdistributionatbeginningofperiod},
+			#{compensationofsurplusreserve},
+			#{otheradjustmentfactors},
+			#{profitavailablefordistribution},
+			#{profitreservedforasingleitem},
+			#{supplementarycurrentcapital},
+			#{appropriationofstatutorysurplusreserves},
+			#{appropriationofstatutorywelfarefund},
+			#{appropriationofstaffincentiveandwelfarefund},
+			#{appropriationofreservefund},
+			#{appropriationofenterpriseexpansionfund},
+			#{profitscapitalizadon},
+			#{returnofinvestmentothers},
+			#{profitavailableforownersdistribution},
+			#{preferredstockdividendspayable},
+			#{withdrawalothercommonaccumulationfund},
+			#{payabledividendsofcommonstock},
+			#{transferfromordinarysharesdividendtopaidincapitalorstock},
+			#{others},
+			#{unappropriatedprofit},
+			#{losscompensatedbeforethetax},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFin2002incomestatementprofitappropriationsgmt" parameterType="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt">
+		UPDATE
+			fin_2002incomestatementprofitappropriationsgmt
+		SET
+			mainrevenuefrevenue = #{mainrevenuefrevenue},
+			salesincomeofexportgoodsproducts = #{salesincomeofexportgoodsproducts},
+			salesincomeofimportgoodsproducts = #{salesincomeofimportgoodsproducts},
+			discountandallowance = #{discountandallowance},
+			netamountofincomefrommainbusiness = #{netamountofincomefrommainbusiness},
+			mainoperatingcost = #{mainoperatingcost},
+			salesincomeofexportproducts = #{salesincomeofexportproducts},
+			principlebusinesstaxandextracharge = #{principlebusinesstaxandextracharge},
+			operationexpense = #{operationexpense},
+			othersoperatingcost = #{othersoperatingcost},
+			deferredincome = #{deferredincome},
+			incomefromsalesagency = #{incomefromsalesagency},
+			otheroperatingincome = #{otheroperatingincome},
+			principlebusinessprofit = #{principlebusinessprofit},
+			otherbusinessprofit = #{otherbusinessprofit},
+			sellingexpenses = #{sellingexpenses},
+			generalandadministrativeexpenses = #{generalandadministrativeexpenses},
+			financialexpenses = #{financialexpenses},
+			othersexpenses = #{othersexpenses},
+			operatingprofits = #{operatingprofits},
+			investmentincome = #{investmentincome},
+			futuresincome = #{futuresincome},
+			allowanceincome = #{allowanceincome},
+			allowanceincomebeforeallowance = #{allowanceincomebeforeallowance},
+			nonoperatingincome = #{nonoperatingincome},
+			netgainondisposaloffixedassets = #{netgainondisposaloffixedassets},
+			incomefromnoncurrencytrade = #{incomefromnoncurrencytrade},
+			incomefromsalesofintangibleassets = #{incomefromsalesofintangibleassets},
+			incomefrompenalty = #{incomefrompenalty},
+			othersincome = #{othersincome},
+			calculatingfromthecontentsalarybefore = #{calculatingfromthecontentsalarybefore},
+			nonoperatingexpenses = #{nonoperatingexpenses},
+			lossfromdisposaloffixedassets = #{lossfromdisposaloffixedassets},
+			exchangeofnonmonetaryassetsloss = #{exchangeofnonmonetaryassetsloss},
+			lossoflawsuits = #{lossoflawsuits},
+			paymentfordonation = #{paymentfordonation},
+			otherpayments = #{otherpayments},
+			balanceofcontentsalary = #{balanceofcontentsalary},
+			totalprofit = #{totalprofit},
+			incometax = #{incometax},
+			imparimentloss = #{imparimentloss},
+			unrealizedinvestmentlosses = #{unrealizedinvestmentlosses},
+			netprofit = #{netprofit},
+			profitdistributionatbeginningofperiod = #{profitdistributionatbeginningofperiod},
+			compensationofsurplusreserve = #{compensationofsurplusreserve},
+			otheradjustmentfactors = #{otheradjustmentfactors},
+			profitavailablefordistribution = #{profitavailablefordistribution},
+			profitreservedforasingleitem = #{profitreservedforasingleitem},
+			supplementarycurrentcapital = #{supplementarycurrentcapital},
+			appropriationofstatutorysurplusreserves = #{appropriationofstatutorysurplusreserves},
+			appropriationofstatutorywelfarefund = #{appropriationofstatutorywelfarefund},
+			appropriationofstaffincentiveandwelfarefund = #{appropriationofstaffincentiveandwelfarefund},
+			appropriationofreservefund = #{appropriationofreservefund},
+			appropriationofenterpriseexpansionfund = #{appropriationofenterpriseexpansionfund},
+			profitscapitalizadon = #{profitscapitalizadon},
+			returnofinvestmentothers = #{returnofinvestmentothers},
+			profitavailableforownersdistribution = #{profitavailableforownersdistribution},
+			preferredstockdividendspayable = #{preferredstockdividendspayable},
+			withdrawalothercommonaccumulationfund = #{withdrawalothercommonaccumulationfund},
+			payabledividendsofcommonstock = #{payabledividendsofcommonstock},
+			transferfromordinarysharesdividendtopaidincapitalorstock = #{transferfromordinarysharesdividendtopaidincapitalorstock},
+			others = #{others},
+			unappropriatedprofit = #{unappropriatedprofit},
+			losscompensatedbeforethetax = #{losscompensatedbeforethetax},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_2002incomestatementprofitappropriationsgmt_id=#{fin_2002incomestatementprofitappropriationsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFin2002incomestatementprofitappropriationsgmtBySelective" parameterType="ccredit.finmodules.finmodel.Fin2002incomestatementprofitappropriationsgmt">
+		UPDATE
+			fin_2002incomestatementprofitappropriationsgmt
+		<set>
+			<if test="mainrevenuefrevenue != null">
+				mainrevenuefrevenue = #{mainrevenuefrevenue},
+			</if>
+			<if test="salesincomeofexportgoodsproducts != null">
+				salesincomeofexportgoodsproducts = #{salesincomeofexportgoodsproducts},
+			</if>
+			<if test="salesincomeofimportgoodsproducts != null">
+				salesincomeofimportgoodsproducts = #{salesincomeofimportgoodsproducts},
+			</if>
+			<if test="discountandallowance != null">
+				discountandallowance = #{discountandallowance},
+			</if>
+			<if test="netamountofincomefrommainbusiness != null">
+				netamountofincomefrommainbusiness = #{netamountofincomefrommainbusiness},
+			</if>
+			<if test="mainoperatingcost != null">
+				mainoperatingcost = #{mainoperatingcost},
+			</if>
+			<if test="salesincomeofexportproducts != null">
+				salesincomeofexportproducts = #{salesincomeofexportproducts},
+			</if>
+			<if test="principlebusinesstaxandextracharge != null">
+				principlebusinesstaxandextracharge = #{principlebusinesstaxandextracharge},
+			</if>
+			<if test="operationexpense != null">
+				operationexpense = #{operationexpense},
+			</if>
+			<if test="othersoperatingcost != null">
+				othersoperatingcost = #{othersoperatingcost},
+			</if>
+			<if test="deferredincome != null">
+				deferredincome = #{deferredincome},
+			</if>
+			<if test="incomefromsalesagency != null">
+				incomefromsalesagency = #{incomefromsalesagency},
+			</if>
+			<if test="otheroperatingincome != null">
+				otheroperatingincome = #{otheroperatingincome},
+			</if>
+			<if test="principlebusinessprofit != null">
+				principlebusinessprofit = #{principlebusinessprofit},
+			</if>
+			<if test="otherbusinessprofit != null">
+				otherbusinessprofit = #{otherbusinessprofit},
+			</if>
+			<if test="sellingexpenses != null">
+				sellingexpenses = #{sellingexpenses},
+			</if>
+			<if test="generalandadministrativeexpenses != null">
+				generalandadministrativeexpenses = #{generalandadministrativeexpenses},
+			</if>
+			<if test="financialexpenses != null">
+				financialexpenses = #{financialexpenses},
+			</if>
+			<if test="othersexpenses != null">
+				othersexpenses = #{othersexpenses},
+			</if>
+			<if test="operatingprofits != null">
+				operatingprofits = #{operatingprofits},
+			</if>
+			<if test="investmentincome != null">
+				investmentincome = #{investmentincome},
+			</if>
+			<if test="futuresincome != null">
+				futuresincome = #{futuresincome},
+			</if>
+			<if test="allowanceincome != null">
+				allowanceincome = #{allowanceincome},
+			</if>
+			<if test="allowanceincomebeforeallowance != null">
+				allowanceincomebeforeallowance = #{allowanceincomebeforeallowance},
+			</if>
+			<if test="nonoperatingincome != null">
+				nonoperatingincome = #{nonoperatingincome},
+			</if>
+			<if test="netgainondisposaloffixedassets != null">
+				netgainondisposaloffixedassets = #{netgainondisposaloffixedassets},
+			</if>
+			<if test="incomefromnoncurrencytrade != null">
+				incomefromnoncurrencytrade = #{incomefromnoncurrencytrade},
+			</if>
+			<if test="incomefromsalesofintangibleassets != null">
+				incomefromsalesofintangibleassets = #{incomefromsalesofintangibleassets},
+			</if>
+			<if test="incomefrompenalty != null">
+				incomefrompenalty = #{incomefrompenalty},
+			</if>
+			<if test="othersincome != null">
+				othersincome = #{othersincome},
+			</if>
+			<if test="calculatingfromthecontentsalarybefore != null">
+				calculatingfromthecontentsalarybefore = #{calculatingfromthecontentsalarybefore},
+			</if>
+			<if test="nonoperatingexpenses != null">
+				nonoperatingexpenses = #{nonoperatingexpenses},
+			</if>
+			<if test="lossfromdisposaloffixedassets != null">
+				lossfromdisposaloffixedassets = #{lossfromdisposaloffixedassets},
+			</if>
+			<if test="exchangeofnonmonetaryassetsloss != null">
+				exchangeofnonmonetaryassetsloss = #{exchangeofnonmonetaryassetsloss},
+			</if>
+			<if test="lossoflawsuits != null">
+				lossoflawsuits = #{lossoflawsuits},
+			</if>
+			<if test="paymentfordonation != null">
+				paymentfordonation = #{paymentfordonation},
+			</if>
+			<if test="otherpayments != null">
+				otherpayments = #{otherpayments},
+			</if>
+			<if test="balanceofcontentsalary != null">
+				balanceofcontentsalary = #{balanceofcontentsalary},
+			</if>
+			<if test="totalprofit != null">
+				totalprofit = #{totalprofit},
+			</if>
+			<if test="incometax != null">
+				incometax = #{incometax},
+			</if>
+			<if test="imparimentloss != null">
+				imparimentloss = #{imparimentloss},
+			</if>
+			<if test="unrealizedinvestmentlosses != null">
+				unrealizedinvestmentlosses = #{unrealizedinvestmentlosses},
+			</if>
+			<if test="netprofit != null">
+				netprofit = #{netprofit},
+			</if>
+			<if test="profitdistributionatbeginningofperiod != null">
+				profitdistributionatbeginningofperiod = #{profitdistributionatbeginningofperiod},
+			</if>
+			<if test="compensationofsurplusreserve != null">
+				compensationofsurplusreserve = #{compensationofsurplusreserve},
+			</if>
+			<if test="otheradjustmentfactors != null">
+				otheradjustmentfactors = #{otheradjustmentfactors},
+			</if>
+			<if test="profitavailablefordistribution != null">
+				profitavailablefordistribution = #{profitavailablefordistribution},
+			</if>
+			<if test="profitreservedforasingleitem != null">
+				profitreservedforasingleitem = #{profitreservedforasingleitem},
+			</if>
+			<if test="supplementarycurrentcapital != null">
+				supplementarycurrentcapital = #{supplementarycurrentcapital},
+			</if>
+			<if test="appropriationofstatutorysurplusreserves != null">
+				appropriationofstatutorysurplusreserves = #{appropriationofstatutorysurplusreserves},
+			</if>
+			<if test="appropriationofstatutorywelfarefund != null">
+				appropriationofstatutorywelfarefund = #{appropriationofstatutorywelfarefund},
+			</if>
+			<if test="appropriationofstaffincentiveandwelfarefund != null">
+				appropriationofstaffincentiveandwelfarefund = #{appropriationofstaffincentiveandwelfarefund},
+			</if>
+			<if test="appropriationofreservefund != null">
+				appropriationofreservefund = #{appropriationofreservefund},
+			</if>
+			<if test="appropriationofenterpriseexpansionfund != null">
+				appropriationofenterpriseexpansionfund = #{appropriationofenterpriseexpansionfund},
+			</if>
+			<if test="profitscapitalizadon != null">
+				profitscapitalizadon = #{profitscapitalizadon},
+			</if>
+			<if test="returnofinvestmentothers != null">
+				returnofinvestmentothers = #{returnofinvestmentothers},
+			</if>
+			<if test="profitavailableforownersdistribution != null">
+				profitavailableforownersdistribution = #{profitavailableforownersdistribution},
+			</if>
+			<if test="preferredstockdividendspayable != null">
+				preferredstockdividendspayable = #{preferredstockdividendspayable},
+			</if>
+			<if test="withdrawalothercommonaccumulationfund != null">
+				withdrawalothercommonaccumulationfund = #{withdrawalothercommonaccumulationfund},
+			</if>
+			<if test="payabledividendsofcommonstock != null">
+				payabledividendsofcommonstock = #{payabledividendsofcommonstock},
+			</if>
+			<if test="transferfromordinarysharesdividendtopaidincapitalorstock != null">
+				transferfromordinarysharesdividendtopaidincapitalorstock = #{transferfromordinarysharesdividendtopaidincapitalorstock},
+			</if>
+			<if test="others != null">
+				others = #{others},
+			</if>
+			<if test="unappropriatedprofit != null">
+				unappropriatedprofit = #{unappropriatedprofit},
+			</if>
+			<if test="losscompensatedbeforethetax != null">
+				losscompensatedbeforethetax = #{losscompensatedbeforethetax},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_2002incomestatementprofitappropriationsgmt_id=#{fin_2002incomestatementprofitappropriationsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFin2002incomestatementprofitappropriationsgmt" parameterType="map">
+		DELETE FROM fin_2002incomestatementprofitappropriationsgmt WHERE fin_2002incomestatementprofitappropriationsgmt_id IN
+		<foreach item="item" index="index" collection="fin_2002incomestatementprofitappropriationsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFin2002incomestatementprofitappropriationsgmt" parameterType="list">
+		INSERT INTO
+			fin_2002incomestatementprofitappropriationsgmt
+			(
+			fin_2002incomestatementprofitappropriationsgmt_id,
+			mainrevenuefrevenue,
+			salesincomeofexportgoodsproducts,
+			salesincomeofimportgoodsproducts,
+			discountandallowance,
+			netamountofincomefrommainbusiness,
+			mainoperatingcost,
+			salesincomeofexportproducts,
+			principlebusinesstaxandextracharge,
+			operationexpense,
+			othersoperatingcost,
+			deferredincome,
+			incomefromsalesagency,
+			otheroperatingincome,
+			principlebusinessprofit,
+			otherbusinessprofit,
+			sellingexpenses,
+			generalandadministrativeexpenses,
+			financialexpenses,
+			othersexpenses,
+			operatingprofits,
+			investmentincome,
+			futuresincome,
+			allowanceincome,
+			allowanceincomebeforeallowance,
+			nonoperatingincome,
+			netgainondisposaloffixedassets,
+			incomefromnoncurrencytrade,
+			incomefromsalesofintangibleassets,
+			incomefrompenalty,
+			othersincome,
+			calculatingfromthecontentsalarybefore,
+			nonoperatingexpenses,
+			lossfromdisposaloffixedassets,
+			exchangeofnonmonetaryassetsloss,
+			lossoflawsuits,
+			paymentfordonation,
+			otherpayments,
+			balanceofcontentsalary,
+			totalprofit,
+			incometax,
+			imparimentloss,
+			unrealizedinvestmentlosses,
+			netprofit,
+			profitdistributionatbeginningofperiod,
+			compensationofsurplusreserve,
+			otheradjustmentfactors,
+			profitavailablefordistribution,
+			profitreservedforasingleitem,
+			supplementarycurrentcapital,
+			appropriationofstatutorysurplusreserves,
+			appropriationofstatutorywelfarefund,
+			appropriationofstaffincentiveandwelfarefund,
+			appropriationofreservefund,
+			appropriationofenterpriseexpansionfund,
+			profitscapitalizadon,
+			returnofinvestmentothers,
+			profitavailableforownersdistribution,
+			preferredstockdividendspayable,
+			withdrawalothercommonaccumulationfund,
+			payabledividendsofcommonstock,
+			transferfromordinarysharesdividendtopaidincapitalorstock,
+			others,
+			unappropriatedprofit,
+			losscompensatedbeforethetax,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_2002incomestatementprofitappropriationsgmt_id},
+			#{item.mainrevenuefrevenue},
+			#{item.salesincomeofexportgoodsproducts},
+			#{item.salesincomeofimportgoodsproducts},
+			#{item.discountandallowance},
+			#{item.netamountofincomefrommainbusiness},
+			#{item.mainoperatingcost},
+			#{item.salesincomeofexportproducts},
+			#{item.principlebusinesstaxandextracharge},
+			#{item.operationexpense},
+			#{item.othersoperatingcost},
+			#{item.deferredincome},
+			#{item.incomefromsalesagency},
+			#{item.otheroperatingincome},
+			#{item.principlebusinessprofit},
+			#{item.otherbusinessprofit},
+			#{item.sellingexpenses},
+			#{item.generalandadministrativeexpenses},
+			#{item.financialexpenses},
+			#{item.othersexpenses},
+			#{item.operatingprofits},
+			#{item.investmentincome},
+			#{item.futuresincome},
+			#{item.allowanceincome},
+			#{item.allowanceincomebeforeallowance},
+			#{item.nonoperatingincome},
+			#{item.netgainondisposaloffixedassets},
+			#{item.incomefromnoncurrencytrade},
+			#{item.incomefromsalesofintangibleassets},
+			#{item.incomefrompenalty},
+			#{item.othersincome},
+			#{item.calculatingfromthecontentsalarybefore},
+			#{item.nonoperatingexpenses},
+			#{item.lossfromdisposaloffixedassets},
+			#{item.exchangeofnonmonetaryassetsloss},
+			#{item.lossoflawsuits},
+			#{item.paymentfordonation},
+			#{item.otherpayments},
+			#{item.balanceofcontentsalary},
+			#{item.totalprofit},
+			#{item.incometax},
+			#{item.imparimentloss},
+			#{item.unrealizedinvestmentlosses},
+			#{item.netprofit},
+			#{item.profitdistributionatbeginningofperiod},
+			#{item.compensationofsurplusreserve},
+			#{item.otheradjustmentfactors},
+			#{item.profitavailablefordistribution},
+			#{item.profitreservedforasingleitem},
+			#{item.supplementarycurrentcapital},
+			#{item.appropriationofstatutorysurplusreserves},
+			#{item.appropriationofstatutorywelfarefund},
+			#{item.appropriationofstaffincentiveandwelfarefund},
+			#{item.appropriationofreservefund},
+			#{item.appropriationofenterpriseexpansionfund},
+			#{item.profitscapitalizadon},
+			#{item.returnofinvestmentothers},
+			#{item.profitavailableforownersdistribution},
+			#{item.preferredstockdividendspayable},
+			#{item.withdrawalothercommonaccumulationfund},
+			#{item.payabledividendsofcommonstock},
+			#{item.transferfromordinarysharesdividendtopaidincapitalorstock},
+			#{item.others},
+			#{item.unappropriatedprofit},
+			#{item.losscompensatedbeforethetax},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFin2002incomestatementprofitappropriationsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2002incomestatementprofitappropriationsgmt
+			SET
+				mainrevenuefrevenue = #{item.mainrevenuefrevenue},
+				salesincomeofexportgoodsproducts = #{item.salesincomeofexportgoodsproducts},
+				salesincomeofimportgoodsproducts = #{item.salesincomeofimportgoodsproducts},
+				discountandallowance = #{item.discountandallowance},
+				netamountofincomefrommainbusiness = #{item.netamountofincomefrommainbusiness},
+				mainoperatingcost = #{item.mainoperatingcost},
+				salesincomeofexportproducts = #{item.salesincomeofexportproducts},
+				principlebusinesstaxandextracharge = #{item.principlebusinesstaxandextracharge},
+				operationexpense = #{item.operationexpense},
+				othersoperatingcost = #{item.othersoperatingcost},
+				deferredincome = #{item.deferredincome},
+				incomefromsalesagency = #{item.incomefromsalesagency},
+				otheroperatingincome = #{item.otheroperatingincome},
+				principlebusinessprofit = #{item.principlebusinessprofit},
+				otherbusinessprofit = #{item.otherbusinessprofit},
+				sellingexpenses = #{item.sellingexpenses},
+				generalandadministrativeexpenses = #{item.generalandadministrativeexpenses},
+				financialexpenses = #{item.financialexpenses},
+				othersexpenses = #{item.othersexpenses},
+				operatingprofits = #{item.operatingprofits},
+				investmentincome = #{item.investmentincome},
+				futuresincome = #{item.futuresincome},
+				allowanceincome = #{item.allowanceincome},
+				allowanceincomebeforeallowance = #{item.allowanceincomebeforeallowance},
+				nonoperatingincome = #{item.nonoperatingincome},
+				netgainondisposaloffixedassets = #{item.netgainondisposaloffixedassets},
+				incomefromnoncurrencytrade = #{item.incomefromnoncurrencytrade},
+				incomefromsalesofintangibleassets = #{item.incomefromsalesofintangibleassets},
+				incomefrompenalty = #{item.incomefrompenalty},
+				othersincome = #{item.othersincome},
+				calculatingfromthecontentsalarybefore = #{item.calculatingfromthecontentsalarybefore},
+				nonoperatingexpenses = #{item.nonoperatingexpenses},
+				lossfromdisposaloffixedassets = #{item.lossfromdisposaloffixedassets},
+				exchangeofnonmonetaryassetsloss = #{item.exchangeofnonmonetaryassetsloss},
+				lossoflawsuits = #{item.lossoflawsuits},
+				paymentfordonation = #{item.paymentfordonation},
+				otherpayments = #{item.otherpayments},
+				balanceofcontentsalary = #{item.balanceofcontentsalary},
+				totalprofit = #{item.totalprofit},
+				incometax = #{item.incometax},
+				imparimentloss = #{item.imparimentloss},
+				unrealizedinvestmentlosses = #{item.unrealizedinvestmentlosses},
+				netprofit = #{item.netprofit},
+				profitdistributionatbeginningofperiod = #{item.profitdistributionatbeginningofperiod},
+				compensationofsurplusreserve = #{item.compensationofsurplusreserve},
+				otheradjustmentfactors = #{item.otheradjustmentfactors},
+				profitavailablefordistribution = #{item.profitavailablefordistribution},
+				profitreservedforasingleitem = #{item.profitreservedforasingleitem},
+				supplementarycurrentcapital = #{item.supplementarycurrentcapital},
+				appropriationofstatutorysurplusreserves = #{item.appropriationofstatutorysurplusreserves},
+				appropriationofstatutorywelfarefund = #{item.appropriationofstatutorywelfarefund},
+				appropriationofstaffincentiveandwelfarefund = #{item.appropriationofstaffincentiveandwelfarefund},
+				appropriationofreservefund = #{item.appropriationofreservefund},
+				appropriationofenterpriseexpansionfund = #{item.appropriationofenterpriseexpansionfund},
+				profitscapitalizadon = #{item.profitscapitalizadon},
+				returnofinvestmentothers = #{item.returnofinvestmentothers},
+				profitavailableforownersdistribution = #{item.profitavailableforownersdistribution},
+				preferredstockdividendspayable = #{item.preferredstockdividendspayable},
+				withdrawalothercommonaccumulationfund = #{item.withdrawalothercommonaccumulationfund},
+				payabledividendsofcommonstock = #{item.payabledividendsofcommonstock},
+				transferfromordinarysharesdividendtopaidincapitalorstock = #{item.transferfromordinarysharesdividendtopaidincapitalorstock},
+				others = #{item.others},
+				unappropriatedprofit = #{item.unappropriatedprofit},
+				losscompensatedbeforethetax = #{item.losscompensatedbeforethetax},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_2002incomestatementprofitappropriationsgmt_id=#{item.fin_2002incomestatementprofitappropriationsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFin2002incomestatementprofitappropriationsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2002incomestatementprofitappropriationsgmt
+			<set>
+				<if test="item.mainrevenuefrevenue != null">
+					mainrevenuefrevenue = #{item.mainrevenuefrevenue},
+				</if>
+				<if test="item.salesincomeofexportgoodsproducts != null">
+					salesincomeofexportgoodsproducts = #{item.salesincomeofexportgoodsproducts},
+				</if>
+				<if test="item.salesincomeofimportgoodsproducts != null">
+					salesincomeofimportgoodsproducts = #{item.salesincomeofimportgoodsproducts},
+				</if>
+				<if test="item.discountandallowance != null">
+					discountandallowance = #{item.discountandallowance},
+				</if>
+				<if test="item.netamountofincomefrommainbusiness != null">
+					netamountofincomefrommainbusiness = #{item.netamountofincomefrommainbusiness},
+				</if>
+				<if test="item.mainoperatingcost != null">
+					mainoperatingcost = #{item.mainoperatingcost},
+				</if>
+				<if test="item.salesincomeofexportproducts != null">
+					salesincomeofexportproducts = #{item.salesincomeofexportproducts},
+				</if>
+				<if test="item.principlebusinesstaxandextracharge != null">
+					principlebusinesstaxandextracharge = #{item.principlebusinesstaxandextracharge},
+				</if>
+				<if test="item.operationexpense != null">
+					operationexpense = #{item.operationexpense},
+				</if>
+				<if test="item.othersoperatingcost != null">
+					othersoperatingcost = #{item.othersoperatingcost},
+				</if>
+				<if test="item.deferredincome != null">
+					deferredincome = #{item.deferredincome},
+				</if>
+				<if test="item.incomefromsalesagency != null">
+					incomefromsalesagency = #{item.incomefromsalesagency},
+				</if>
+				<if test="item.otheroperatingincome != null">
+					otheroperatingincome = #{item.otheroperatingincome},
+				</if>
+				<if test="item.principlebusinessprofit != null">
+					principlebusinessprofit = #{item.principlebusinessprofit},
+				</if>
+				<if test="item.otherbusinessprofit != null">
+					otherbusinessprofit = #{item.otherbusinessprofit},
+				</if>
+				<if test="item.sellingexpenses != null">
+					sellingexpenses = #{item.sellingexpenses},
+				</if>
+				<if test="item.generalandadministrativeexpenses != null">
+					generalandadministrativeexpenses = #{item.generalandadministrativeexpenses},
+				</if>
+				<if test="item.financialexpenses != null">
+					financialexpenses = #{item.financialexpenses},
+				</if>
+				<if test="item.othersexpenses != null">
+					othersexpenses = #{item.othersexpenses},
+				</if>
+				<if test="item.operatingprofits != null">
+					operatingprofits = #{item.operatingprofits},
+				</if>
+				<if test="item.investmentincome != null">
+					investmentincome = #{item.investmentincome},
+				</if>
+				<if test="item.futuresincome != null">
+					futuresincome = #{item.futuresincome},
+				</if>
+				<if test="item.allowanceincome != null">
+					allowanceincome = #{item.allowanceincome},
+				</if>
+				<if test="item.allowanceincomebeforeallowance != null">
+					allowanceincomebeforeallowance = #{item.allowanceincomebeforeallowance},
+				</if>
+				<if test="item.nonoperatingincome != null">
+					nonoperatingincome = #{item.nonoperatingincome},
+				</if>
+				<if test="item.netgainondisposaloffixedassets != null">
+					netgainondisposaloffixedassets = #{item.netgainondisposaloffixedassets},
+				</if>
+				<if test="item.incomefromnoncurrencytrade != null">
+					incomefromnoncurrencytrade = #{item.incomefromnoncurrencytrade},
+				</if>
+				<if test="item.incomefromsalesofintangibleassets != null">
+					incomefromsalesofintangibleassets = #{item.incomefromsalesofintangibleassets},
+				</if>
+				<if test="item.incomefrompenalty != null">
+					incomefrompenalty = #{item.incomefrompenalty},
+				</if>
+				<if test="item.othersincome != null">
+					othersincome = #{item.othersincome},
+				</if>
+				<if test="item.calculatingfromthecontentsalarybefore != null">
+					calculatingfromthecontentsalarybefore = #{item.calculatingfromthecontentsalarybefore},
+				</if>
+				<if test="item.nonoperatingexpenses != null">
+					nonoperatingexpenses = #{item.nonoperatingexpenses},
+				</if>
+				<if test="item.lossfromdisposaloffixedassets != null">
+					lossfromdisposaloffixedassets = #{item.lossfromdisposaloffixedassets},
+				</if>
+				<if test="item.exchangeofnonmonetaryassetsloss != null">
+					exchangeofnonmonetaryassetsloss = #{item.exchangeofnonmonetaryassetsloss},
+				</if>
+				<if test="item.lossoflawsuits != null">
+					lossoflawsuits = #{item.lossoflawsuits},
+				</if>
+				<if test="item.paymentfordonation != null">
+					paymentfordonation = #{item.paymentfordonation},
+				</if>
+				<if test="item.otherpayments != null">
+					otherpayments = #{item.otherpayments},
+				</if>
+				<if test="item.balanceofcontentsalary != null">
+					balanceofcontentsalary = #{item.balanceofcontentsalary},
+				</if>
+				<if test="item.totalprofit != null">
+					totalprofit = #{item.totalprofit},
+				</if>
+				<if test="item.incometax != null">
+					incometax = #{item.incometax},
+				</if>
+				<if test="item.imparimentloss != null">
+					imparimentloss = #{item.imparimentloss},
+				</if>
+				<if test="item.unrealizedinvestmentlosses != null">
+					unrealizedinvestmentlosses = #{item.unrealizedinvestmentlosses},
+				</if>
+				<if test="item.netprofit != null">
+					netprofit = #{item.netprofit},
+				</if>
+				<if test="item.profitdistributionatbeginningofperiod != null">
+					profitdistributionatbeginningofperiod = #{item.profitdistributionatbeginningofperiod},
+				</if>
+				<if test="item.compensationofsurplusreserve != null">
+					compensationofsurplusreserve = #{item.compensationofsurplusreserve},
+				</if>
+				<if test="item.otheradjustmentfactors != null">
+					otheradjustmentfactors = #{item.otheradjustmentfactors},
+				</if>
+				<if test="item.profitavailablefordistribution != null">
+					profitavailablefordistribution = #{item.profitavailablefordistribution},
+				</if>
+				<if test="item.profitreservedforasingleitem != null">
+					profitreservedforasingleitem = #{item.profitreservedforasingleitem},
+				</if>
+				<if test="item.supplementarycurrentcapital != null">
+					supplementarycurrentcapital = #{item.supplementarycurrentcapital},
+				</if>
+				<if test="item.appropriationofstatutorysurplusreserves != null">
+					appropriationofstatutorysurplusreserves = #{item.appropriationofstatutorysurplusreserves},
+				</if>
+				<if test="item.appropriationofstatutorywelfarefund != null">
+					appropriationofstatutorywelfarefund = #{item.appropriationofstatutorywelfarefund},
+				</if>
+				<if test="item.appropriationofstaffincentiveandwelfarefund != null">
+					appropriationofstaffincentiveandwelfarefund = #{item.appropriationofstaffincentiveandwelfarefund},
+				</if>
+				<if test="item.appropriationofreservefund != null">
+					appropriationofreservefund = #{item.appropriationofreservefund},
+				</if>
+				<if test="item.appropriationofenterpriseexpansionfund != null">
+					appropriationofenterpriseexpansionfund = #{item.appropriationofenterpriseexpansionfund},
+				</if>
+				<if test="item.profitscapitalizadon != null">
+					profitscapitalizadon = #{item.profitscapitalizadon},
+				</if>
+				<if test="item.returnofinvestmentothers != null">
+					returnofinvestmentothers = #{item.returnofinvestmentothers},
+				</if>
+				<if test="item.profitavailableforownersdistribution != null">
+					profitavailableforownersdistribution = #{item.profitavailableforownersdistribution},
+				</if>
+				<if test="item.preferredstockdividendspayable != null">
+					preferredstockdividendspayable = #{item.preferredstockdividendspayable},
+				</if>
+				<if test="item.withdrawalothercommonaccumulationfund != null">
+					withdrawalothercommonaccumulationfund = #{item.withdrawalothercommonaccumulationfund},
+				</if>
+				<if test="item.payabledividendsofcommonstock != null">
+					payabledividendsofcommonstock = #{item.payabledividendsofcommonstock},
+				</if>
+				<if test="item.transferfromordinarysharesdividendtopaidincapitalorstock != null">
+					transferfromordinarysharesdividendtopaidincapitalorstock = #{item.transferfromordinarysharesdividendtopaidincapitalorstock},
+				</if>
+				<if test="item.others != null">
+					others = #{item.others},
+				</if>
+				<if test="item.unappropriatedprofit != null">
+					unappropriatedprofit = #{item.unappropriatedprofit},
+				</if>
+				<if test="item.losscompensatedbeforethetax != null">
+					losscompensatedbeforethetax = #{item.losscompensatedbeforethetax},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_2002incomestatementprofitappropriationsgmt_id=#{item.fin_2002incomestatementprofitappropriationsgmt_id}
+		</foreach>
+	</update>
+</mapper>

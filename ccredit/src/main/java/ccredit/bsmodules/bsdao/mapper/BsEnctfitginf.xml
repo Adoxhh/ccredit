@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsEnctfitginf">
+	<!--初始化分页-->
+	<select id="getBsEnctfitginfListByCondition" resultType="ccredit.bsmodules.bsmodel.BsEnctfitginf" parameterType="map">
+		SELECT
+			enctfitginf_id,
+			customid,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			othentcerttype,
+			othentcertnum,
+			certassflg,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			bs_enctfitginf
+		WHERE 1=1
+		<if test="null != entname">
+			AND entname LIKE CONCAT(CONCAT('%',#{entname}),'%')
+		</if>
+		<if test="null != entcerttype">
+			AND entcerttype = #{entcerttype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsEnctfitginfById" resultType="ccredit.bsmodules.bsmodel.BsEnctfitginf" parameterType="string">
+		SELECT
+			enctfitginf_id,
+			customid,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			othentcerttype,
+			othentcertnum,
+			certassflg,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			bs_enctfitginf
+		WHERE enctfitginf_id=#{enctfitginf_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsEnctfitginf" parameterType="ccredit.bsmodules.bsmodel.BsEnctfitginf">
+		INSERT INTO
+			bs_enctfitginf
+			(
+			enctfitginf_id,
+			customid,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			othentcerttype,
+			othentcertnum,
+			certassflg,
+			rptdate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{enctfitginf_id},
+			#{customid},
+			#{infrectype},
+			#{entname},
+			#{entcerttype},
+			#{entcertnum},
+			#{othentcerttype},
+			#{othentcertnum},
+			#{certassflg},
+			#{rptdate},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsEnctfitginf" parameterType="ccredit.bsmodules.bsmodel.BsEnctfitginf">
+		UPDATE
+			bs_enctfitginf
+		SET
+			customid = #{customid},
+			infrectype = #{infrectype},
+			entname = #{entname},
+			entcerttype = #{entcerttype},
+			entcertnum = #{entcertnum},
+			othentcerttype = #{othentcerttype},
+			othentcertnum = #{othentcertnum},
+			certassflg = #{certassflg},
+			rptdate = #{rptdate},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE enctfitginf_id=#{enctfitginf_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsEnctfitginfBySelective" parameterType="ccredit.bsmodules.bsmodel.BsEnctfitginf">
+		UPDATE
+			bs_enctfitginf
+		<set>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="entname != null">
+				entname = #{entname},
+			</if>
+			<if test="entcerttype != null">
+				entcerttype = #{entcerttype},
+			</if>
+			<if test="entcertnum != null">
+				entcertnum = #{entcertnum},
+			</if>
+			<if test="othentcerttype != null">
+				othentcerttype = #{othentcerttype},
+			</if>
+			<if test="othentcertnum != null">
+				othentcertnum = #{othentcertnum},
+			</if>
+			<if test="certassflg != null">
+				certassflg = #{certassflg},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE enctfitginf_id=#{enctfitginf_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsEnctfitginf" parameterType="map">
+		DELETE FROM bs_enctfitginf WHERE enctfitginf_id IN
+		<foreach item="item" index="index" collection="enctfitginf_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsEnctfitginf" parameterType="list">
+		INSERT INTO
+			bs_enctfitginf
+			(
+			enctfitginf_id,
+			customid,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			othentcerttype,
+			othentcertnum,
+			certassflg,
+			rptdate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.enctfitginf_id},
+			#{item.customid},
+			#{item.infrectype},
+			#{item.entname},
+			#{item.entcerttype},
+			#{item.entcertnum},
+			#{item.othentcerttype},
+			#{item.othentcertnum},
+			#{item.certassflg},
+			#{item.rptdate},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsEnctfitginf" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_enctfitginf
+			SET
+				customid = #{item.customid},
+				infrectype = #{item.infrectype},
+				entname = #{item.entname},
+				entcerttype = #{item.entcerttype},
+				entcertnum = #{item.entcertnum},
+				othentcerttype = #{item.othentcerttype},
+				othentcertnum = #{item.othentcertnum},
+				certassflg = #{item.certassflg},
+				rptdate = #{item.rptdate},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE enctfitginf_id=#{item.enctfitginf_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsEnctfitginfBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_enctfitginf
+			<set>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.entname != null">
+					entname = #{item.entname},
+				</if>
+				<if test="item.entcerttype != null">
+					entcerttype = #{item.entcerttype},
+				</if>
+				<if test="item.entcertnum != null">
+					entcertnum = #{item.entcertnum},
+				</if>
+				<if test="item.othentcerttype != null">
+					othentcerttype = #{item.othentcerttype},
+				</if>
+				<if test="item.othentcertnum != null">
+					othentcertnum = #{item.othentcertnum},
+				</if>
+				<if test="item.certassflg != null">
+					certassflg = #{item.certassflg},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE enctfitginf_id=#{item.enctfitginf_id}
+		</foreach>
+	</update>
+</mapper>

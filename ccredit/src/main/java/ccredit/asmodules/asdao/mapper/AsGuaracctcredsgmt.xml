@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.asmodules.asmodel.AsGuaracctcredsgmt">
+	<!--初始化分页-->
+	<select id="getAsGuaracctcredsgmtListByCondition" resultType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt" parameterType="map">
+		SELECT
+			guaracctcredsgmt_id,
+			serialno,
+			customid,
+			mcc,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctcredsgmt
+		WHERE 1=1
+		<if test="null != mcc">
+			AND mcc LIKE CONCAT(CONCAT('%',#{mcc}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getAsGuaracctcredsgmtById" resultType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt" parameterType="string">
+		SELECT
+			guaracctcredsgmt_id,
+			serialno,
+			customid,
+			mcc,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctcredsgmt
+		WHERE guaracctcredsgmt_id=#{guaracctcredsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addAsGuaracctcredsgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt">
+		INSERT INTO
+			as_guaracctcredsgmt
+			(
+			guaracctcredsgmt_id,
+			serialno,
+			customid,
+			mcc,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{guaracctcredsgmt_id},
+			#{serialno},
+			#{customid},
+			#{mcc},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateAsGuaracctcredsgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt">
+		UPDATE
+			as_guaracctcredsgmt
+		SET
+			serialno = #{serialno},
+			customid = #{customid},
+			mcc = #{mcc},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE guaracctcredsgmt_id=#{guaracctcredsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateAsGuaracctcredsgmtBySelective" parameterType="ccredit.asmodules.asmodel.AsGuaracctcredsgmt">
+		UPDATE
+			as_guaracctcredsgmt
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="mcc != null">
+				mcc = #{mcc},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE guaracctcredsgmt_id=#{guaracctcredsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delAsGuaracctcredsgmt" parameterType="map">
+		DELETE FROM as_guaracctcredsgmt WHERE guaracctcredsgmt_id IN
+		<foreach item="item" index="index" collection="guaracctcredsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchAsGuaracctcredsgmt" parameterType="list">
+		INSERT INTO
+			as_guaracctcredsgmt
+			(
+			guaracctcredsgmt_id,
+			serialno,
+			customid,
+			mcc,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.guaracctcredsgmt_id},
+			#{item.serialno},
+			#{item.customid},
+			#{item.mcc},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchAsGuaracctcredsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctcredsgmt
+			SET
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				mcc = #{item.mcc},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE guaracctcredsgmt_id=#{item.guaracctcredsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchAsGuaracctcredsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctcredsgmt
+			<set>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.mcc != null">
+					mcc = #{item.mcc},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE guaracctcredsgmt_id=#{item.guaracctcredsgmt_id}
+		</foreach>
+	</update>
+</mapper>

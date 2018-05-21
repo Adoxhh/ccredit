@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt">
+	<!--初始化分页-->
+	<select id="getBsMnmmbinfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt" parameterType="map">
+		SELECT
+			bs_mnmmbinfsgmt_id,
+			mmbnm,
+			mmbalias,
+			mmbidtype,
+			mmbidnum,
+			mmbpstn,
+			mnmmbinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_mnmmbinfsgmt
+		WHERE 1=1
+		<if test="null != mmbalias">
+			AND mmbalias LIKE CONCAT(CONCAT('%',#{mmbalias}),'%')
+		</if>
+		<if test="null != mmbidtype">
+			AND mmbidtype = #{mmbidtype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsMnmmbinfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt" parameterType="string">
+		SELECT
+			bs_mnmmbinfsgmt_id,
+			mmbnm,
+			mmbalias,
+			mmbidtype,
+			mmbidnum,
+			mmbpstn,
+			mnmmbinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_mnmmbinfsgmt
+		WHERE bs_mnmmbinfsgmt_id=#{bs_mnmmbinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsMnmmbinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt">
+		INSERT INTO
+			bs_mnmmbinfsgmt
+			(
+			bs_mnmmbinfsgmt_id,
+			mmbnm,
+			mmbalias,
+			mmbidtype,
+			mmbidnum,
+			mmbpstn,
+			mnmmbinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_mnmmbinfsgmt_id},
+			#{mmbnm},
+			#{mmbalias},
+			#{mmbidtype},
+			#{mmbidnum},
+			#{mmbpstn},
+			#{mnmmbinfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsMnmmbinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt">
+		UPDATE
+			bs_mnmmbinfsgmt
+		SET
+			mmbnm = #{mmbnm},
+			mmbalias = #{mmbalias},
+			mmbidtype = #{mmbidtype},
+			mmbidnum = #{mmbidnum},
+			mmbpstn = #{mmbpstn},
+			mnmmbinfoupdate = #{mnmmbinfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_mnmmbinfsgmt_id=#{bs_mnmmbinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsMnmmbinfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt">
+		UPDATE
+			bs_mnmmbinfsgmt
+		<set>
+			<if test="mmbnm != null">
+				mmbnm = #{mmbnm},
+			</if>
+			<if test="mmbalias != null">
+				mmbalias = #{mmbalias},
+			</if>
+			<if test="mmbidtype != null">
+				mmbidtype = #{mmbidtype},
+			</if>
+			<if test="mmbidnum != null">
+				mmbidnum = #{mmbidnum},
+			</if>
+			<if test="mmbpstn != null">
+				mmbpstn = #{mmbpstn},
+			</if>
+			<if test="mnmmbinfoupdate != null">
+				mnmmbinfoupdate = #{mnmmbinfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_mnmmbinfsgmt_id=#{bs_mnmmbinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsMnmmbinfsgmt" parameterType="map">
+		DELETE FROM bs_mnmmbinfsgmt WHERE bs_mnmmbinfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_mnmmbinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsMnmmbinfsgmt" parameterType="list">
+		INSERT INTO
+			bs_mnmmbinfsgmt
+			(
+			bs_mnmmbinfsgmt_id,
+			mmbnm,
+			mmbalias,
+			mmbidtype,
+			mmbidnum,
+			mmbpstn,
+			mnmmbinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_mnmmbinfsgmt_id},
+			#{item.mmbnm},
+			#{item.mmbalias},
+			#{item.mmbidtype},
+			#{item.mmbidnum},
+			#{item.mmbpstn},
+			#{item.mnmmbinfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsMnmmbinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_mnmmbinfsgmt
+			SET
+				mmbnm = #{item.mmbnm},
+				mmbalias = #{item.mmbalias},
+				mmbidtype = #{item.mmbidtype},
+				mmbidnum = #{item.mmbidnum},
+				mmbpstn = #{item.mmbpstn},
+				mnmmbinfoupdate = #{item.mnmmbinfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_mnmmbinfsgmt_id=#{item.bs_mnmmbinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsMnmmbinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_mnmmbinfsgmt
+			<set>
+				<if test="item.mmbnm != null">
+					mmbnm = #{item.mmbnm},
+				</if>
+				<if test="item.mmbalias != null">
+					mmbalias = #{item.mmbalias},
+				</if>
+				<if test="item.mmbidtype != null">
+					mmbidtype = #{item.mmbidtype},
+				</if>
+				<if test="item.mmbidnum != null">
+					mmbidnum = #{item.mmbidnum},
+				</if>
+				<if test="item.mmbpstn != null">
+					mmbpstn = #{item.mmbpstn},
+				</if>
+				<if test="item.mnmmbinfoupdate != null">
+					mnmmbinfoupdate = #{item.mnmmbinfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_mnmmbinfsgmt_id=#{item.bs_mnmmbinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

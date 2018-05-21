@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf">
+	<!--初始化分页-->
+	<select id="getBsEnicdnrltpinfListByCondition" resultType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf" parameterType="map">
+		SELECT
+			enicdnrltpinf_id,
+			infrectype,
+			customid,
+			entname,
+			entcerttype,
+			entcertnum,
+			bcustomid,
+			assoentname,
+			assoentcerttype,
+			assoentcertnum,
+			assotype,
+			assosign,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			bs_enicdnrltpinf
+		WHERE 1=1
+		<if test="null != entname">
+			AND entname LIKE CONCAT(CONCAT('%',#{entname}),'%')
+		</if>
+		<if test="null != assoentname">
+			AND assoentname LIKE CONCAT(CONCAT('%',#{assoentname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsEnicdnrltpinfById" resultType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf" parameterType="string">
+		SELECT
+			enicdnrltpinf_id,
+			infrectype,
+			customid,
+			entname,
+			entcerttype,
+			entcertnum,
+			bcustomid,
+			assoentname,
+			assoentcerttype,
+			assoentcertnum,
+			assotype,
+			assosign,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			bs_enicdnrltpinf
+		WHERE enicdnrltpinf_id=#{enicdnrltpinf_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsEnicdnrltpinf" parameterType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf">
+		INSERT INTO
+			bs_enicdnrltpinf
+			(
+			enicdnrltpinf_id,
+			infrectype,
+			customid,
+			entname,
+			entcerttype,
+			entcertnum,
+			bcustomid,
+			assoentname,
+			assoentcerttype,
+			assoentcertnum,
+			assotype,
+			assosign,
+			rptdate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{enicdnrltpinf_id},
+			#{infrectype},
+			#{customid},
+			#{entname},
+			#{entcerttype},
+			#{entcertnum},
+			#{bcustomid},
+			#{assoentname},
+			#{assoentcerttype},
+			#{assoentcertnum},
+			#{assotype},
+			#{assosign},
+			#{rptdate},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsEnicdnrltpinf" parameterType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf">
+		UPDATE
+			bs_enicdnrltpinf
+		SET
+			infrectype = #{infrectype},
+			customid = #{customid},
+			entname = #{entname},
+			entcerttype = #{entcerttype},
+			entcertnum = #{entcertnum},
+			bcustomid = #{bcustomid},
+			assoentname = #{assoentname},
+			assoentcerttype = #{assoentcerttype},
+			assoentcertnum = #{assoentcertnum},
+			assotype = #{assotype},
+			assosign = #{assosign},
+			rptdate = #{rptdate},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE enicdnrltpinf_id=#{enicdnrltpinf_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsEnicdnrltpinfBySelective" parameterType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf">
+		UPDATE
+			bs_enicdnrltpinf
+		<set>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="entname != null">
+				entname = #{entname},
+			</if>
+			<if test="entcerttype != null">
+				entcerttype = #{entcerttype},
+			</if>
+			<if test="entcertnum != null">
+				entcertnum = #{entcertnum},
+			</if>
+			<if test="bcustomid != null">
+				bcustomid = #{bcustomid},
+			</if>
+			<if test="assoentname != null">
+				assoentname = #{assoentname},
+			</if>
+			<if test="assoentcerttype != null">
+				assoentcerttype = #{assoentcerttype},
+			</if>
+			<if test="assoentcertnum != null">
+				assoentcertnum = #{assoentcertnum},
+			</if>
+			<if test="assotype != null">
+				assotype = #{assotype},
+			</if>
+			<if test="assosign != null">
+				assosign = #{assosign},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE enicdnrltpinf_id=#{enicdnrltpinf_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsEnicdnrltpinf" parameterType="map">
+		DELETE FROM bs_enicdnrltpinf WHERE enicdnrltpinf_id IN
+		<foreach item="item" index="index" collection="enicdnrltpinf_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsEnicdnrltpinf" parameterType="list">
+		INSERT INTO
+			bs_enicdnrltpinf
+			(
+			enicdnrltpinf_id,
+			infrectype,
+			customid,
+			entname,
+			entcerttype,
+			entcertnum,
+			bcustomid,
+			assoentname,
+			assoentcerttype,
+			assoentcertnum,
+			assotype,
+			assosign,
+			rptdate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.enicdnrltpinf_id},
+			#{item.infrectype},
+			#{item.customid},
+			#{item.entname},
+			#{item.entcerttype},
+			#{item.entcertnum},
+			#{item.bcustomid},
+			#{item.assoentname},
+			#{item.assoentcerttype},
+			#{item.assoentcertnum},
+			#{item.assotype},
+			#{item.assosign},
+			#{item.rptdate},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsEnicdnrltpinf" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_enicdnrltpinf
+			SET
+				infrectype = #{item.infrectype},
+				customid = #{item.customid},
+				entname = #{item.entname},
+				entcerttype = #{item.entcerttype},
+				entcertnum = #{item.entcertnum},
+				bcustomid = #{item.bcustomid},
+				assoentname = #{item.assoentname},
+				assoentcerttype = #{item.assoentcerttype},
+				assoentcertnum = #{item.assoentcertnum},
+				assotype = #{item.assotype},
+				assosign = #{item.assosign},
+				rptdate = #{item.rptdate},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE enicdnrltpinf_id=#{item.enicdnrltpinf_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsEnicdnrltpinfBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_enicdnrltpinf
+			<set>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.entname != null">
+					entname = #{item.entname},
+				</if>
+				<if test="item.entcerttype != null">
+					entcerttype = #{item.entcerttype},
+				</if>
+				<if test="item.entcertnum != null">
+					entcertnum = #{item.entcertnum},
+				</if>
+				<if test="item.bcustomid != null">
+					bcustomid = #{item.bcustomid},
+				</if>
+				<if test="item.assoentname != null">
+					assoentname = #{item.assoentname},
+				</if>
+				<if test="item.assoentcerttype != null">
+					assoentcerttype = #{item.assoentcerttype},
+				</if>
+				<if test="item.assoentcertnum != null">
+					assoentcertnum = #{item.assoentcertnum},
+				</if>
+				<if test="item.assotype != null">
+					assotype = #{item.assotype},
+				</if>
+				<if test="item.assosign != null">
+					assosign = #{item.assosign},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE enicdnrltpinf_id=#{item.enicdnrltpinf_id}
+		</foreach>
+	</update>
+</mapper>

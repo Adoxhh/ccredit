@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.asmodules.asmodel.AsGuaracctbssgmt">
+	<!--初始化分页-->
+	<select id="getAsGuaracctbssgmtListByCondition" resultType="ccredit.asmodules.asmodel.AsGuaracctbssgmt" parameterType="map">
+		SELECT
+			guaracctbssgmt_id,
+			serialno,
+			customid,
+			infrectype,
+			accttype,
+			acctcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctbssgmt
+		WHERE 1=1
+		<if test="null != accttype">
+			AND accttype = #{accttype}
+		</if>
+		<if test="null != name">
+			AND name LIKE CONCAT(CONCAT('%',#{name}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getAsGuaracctbssgmtById" resultType="ccredit.asmodules.asmodel.AsGuaracctbssgmt" parameterType="string">
+		SELECT
+			guaracctbssgmt_id,
+			serialno,
+			customid,
+			infrectype,
+			accttype,
+			acctcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			lastdate,
+			changeflag
+		FROM 
+			as_guaracctbssgmt
+		WHERE guaracctbssgmt_id=#{guaracctbssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addAsGuaracctbssgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctbssgmt">
+		INSERT INTO
+			as_guaracctbssgmt
+			(
+			guaracctbssgmt_id,
+			serialno,
+			customid,
+			infrectype,
+			accttype,
+			acctcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{guaracctbssgmt_id},
+			#{serialno},
+			#{customid},
+			#{infrectype},
+			#{accttype},
+			#{acctcode},
+			#{rptdate},
+			#{rptdatecode},
+			#{name},
+			#{idtype},
+			#{idnum},
+			#{mngmtorgcode},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateAsGuaracctbssgmt" parameterType="ccredit.asmodules.asmodel.AsGuaracctbssgmt">
+		UPDATE
+			as_guaracctbssgmt
+		SET
+			serialno = #{serialno},
+			customid = #{customid},
+			infrectype = #{infrectype},
+			accttype = #{accttype},
+			acctcode = #{acctcode},
+			rptdate = #{rptdate},
+			rptdatecode = #{rptdatecode},
+			name = #{name},
+			idtype = #{idtype},
+			idnum = #{idnum},
+			mngmtorgcode = #{mngmtorgcode},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE guaracctbssgmt_id=#{guaracctbssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateAsGuaracctbssgmtBySelective" parameterType="ccredit.asmodules.asmodel.AsGuaracctbssgmt">
+		UPDATE
+			as_guaracctbssgmt
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="accttype != null">
+				accttype = #{accttype},
+			</if>
+			<if test="acctcode != null">
+				acctcode = #{acctcode},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="idtype != null">
+				idtype = #{idtype},
+			</if>
+			<if test="idnum != null">
+				idnum = #{idnum},
+			</if>
+			<if test="mngmtorgcode != null">
+				mngmtorgcode = #{mngmtorgcode},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE guaracctbssgmt_id=#{guaracctbssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delAsGuaracctbssgmt" parameterType="map">
+		DELETE FROM as_guaracctbssgmt WHERE guaracctbssgmt_id IN
+		<foreach item="item" index="index" collection="guaracctbssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchAsGuaracctbssgmt" parameterType="list">
+		INSERT INTO
+			as_guaracctbssgmt
+			(
+			guaracctbssgmt_id,
+			serialno,
+			customid,
+			infrectype,
+			accttype,
+			acctcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.guaracctbssgmt_id},
+			#{item.serialno},
+			#{item.customid},
+			#{item.infrectype},
+			#{item.accttype},
+			#{item.acctcode},
+			#{item.rptdate},
+			#{item.rptdatecode},
+			#{item.name},
+			#{item.idtype},
+			#{item.idnum},
+			#{item.mngmtorgcode},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchAsGuaracctbssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctbssgmt
+			SET
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				infrectype = #{item.infrectype},
+				accttype = #{item.accttype},
+				acctcode = #{item.acctcode},
+				rptdate = #{item.rptdate},
+				rptdatecode = #{item.rptdatecode},
+				name = #{item.name},
+				idtype = #{item.idtype},
+				idnum = #{item.idnum},
+				mngmtorgcode = #{item.mngmtorgcode},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE guaracctbssgmt_id=#{item.guaracctbssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchAsGuaracctbssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guaracctbssgmt
+			<set>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.accttype != null">
+					accttype = #{item.accttype},
+				</if>
+				<if test="item.acctcode != null">
+					acctcode = #{item.acctcode},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.name != null">
+					name = #{item.name},
+				</if>
+				<if test="item.idtype != null">
+					idtype = #{item.idtype},
+				</if>
+				<if test="item.idnum != null">
+					idnum = #{item.idnum},
+				</if>
+				<if test="item.mngmtorgcode != null">
+					mngmtorgcode = #{item.mngmtorgcode},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE guaracctbssgmt_id=#{item.guaracctbssgmt_id}
+		</foreach>
+	</update>
+</mapper>

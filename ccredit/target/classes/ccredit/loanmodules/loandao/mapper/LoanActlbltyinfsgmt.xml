@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt">
+	<!--初始化分页-->
+	<select id="getLoanActlbltyinfsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt" parameterType="map">
+		SELECT
+			loan_actlbltyinfsgmt_id,
+			acctstatus,
+			acctbal,
+			balchgdate,
+			fivecate,
+			fivecateadjdate,
+			pymtprd,
+			totoverd,
+			overdprinc,
+			overddy,
+			latrpydate,
+			latrpyamt,
+			latrpypri,
+			rpmttype,
+			latagrrrpydate,
+			latagrrrpyamt,
+			nxtagrrrpydate,
+			closedate,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_actlbltyinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != acctstatus">
+			AND acctstatus LIKE CONCAT(CONCAT('%',#{acctstatus}),'%')
+		</if>
+		<if test="null != rpmttype">
+			AND rpmttype LIKE CONCAT(CONCAT('%',#{rpmttype}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanActlbltyinfsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt" parameterType="string">
+		SELECT
+			loan_actlbltyinfsgmt_id,
+			acctstatus,
+			acctbal,
+			balchgdate,
+			fivecate,
+			fivecateadjdate,
+			pymtprd,
+			totoverd,
+			overdprinc,
+			overddy,
+			latrpydate,
+			latrpyamt,
+			latrpypri,
+			rpmttype,
+			latagrrrpydate,
+			latagrrrpyamt,
+			nxtagrrrpydate,
+			closedate,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_actlbltyinfsgmt
+		WHERE loan_actlbltyinfsgmt_id=#{loan_actlbltyinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanActlbltyinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt">
+		INSERT INTO
+			loan_actlbltyinfsgmt
+			(
+			loan_actlbltyinfsgmt_id,
+			acctstatus,
+			acctbal,
+			balchgdate,
+			fivecate,
+			fivecateadjdate,
+			pymtprd,
+			totoverd,
+			overdprinc,
+			overddy,
+			latrpydate,
+			latrpyamt,
+			latrpypri,
+			rpmttype,
+			latagrrrpydate,
+			latagrrrpyamt,
+			nxtagrrrpydate,
+			closedate,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_actlbltyinfsgmt_id},
+			#{acctstatus},
+			#{acctbal},
+			#{balchgdate},
+			#{fivecate},
+			#{fivecateadjdate},
+			#{pymtprd},
+			#{totoverd},
+			#{overdprinc},
+			#{overddy},
+			#{latrpydate},
+			#{latrpyamt},
+			#{latrpypri},
+			#{rpmttype},
+			#{latagrrrpydate},
+			#{latagrrrpyamt},
+			#{nxtagrrrpydate},
+			#{closedate},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanActlbltyinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt">
+		UPDATE
+			loan_actlbltyinfsgmt
+		SET
+			acctstatus = #{acctstatus},
+			acctbal = #{acctbal},
+			balchgdate = #{balchgdate},
+			fivecate = #{fivecate},
+			fivecateadjdate = #{fivecateadjdate},
+			pymtprd = #{pymtprd},
+			totoverd = #{totoverd},
+			overdprinc = #{overdprinc},
+			overddy = #{overddy},
+			latrpydate = #{latrpydate},
+			latrpyamt = #{latrpyamt},
+			latrpypri = #{latrpypri},
+			rpmttype = #{rpmttype},
+			latagrrrpydate = #{latagrrrpydate},
+			latagrrrpyamt = #{latagrrrpyamt},
+			nxtagrrrpydate = #{nxtagrrrpydate},
+			closedate = #{closedate},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_actlbltyinfsgmt_id=#{loan_actlbltyinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanActlbltyinfsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt">
+		UPDATE
+			loan_actlbltyinfsgmt
+		<set>
+			<if test="acctstatus != null">
+				acctstatus = #{acctstatus},
+			</if>
+			<if test="acctbal != null">
+				acctbal = #{acctbal},
+			</if>
+			<if test="balchgdate != null">
+				balchgdate = #{balchgdate},
+			</if>
+			<if test="fivecate != null">
+				fivecate = #{fivecate},
+			</if>
+			<if test="fivecateadjdate != null">
+				fivecateadjdate = #{fivecateadjdate},
+			</if>
+			<if test="pymtprd != null">
+				pymtprd = #{pymtprd},
+			</if>
+			<if test="totoverd != null">
+				totoverd = #{totoverd},
+			</if>
+			<if test="overdprinc != null">
+				overdprinc = #{overdprinc},
+			</if>
+			<if test="overddy != null">
+				overddy = #{overddy},
+			</if>
+			<if test="latrpydate != null">
+				latrpydate = #{latrpydate},
+			</if>
+			<if test="latrpyamt != null">
+				latrpyamt = #{latrpyamt},
+			</if>
+			<if test="latrpypri != null">
+				latrpypri = #{latrpypri},
+			</if>
+			<if test="rpmttype != null">
+				rpmttype = #{rpmttype},
+			</if>
+			<if test="latagrrrpydate != null">
+				latagrrrpydate = #{latagrrrpydate},
+			</if>
+			<if test="latagrrrpyamt != null">
+				latagrrrpyamt = #{latagrrrpyamt},
+			</if>
+			<if test="nxtagrrrpydate != null">
+				nxtagrrrpydate = #{nxtagrrrpydate},
+			</if>
+			<if test="closedate != null">
+				closedate = #{closedate},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_actlbltyinfsgmt_id=#{loan_actlbltyinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanActlbltyinfsgmt" parameterType="map">
+		DELETE FROM loan_actlbltyinfsgmt WHERE loan_actlbltyinfsgmt_id IN
+		<foreach item="item" index="index" collection="loan_actlbltyinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanActlbltyinfsgmt" parameterType="list">
+		INSERT INTO
+			loan_actlbltyinfsgmt
+			(
+			loan_actlbltyinfsgmt_id,
+			acctstatus,
+			acctbal,
+			balchgdate,
+			fivecate,
+			fivecateadjdate,
+			pymtprd,
+			totoverd,
+			overdprinc,
+			overddy,
+			latrpydate,
+			latrpyamt,
+			latrpypri,
+			rpmttype,
+			latagrrrpydate,
+			latagrrrpyamt,
+			nxtagrrrpydate,
+			closedate,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_actlbltyinfsgmt_id},
+			#{item.acctstatus},
+			#{item.acctbal},
+			#{item.balchgdate},
+			#{item.fivecate},
+			#{item.fivecateadjdate},
+			#{item.pymtprd},
+			#{item.totoverd},
+			#{item.overdprinc},
+			#{item.overddy},
+			#{item.latrpydate},
+			#{item.latrpyamt},
+			#{item.latrpypri},
+			#{item.rpmttype},
+			#{item.latagrrrpydate},
+			#{item.latagrrrpyamt},
+			#{item.nxtagrrrpydate},
+			#{item.closedate},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanActlbltyinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_actlbltyinfsgmt
+			SET
+				acctstatus = #{item.acctstatus},
+				acctbal = #{item.acctbal},
+				balchgdate = #{item.balchgdate},
+				fivecate = #{item.fivecate},
+				fivecateadjdate = #{item.fivecateadjdate},
+				pymtprd = #{item.pymtprd},
+				totoverd = #{item.totoverd},
+				overdprinc = #{item.overdprinc},
+				overddy = #{item.overddy},
+				latrpydate = #{item.latrpydate},
+				latrpyamt = #{item.latrpyamt},
+				latrpypri = #{item.latrpypri},
+				rpmttype = #{item.rpmttype},
+				latagrrrpydate = #{item.latagrrrpydate},
+				latagrrrpyamt = #{item.latagrrrpyamt},
+				nxtagrrrpydate = #{item.nxtagrrrpydate},
+				closedate = #{item.closedate},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_actlbltyinfsgmt_id=#{item.loan_actlbltyinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanActlbltyinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_actlbltyinfsgmt
+			<set>
+				<if test="item.acctstatus != null">
+					acctstatus = #{item.acctstatus},
+				</if>
+				<if test="item.acctbal != null">
+					acctbal = #{item.acctbal},
+				</if>
+				<if test="item.balchgdate != null">
+					balchgdate = #{item.balchgdate},
+				</if>
+				<if test="item.fivecate != null">
+					fivecate = #{item.fivecate},
+				</if>
+				<if test="item.fivecateadjdate != null">
+					fivecateadjdate = #{item.fivecateadjdate},
+				</if>
+				<if test="item.pymtprd != null">
+					pymtprd = #{item.pymtprd},
+				</if>
+				<if test="item.totoverd != null">
+					totoverd = #{item.totoverd},
+				</if>
+				<if test="item.overdprinc != null">
+					overdprinc = #{item.overdprinc},
+				</if>
+				<if test="item.overddy != null">
+					overddy = #{item.overddy},
+				</if>
+				<if test="item.latrpydate != null">
+					latrpydate = #{item.latrpydate},
+				</if>
+				<if test="item.latrpyamt != null">
+					latrpyamt = #{item.latrpyamt},
+				</if>
+				<if test="item.latrpypri != null">
+					latrpypri = #{item.latrpypri},
+				</if>
+				<if test="item.rpmttype != null">
+					rpmttype = #{item.rpmttype},
+				</if>
+				<if test="item.latagrrrpydate != null">
+					latagrrrpydate = #{item.latagrrrpydate},
+				</if>
+				<if test="item.latagrrrpyamt != null">
+					latagrrrpyamt = #{item.latagrrrpyamt},
+				</if>
+				<if test="item.nxtagrrrpydate != null">
+					nxtagrrrpydate = #{item.nxtagrrrpydate},
+				</if>
+				<if test="item.closedate != null">
+					closedate = #{item.closedate},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_actlbltyinfsgmt_id=#{item.loan_actlbltyinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

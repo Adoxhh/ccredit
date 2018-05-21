@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanCosignersgmt">
+	<!--初始化分页-->
+	<select id="getLoanCosignersgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanCosignersgmt" parameterType="map">
+		SELECT
+			loan_cosignersgmt_id,
+			cosignersnm,
+			cosignerstype,
+			cosignersname,
+			cosignersidtype,
+			cosignersidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_cosignersgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != cosignersname">
+			AND cosignersname LIKE CONCAT(CONCAT('%',#{cosignersname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanCosignersgmtById" resultType="ccredit.loanmodules.loanmodel.LoanCosignersgmt" parameterType="string">
+		SELECT
+			loan_cosignersgmt_id,
+			cosignersnm,
+			cosignerstype,
+			cosignersname,
+			cosignersidtype,
+			cosignersidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_cosignersgmt
+		WHERE loan_cosignersgmt_id=#{loan_cosignersgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanCosignersgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCosignersgmt">
+		INSERT INTO
+			loan_cosignersgmt
+			(
+			loan_cosignersgmt_id,
+			cosignersnm,
+			cosignerstype,
+			cosignersname,
+			cosignersidtype,
+			cosignersidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_cosignersgmt_id},
+			#{cosignersnm},
+			#{cosignerstype},
+			#{cosignersname},
+			#{cosignersidtype},
+			#{cosignersidnum},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanCosignersgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCosignersgmt">
+		UPDATE
+			loan_cosignersgmt
+		SET
+			cosignersnm = #{cosignersnm},
+			cosignerstype = #{cosignerstype},
+			cosignersname = #{cosignersname},
+			cosignersidtype = #{cosignersidtype},
+			cosignersidnum = #{cosignersidnum},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_cosignersgmt_id=#{loan_cosignersgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanCosignersgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanCosignersgmt">
+		UPDATE
+			loan_cosignersgmt
+		<set>
+			<if test="cosignersnm != null">
+				cosignersnm = #{cosignersnm},
+			</if>
+			<if test="cosignerstype != null">
+				cosignerstype = #{cosignerstype},
+			</if>
+			<if test="cosignersname != null">
+				cosignersname = #{cosignersname},
+			</if>
+			<if test="cosignersidtype != null">
+				cosignersidtype = #{cosignersidtype},
+			</if>
+			<if test="cosignersidnum != null">
+				cosignersidnum = #{cosignersidnum},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_cosignersgmt_id=#{loan_cosignersgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanCosignersgmt" parameterType="map">
+		DELETE FROM loan_cosignersgmt WHERE loan_cosignersgmt_id IN
+		<foreach item="item" index="index" collection="loan_cosignersgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanCosignersgmt" parameterType="list">
+		INSERT INTO
+			loan_cosignersgmt
+			(
+			loan_cosignersgmt_id,
+			cosignersnm,
+			cosignerstype,
+			cosignersname,
+			cosignersidtype,
+			cosignersidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_cosignersgmt_id},
+			#{item.cosignersnm},
+			#{item.cosignerstype},
+			#{item.cosignersname},
+			#{item.cosignersidtype},
+			#{item.cosignersidnum},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanCosignersgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_cosignersgmt
+			SET
+				cosignersnm = #{item.cosignersnm},
+				cosignerstype = #{item.cosignerstype},
+				cosignersname = #{item.cosignersname},
+				cosignersidtype = #{item.cosignersidtype},
+				cosignersidnum = #{item.cosignersidnum},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_cosignersgmt_id=#{item.loan_cosignersgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanCosignersgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_cosignersgmt
+			<set>
+				<if test="item.cosignersnm != null">
+					cosignersnm = #{item.cosignersnm},
+				</if>
+				<if test="item.cosignerstype != null">
+					cosignerstype = #{item.cosignerstype},
+				</if>
+				<if test="item.cosignersname != null">
+					cosignersname = #{item.cosignersname},
+				</if>
+				<if test="item.cosignersidtype != null">
+					cosignersidtype = #{item.cosignersidtype},
+				</if>
+				<if test="item.cosignersidnum != null">
+					cosignersidnum = #{item.cosignersidnum},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_cosignersgmt_id=#{item.loan_cosignersgmt_id}
+		</foreach>
+	</update>
+</mapper>

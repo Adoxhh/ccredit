@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.spmodules.spmodel.SpDelmsg">
+	<!--初始化分页-->
+	<select id="getSpDelmsgListByCondition" resultType="ccredit.spmodules.spmodel.SpDelmsg" parameterType="map">
+		SELECT
+			delmsg_id,
+			customid,
+			serialno,
+			infrectype,
+			infsurccode,
+			entname,
+			entcerttype,
+			entcertnum,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			delreccode,
+			delsgmtcode,
+			delstartdate,
+			delenddate,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+		FROM 
+			sp_delmsg
+		WHERE 1=1
+		<if test="null != infrectype">
+			AND infrectype = #{infrectype}
+		</if>
+		<if test="null != status">
+			AND status = #{status}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getSpDelmsgById" resultType="ccredit.spmodules.spmodel.SpDelmsg" parameterType="string">
+		SELECT
+			delmsg_id,
+			customid,
+			serialno,
+			infrectype,
+			infsurccode,
+			entname,
+			entcerttype,
+			entcertnum,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			delreccode,
+			delsgmtcode,
+			delstartdate,
+			delenddate,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+		FROM 
+			sp_delmsg
+		WHERE delmsg_id=#{delmsg_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addSpDelmsg" parameterType="ccredit.spmodules.spmodel.SpDelmsg">
+		INSERT INTO
+			sp_delmsg
+			(
+			delmsg_id,
+			customid,
+			serialno,
+			infrectype,
+			infsurccode,
+			entname,
+			entcerttype,
+			entcertnum,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			delreccode,
+			delsgmtcode,
+			delstartdate,
+			delenddate,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+			)
+			VALUES
+			(
+			#{delmsg_id},
+			#{customid},
+			#{serialno},
+			#{infrectype},
+			#{infsurccode},
+			#{entname},
+			#{entcerttype},
+			#{entcertnum},
+			#{sheetyear},
+			#{sheettype},
+			#{sheettypedivide},
+			#{delreccode},
+			#{delsgmtcode},
+			#{delstartdate},
+			#{delenddate},
+			#{reason},
+			#{applyman},
+			#{auditman},
+			#{credittime},
+			#{sendtime},
+			#{xml},
+			#{filename},
+			#{status}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateSpDelmsg" parameterType="ccredit.spmodules.spmodel.SpDelmsg">
+		UPDATE
+			sp_delmsg
+		SET
+			customid = #{customid},
+			serialno = #{serialno},
+			infrectype = #{infrectype},
+			infsurccode = #{infsurccode},
+			entname = #{entname},
+			entcerttype = #{entcerttype},
+			entcertnum = #{entcertnum},
+			sheetyear = #{sheetyear},
+			sheettype = #{sheettype},
+			sheettypedivide = #{sheettypedivide},
+			delreccode = #{delreccode},
+			delsgmtcode = #{delsgmtcode},
+			delstartdate = #{delstartdate},
+			delenddate = #{delenddate},
+			reason = #{reason},
+			applyman = #{applyman},
+			auditman = #{auditman},
+			credittime = #{credittime},
+			sendtime = #{sendtime},
+			xml = #{xml},
+			filename = #{filename},
+			status = #{status}
+		WHERE delmsg_id=#{delmsg_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateSpDelmsgBySelective" parameterType="ccredit.spmodules.spmodel.SpDelmsg">
+		UPDATE
+			sp_delmsg
+		<set>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="infsurccode != null">
+				infsurccode = #{infsurccode},
+			</if>
+			<if test="entname != null">
+				entname = #{entname},
+			</if>
+			<if test="entcerttype != null">
+				entcerttype = #{entcerttype},
+			</if>
+			<if test="entcertnum != null">
+				entcertnum = #{entcertnum},
+			</if>
+			<if test="sheetyear != null">
+				sheetyear = #{sheetyear},
+			</if>
+			<if test="sheettype != null">
+				sheettype = #{sheettype},
+			</if>
+			<if test="sheettypedivide != null">
+				sheettypedivide = #{sheettypedivide},
+			</if>
+			<if test="delreccode != null">
+				delreccode = #{delreccode},
+			</if>
+			<if test="delsgmtcode != null">
+				delsgmtcode = #{delsgmtcode},
+			</if>
+			<if test="delstartdate != null">
+				delstartdate = #{delstartdate},
+			</if>
+			<if test="delenddate != null">
+				delenddate = #{delenddate},
+			</if>
+			<if test="reason != null">
+				reason = #{reason},
+			</if>
+			<if test="applyman != null">
+				applyman = #{applyman},
+			</if>
+			<if test="auditman != null">
+				auditman = #{auditman},
+			</if>
+			<if test="credittime != null">
+				credittime = #{credittime},
+			</if>
+			<if test="sendtime != null">
+				sendtime = #{sendtime},
+			</if>
+			<if test="xml != null">
+				xml = #{xml},
+			</if>
+			<if test="filename != null">
+				filename = #{filename},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+		</set>
+		WHERE delmsg_id=#{delmsg_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delSpDelmsg" parameterType="map">
+		DELETE FROM sp_delmsg WHERE delmsg_id IN
+		<foreach item="item" index="index" collection="delmsg_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchSpDelmsg" parameterType="list">
+		INSERT INTO
+			sp_delmsg
+			(
+			delmsg_id,
+			customid,
+			serialno,
+			infrectype,
+			infsurccode,
+			entname,
+			entcerttype,
+			entcertnum,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			delreccode,
+			delsgmtcode,
+			delstartdate,
+			delenddate,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.delmsg_id},
+			#{item.customid},
+			#{item.serialno},
+			#{item.infrectype},
+			#{item.infsurccode},
+			#{item.entname},
+			#{item.entcerttype},
+			#{item.entcertnum},
+			#{item.sheetyear},
+			#{item.sheettype},
+			#{item.sheettypedivide},
+			#{item.delreccode},
+			#{item.delsgmtcode},
+			#{item.delstartdate},
+			#{item.delenddate},
+			#{item.reason},
+			#{item.applyman},
+			#{item.auditman},
+			#{item.credittime},
+			#{item.sendtime},
+			#{item.xml},
+			#{item.filename},
+			#{item.status}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchSpDelmsg" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_delmsg
+			SET
+				customid = #{item.customid},
+				serialno = #{item.serialno},
+				infrectype = #{item.infrectype},
+				infsurccode = #{item.infsurccode},
+				entname = #{item.entname},
+				entcerttype = #{item.entcerttype},
+				entcertnum = #{item.entcertnum},
+				sheetyear = #{item.sheetyear},
+				sheettype = #{item.sheettype},
+				sheettypedivide = #{item.sheettypedivide},
+				delreccode = #{item.delreccode},
+				delsgmtcode = #{item.delsgmtcode},
+				delstartdate = #{item.delstartdate},
+				delenddate = #{item.delenddate},
+				reason = #{item.reason},
+				applyman = #{item.applyman},
+				auditman = #{item.auditman},
+				credittime = #{item.credittime},
+				sendtime = #{item.sendtime},
+				xml = #{item.xml},
+				filename = #{item.filename},
+				status = #{item.status}
+			WHERE delmsg_id=#{item.delmsg_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchSpDelmsgBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_delmsg
+			<set>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.infsurccode != null">
+					infsurccode = #{item.infsurccode},
+				</if>
+				<if test="item.entname != null">
+					entname = #{item.entname},
+				</if>
+				<if test="item.entcerttype != null">
+					entcerttype = #{item.entcerttype},
+				</if>
+				<if test="item.entcertnum != null">
+					entcertnum = #{item.entcertnum},
+				</if>
+				<if test="item.sheetyear != null">
+					sheetyear = #{item.sheetyear},
+				</if>
+				<if test="item.sheettype != null">
+					sheettype = #{item.sheettype},
+				</if>
+				<if test="item.sheettypedivide != null">
+					sheettypedivide = #{item.sheettypedivide},
+				</if>
+				<if test="item.delreccode != null">
+					delreccode = #{item.delreccode},
+				</if>
+				<if test="item.delsgmtcode != null">
+					delsgmtcode = #{item.delsgmtcode},
+				</if>
+				<if test="item.delstartdate != null">
+					delstartdate = #{item.delstartdate},
+				</if>
+				<if test="item.delenddate != null">
+					delenddate = #{item.delenddate},
+				</if>
+				<if test="item.reason != null">
+					reason = #{item.reason},
+				</if>
+				<if test="item.applyman != null">
+					applyman = #{item.applyman},
+				</if>
+				<if test="item.auditman != null">
+					auditman = #{item.auditman},
+				</if>
+				<if test="item.credittime != null">
+					credittime = #{item.credittime},
+				</if>
+				<if test="item.sendtime != null">
+					sendtime = #{item.sendtime},
+				</if>
+				<if test="item.xml != null">
+					xml = #{item.xml},
+				</if>
+				<if test="item.filename != null">
+					filename = #{item.filename},
+				</if>
+				<if test="item.status != null">
+					status = #{item.status},
+				</if>
+			</set>
+			WHERE delmsg_id=#{item.delmsg_id}
+		</foreach>
+	</update>
+</mapper>

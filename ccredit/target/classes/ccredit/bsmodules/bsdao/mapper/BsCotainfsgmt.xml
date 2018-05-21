@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsCotainfsgmt">
+	<!--初始化分页-->
+	<select id="getBsCotainfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsCotainfsgmt" parameterType="map">
+		SELECT
+			bs_cotainfsgmt_id,
+			conadddistrictcode,
+			conadd,
+			conphone,
+			finconphone,
+			cotainfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_cotainfsgmt
+		WHERE 1=1
+		<if test="null != conadddistrictcode">
+			AND conadddistrictcode = #{conadddistrictcode}
+		</if>
+		<if test="null != conadd">
+			AND conadd LIKE CONCAT(CONCAT('%',#{conadd}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsCotainfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsCotainfsgmt" parameterType="string">
+		SELECT
+			bs_cotainfsgmt_id,
+			conadddistrictcode,
+			conadd,
+			conphone,
+			finconphone,
+			cotainfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_cotainfsgmt
+		WHERE bs_cotainfsgmt_id=#{bs_cotainfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsCotainfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsCotainfsgmt">
+		INSERT INTO
+			bs_cotainfsgmt
+			(
+			bs_cotainfsgmt_id,
+			conadddistrictcode,
+			conadd,
+			conphone,
+			finconphone,
+			cotainfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_cotainfsgmt_id},
+			#{conadddistrictcode},
+			#{conadd},
+			#{conphone},
+			#{finconphone},
+			#{cotainfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsCotainfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsCotainfsgmt">
+		UPDATE
+			bs_cotainfsgmt
+		SET
+			conadddistrictcode = #{conadddistrictcode},
+			conadd = #{conadd},
+			conphone = #{conphone},
+			finconphone = #{finconphone},
+			cotainfoupdate = #{cotainfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_cotainfsgmt_id=#{bs_cotainfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsCotainfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsCotainfsgmt">
+		UPDATE
+			bs_cotainfsgmt
+		<set>
+			<if test="conadddistrictcode != null">
+				conadddistrictcode = #{conadddistrictcode},
+			</if>
+			<if test="conadd != null">
+				conadd = #{conadd},
+			</if>
+			<if test="conphone != null">
+				conphone = #{conphone},
+			</if>
+			<if test="finconphone != null">
+				finconphone = #{finconphone},
+			</if>
+			<if test="cotainfoupdate != null">
+				cotainfoupdate = #{cotainfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_cotainfsgmt_id=#{bs_cotainfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsCotainfsgmt" parameterType="map">
+		DELETE FROM bs_cotainfsgmt WHERE bs_cotainfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_cotainfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsCotainfsgmt" parameterType="list">
+		INSERT INTO
+			bs_cotainfsgmt
+			(
+			bs_cotainfsgmt_id,
+			conadddistrictcode,
+			conadd,
+			conphone,
+			finconphone,
+			cotainfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_cotainfsgmt_id},
+			#{item.conadddistrictcode},
+			#{item.conadd},
+			#{item.conphone},
+			#{item.finconphone},
+			#{item.cotainfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsCotainfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_cotainfsgmt
+			SET
+				conadddistrictcode = #{item.conadddistrictcode},
+				conadd = #{item.conadd},
+				conphone = #{item.conphone},
+				finconphone = #{item.finconphone},
+				cotainfoupdate = #{item.cotainfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_cotainfsgmt_id=#{item.bs_cotainfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsCotainfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_cotainfsgmt
+			<set>
+				<if test="item.conadddistrictcode != null">
+					conadddistrictcode = #{item.conadddistrictcode},
+				</if>
+				<if test="item.conadd != null">
+					conadd = #{item.conadd},
+				</if>
+				<if test="item.conphone != null">
+					conphone = #{item.conphone},
+				</if>
+				<if test="item.finconphone != null">
+					finconphone = #{item.finconphone},
+				</if>
+				<if test="item.cotainfoupdate != null">
+					cotainfoupdate = #{item.cotainfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_cotainfsgmt_id=#{item.bs_cotainfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

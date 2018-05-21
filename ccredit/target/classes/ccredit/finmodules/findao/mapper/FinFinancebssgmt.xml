@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.FinFinancebssgmt">
+	<!--初始化分页-->
+	<select id="getFinFinancebssgmtListByCondition" resultType="ccredit.finmodules.finmodel.FinFinancebssgmt" parameterType="map">
+		SELECT
+			fin_financebssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			auditfirmname,
+			auditorname,
+			audittime,
+			cimoc,
+			rptdatecode,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_financebssgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+		<if test="null != entname">
+			AND entname LIKE CONCAT(CONCAT('%',#{entname}),'%')
+		</if>
+		<if test="null != entcertnum">
+			AND entcertnum LIKE CONCAT(CONCAT('%',#{entcertnum}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFinFinancebssgmtById" resultType="ccredit.finmodules.finmodel.FinFinancebssgmt" parameterType="string">
+		SELECT
+			fin_financebssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			auditfirmname,
+			auditorname,
+			audittime,
+			cimoc,
+			rptdatecode,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_financebssgmt
+		WHERE fin_financebssgmt_id=#{fin_financebssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFinFinancebssgmt" parameterType="ccredit.finmodules.finmodel.FinFinancebssgmt">
+		INSERT INTO
+			fin_financebssgmt
+			(
+			fin_financebssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			auditfirmname,
+			auditorname,
+			audittime,
+			cimoc,
+			rptdatecode,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_financebssgmt_id},
+			#{infrectype},
+			#{entname},
+			#{entcerttype},
+			#{entcertnum},
+			#{rptdate},
+			#{sheetyear},
+			#{sheettype},
+			#{sheettypedivide},
+			#{auditfirmname},
+			#{auditorname},
+			#{audittime},
+			#{cimoc},
+			#{rptdatecode},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFinFinancebssgmt" parameterType="ccredit.finmodules.finmodel.FinFinancebssgmt">
+		UPDATE
+			fin_financebssgmt
+		SET
+			infrectype = #{infrectype},
+			entname = #{entname},
+			entcerttype = #{entcerttype},
+			entcertnum = #{entcertnum},
+			rptdate = #{rptdate},
+			sheetyear = #{sheetyear},
+			sheettype = #{sheettype},
+			sheettypedivide = #{sheettypedivide},
+			auditfirmname = #{auditfirmname},
+			auditorname = #{auditorname},
+			audittime = #{audittime},
+			cimoc = #{cimoc},
+			rptdatecode = #{rptdatecode},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_financebssgmt_id=#{fin_financebssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFinFinancebssgmtBySelective" parameterType="ccredit.finmodules.finmodel.FinFinancebssgmt">
+		UPDATE
+			fin_financebssgmt
+		<set>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="entname != null">
+				entname = #{entname},
+			</if>
+			<if test="entcerttype != null">
+				entcerttype = #{entcerttype},
+			</if>
+			<if test="entcertnum != null">
+				entcertnum = #{entcertnum},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="sheetyear != null">
+				sheetyear = #{sheetyear},
+			</if>
+			<if test="sheettype != null">
+				sheettype = #{sheettype},
+			</if>
+			<if test="sheettypedivide != null">
+				sheettypedivide = #{sheettypedivide},
+			</if>
+			<if test="auditfirmname != null">
+				auditfirmname = #{auditfirmname},
+			</if>
+			<if test="auditorname != null">
+				auditorname = #{auditorname},
+			</if>
+			<if test="audittime != null">
+				audittime = #{audittime},
+			</if>
+			<if test="cimoc != null">
+				cimoc = #{cimoc},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_financebssgmt_id=#{fin_financebssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFinFinancebssgmt" parameterType="map">
+		DELETE FROM fin_financebssgmt WHERE fin_financebssgmt_id IN
+		<foreach item="item" index="index" collection="fin_financebssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFinFinancebssgmt" parameterType="list">
+		INSERT INTO
+			fin_financebssgmt
+			(
+			fin_financebssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			sheetyear,
+			sheettype,
+			sheettypedivide,
+			auditfirmname,
+			auditorname,
+			audittime,
+			cimoc,
+			rptdatecode,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_financebssgmt_id},
+			#{item.infrectype},
+			#{item.entname},
+			#{item.entcerttype},
+			#{item.entcertnum},
+			#{item.rptdate},
+			#{item.sheetyear},
+			#{item.sheettype},
+			#{item.sheettypedivide},
+			#{item.auditfirmname},
+			#{item.auditorname},
+			#{item.audittime},
+			#{item.cimoc},
+			#{item.rptdatecode},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFinFinancebssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_financebssgmt
+			SET
+				infrectype = #{item.infrectype},
+				entname = #{item.entname},
+				entcerttype = #{item.entcerttype},
+				entcertnum = #{item.entcertnum},
+				rptdate = #{item.rptdate},
+				sheetyear = #{item.sheetyear},
+				sheettype = #{item.sheettype},
+				sheettypedivide = #{item.sheettypedivide},
+				auditfirmname = #{item.auditfirmname},
+				auditorname = #{item.auditorname},
+				audittime = #{item.audittime},
+				cimoc = #{item.cimoc},
+				rptdatecode = #{item.rptdatecode},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_financebssgmt_id=#{item.fin_financebssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFinFinancebssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_financebssgmt
+			<set>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.entname != null">
+					entname = #{item.entname},
+				</if>
+				<if test="item.entcerttype != null">
+					entcerttype = #{item.entcerttype},
+				</if>
+				<if test="item.entcertnum != null">
+					entcertnum = #{item.entcertnum},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.sheetyear != null">
+					sheetyear = #{item.sheetyear},
+				</if>
+				<if test="item.sheettype != null">
+					sheettype = #{item.sheettype},
+				</if>
+				<if test="item.sheettypedivide != null">
+					sheettypedivide = #{item.sheettypedivide},
+				</if>
+				<if test="item.auditfirmname != null">
+					auditfirmname = #{item.auditfirmname},
+				</if>
+				<if test="item.auditorname != null">
+					auditorname = #{item.auditorname},
+				</if>
+				<if test="item.audittime != null">
+					audittime = #{item.audittime},
+				</if>
+				<if test="item.cimoc != null">
+					cimoc = #{item.cimoc},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_financebssgmt_id=#{item.fin_financebssgmt_id}
+		</foreach>
+	</update>
+</mapper>

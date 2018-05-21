@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.plmodules.plmodel.PlComrecinfsgmt">
+	<!--初始化分页-->
+	<select id="getPlComrecinfsgmtListByCondition" resultType="ccredit.plmodules.plmodel.PlComrecinfsgmt" parameterType="map">
+		SELECT
+			pl_comrecinfsgmt_id,
+			grtdnm,
+			infoidtype,
+			guarname,
+			guarcerttype,
+			guarcertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_comrecinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != guarname">
+			AND guarname LIKE CONCAT(CONCAT('%',#{guarname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getPlComrecinfsgmtById" resultType="ccredit.plmodules.plmodel.PlComrecinfsgmt" parameterType="string">
+		SELECT
+			pl_comrecinfsgmt_id,
+			grtdnm,
+			infoidtype,
+			guarname,
+			guarcerttype,
+			guarcertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_comrecinfsgmt
+		WHERE pl_comrecinfsgmt_id=#{pl_comrecinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addPlComrecinfsgmt" parameterType="ccredit.plmodules.plmodel.PlComrecinfsgmt">
+		INSERT INTO
+			pl_comrecinfsgmt
+			(
+			pl_comrecinfsgmt_id,
+			grtdnm,
+			infoidtype,
+			guarname,
+			guarcerttype,
+			guarcertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{pl_comrecinfsgmt_id},
+			#{grtdnm},
+			#{infoidtype},
+			#{guarname},
+			#{guarcerttype},
+			#{guarcertnum},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updatePlComrecinfsgmt" parameterType="ccredit.plmodules.plmodel.PlComrecinfsgmt">
+		UPDATE
+			pl_comrecinfsgmt
+		SET
+			grtdnm = #{grtdnm},
+			infoidtype = #{infoidtype},
+			guarname = #{guarname},
+			guarcerttype = #{guarcerttype},
+			guarcertnum = #{guarcertnum},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE pl_comrecinfsgmt_id=#{pl_comrecinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updatePlComrecinfsgmtBySelective" parameterType="ccredit.plmodules.plmodel.PlComrecinfsgmt">
+		UPDATE
+			pl_comrecinfsgmt
+		<set>
+			<if test="grtdnm != null">
+				grtdnm = #{grtdnm},
+			</if>
+			<if test="infoidtype != null">
+				infoidtype = #{infoidtype},
+			</if>
+			<if test="guarname != null">
+				guarname = #{guarname},
+			</if>
+			<if test="guarcerttype != null">
+				guarcerttype = #{guarcerttype},
+			</if>
+			<if test="guarcertnum != null">
+				guarcertnum = #{guarcertnum},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE pl_comrecinfsgmt_id=#{pl_comrecinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delPlComrecinfsgmt" parameterType="map">
+		DELETE FROM pl_comrecinfsgmt WHERE pl_comrecinfsgmt_id IN
+		<foreach item="item" index="index" collection="pl_comrecinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchPlComrecinfsgmt" parameterType="list">
+		INSERT INTO
+			pl_comrecinfsgmt
+			(
+			pl_comrecinfsgmt_id,
+			grtdnm,
+			infoidtype,
+			guarname,
+			guarcerttype,
+			guarcertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.pl_comrecinfsgmt_id},
+			#{item.grtdnm},
+			#{item.infoidtype},
+			#{item.guarname},
+			#{item.guarcerttype},
+			#{item.guarcertnum},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchPlComrecinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_comrecinfsgmt
+			SET
+				grtdnm = #{item.grtdnm},
+				infoidtype = #{item.infoidtype},
+				guarname = #{item.guarname},
+				guarcerttype = #{item.guarcerttype},
+				guarcertnum = #{item.guarcertnum},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE pl_comrecinfsgmt_id=#{item.pl_comrecinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchPlComrecinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_comrecinfsgmt
+			<set>
+				<if test="item.grtdnm != null">
+					grtdnm = #{item.grtdnm},
+				</if>
+				<if test="item.infoidtype != null">
+					infoidtype = #{item.infoidtype},
+				</if>
+				<if test="item.guarname != null">
+					guarname = #{item.guarname},
+				</if>
+				<if test="item.guarcerttype != null">
+					guarcerttype = #{item.guarcerttype},
+				</if>
+				<if test="item.guarcertnum != null">
+					guarcertnum = #{item.guarcertnum},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE pl_comrecinfsgmt_id=#{item.pl_comrecinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

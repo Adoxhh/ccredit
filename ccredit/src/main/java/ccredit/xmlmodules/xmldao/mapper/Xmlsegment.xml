@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.xmlmodules.xmlmodel.Xmlsegment">
+	<!--初始化分页-->
+	<select id="getXmlsegmentListByCondition" resultType="ccredit.xmlmodules.xmlmodel.Xmlsegment" parameterType="map">
+		SELECT
+			id,
+			segmentname,
+			segmentcode,
+			tablename,
+			templateid,
+			property,
+			sortno
+		FROM 
+			xmlsegment
+		WHERE 1=1
+		<if test="null != templateid">
+			AND templateid = #{templateid}
+		</if>
+		   order by sortno
+	</select>
+
+	<!--查询对象-->
+	<select id="getXmlsegmentById" resultType="ccredit.xmlmodules.xmlmodel.Xmlsegment" parameterType="string">
+		SELECT
+			id,
+			segmentname,
+			segmentcode,
+			tablename,
+			templateid,
+			property,
+			sortno
+		FROM 
+			xmlsegment
+		WHERE id=#{id}
+	</select>
+
+	<!--添加-->
+	<insert id="addXmlsegment" parameterType="ccredit.xmlmodules.xmlmodel.Xmlsegment">
+		INSERT INTO
+			xmlsegment
+			(
+			id,
+			segmentname,
+			segmentcode,
+			tablename,
+			templateid,
+			property,
+			sortno
+			)
+			VALUES
+			(
+			#{id},
+			#{segmentname},
+			#{segmentcode},
+			#{tablename},
+			#{templateid},
+			#{property},
+			#{sortno}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateXmlsegment" parameterType="ccredit.xmlmodules.xmlmodel.Xmlsegment">
+		UPDATE
+			xmlsegment
+		SET
+			segmentname = #{segmentname},
+			segmentcode = #{segmentcode},
+			tablename = #{tablename},
+			templateid = #{templateid},
+			property = #{property},
+			sortno = #{sortno}
+		WHERE id=#{id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateXmlsegmentBySelective" parameterType="ccredit.xmlmodules.xmlmodel.Xmlsegment">
+		UPDATE
+			xmlsegment
+		<set>
+			<if test="segmentname != null">
+				segmentname = #{segmentname},
+			</if>
+			<if test="segmentcode != null">
+				segmentcode = #{segmentcode},
+			</if>
+			<if test="tablename != null">
+				tablename = #{tablename},
+			</if>
+			<if test="templateid != null">
+				templateid = #{templateid},
+			</if>
+			<if test="property != null">
+				property = #{property},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<!--删除-->
+	<delete id="delXmlsegment" parameterType="map">
+		DELETE FROM xmlsegment WHERE id IN
+		<foreach item="item" index="index" collection="id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchXmlsegment" parameterType="list">
+		INSERT INTO
+			xmlsegment
+			(
+			id,
+			segmentname,
+			segmentcode,
+			tablename,
+			templateid,
+			property,
+			sortno
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.id},
+			#{item.segmentname},
+			#{item.segmentcode},
+			#{item.tablename},
+			#{item.templateid},
+			#{item.property},
+			#{item.sortno}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchXmlsegment" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmlsegment
+			SET
+				segmentname = #{item.segmentname},
+				segmentcode = #{item.segmentcode},
+				tablename = #{item.tablename},
+				templateid = #{item.templateid},
+				property = #{item.property},
+				sortno = #{item.sortno}
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchXmlsegmentBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmlsegment
+			<set>
+				<if test="item.segmentname != null">
+					segmentname = #{item.segmentname},
+				</if>
+				<if test="item.segmentcode != null">
+					segmentcode = #{item.segmentcode},
+				</if>
+				<if test="item.tablename != null">
+					tablename = #{item.tablename},
+				</if>
+				<if test="item.templateid != null">
+					templateid = #{item.templateid},
+				</if>
+				<if test="item.property != null">
+					property = #{item.property},
+				</if>
+				<if test="item.sortno != null">
+					sortno = #{item.sortno},
+				</if>
+			</set>
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+</mapper>

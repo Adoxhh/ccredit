@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt">
+	<!--初始化分页-->
+	<select id="getLoanCtrctcertrelsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt" parameterType="map">
+		SELECT
+			loan_ctrctcertrelsgmt_id,
+			brernm,
+			brertype,
+			certrelname,
+			certrelidtype,
+			certrelidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_ctrctcertrelsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != certrelname">
+			AND certrelname LIKE CONCAT(CONCAT('%',#{certrelname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanCtrctcertrelsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt" parameterType="string">
+		SELECT
+			loan_ctrctcertrelsgmt_id,
+			brernm,
+			brertype,
+			certrelname,
+			certrelidtype,
+			certrelidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_ctrctcertrelsgmt
+		WHERE loan_ctrctcertrelsgmt_id=#{loan_ctrctcertrelsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanCtrctcertrelsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt">
+		INSERT INTO
+			loan_ctrctcertrelsgmt
+			(
+			loan_ctrctcertrelsgmt_id,
+			brernm,
+			brertype,
+			certrelname,
+			certrelidtype,
+			certrelidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_ctrctcertrelsgmt_id},
+			#{brernm},
+			#{brertype},
+			#{certrelname},
+			#{certrelidtype},
+			#{certrelidnum},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanCtrctcertrelsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt">
+		UPDATE
+			loan_ctrctcertrelsgmt
+		SET
+			brernm = #{brernm},
+			brertype = #{brertype},
+			certrelname = #{certrelname},
+			certrelidtype = #{certrelidtype},
+			certrelidnum = #{certrelidnum},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_ctrctcertrelsgmt_id=#{loan_ctrctcertrelsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanCtrctcertrelsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt">
+		UPDATE
+			loan_ctrctcertrelsgmt
+		<set>
+			<if test="brernm != null">
+				brernm = #{brernm},
+			</if>
+			<if test="brertype != null">
+				brertype = #{brertype},
+			</if>
+			<if test="certrelname != null">
+				certrelname = #{certrelname},
+			</if>
+			<if test="certrelidtype != null">
+				certrelidtype = #{certrelidtype},
+			</if>
+			<if test="certrelidnum != null">
+				certrelidnum = #{certrelidnum},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_ctrctcertrelsgmt_id=#{loan_ctrctcertrelsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanCtrctcertrelsgmt" parameterType="map">
+		DELETE FROM loan_ctrctcertrelsgmt WHERE loan_ctrctcertrelsgmt_id IN
+		<foreach item="item" index="index" collection="loan_ctrctcertrelsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanCtrctcertrelsgmt" parameterType="list">
+		INSERT INTO
+			loan_ctrctcertrelsgmt
+			(
+			loan_ctrctcertrelsgmt_id,
+			brernm,
+			brertype,
+			certrelname,
+			certrelidtype,
+			certrelidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_ctrctcertrelsgmt_id},
+			#{item.brernm},
+			#{item.brertype},
+			#{item.certrelname},
+			#{item.certrelidtype},
+			#{item.certrelidnum},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanCtrctcertrelsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_ctrctcertrelsgmt
+			SET
+				brernm = #{item.brernm},
+				brertype = #{item.brertype},
+				certrelname = #{item.certrelname},
+				certrelidtype = #{item.certrelidtype},
+				certrelidnum = #{item.certrelidnum},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_ctrctcertrelsgmt_id=#{item.loan_ctrctcertrelsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanCtrctcertrelsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_ctrctcertrelsgmt
+			<set>
+				<if test="item.brernm != null">
+					brernm = #{item.brernm},
+				</if>
+				<if test="item.brertype != null">
+					brertype = #{item.brertype},
+				</if>
+				<if test="item.certrelname != null">
+					certrelname = #{item.certrelname},
+				</if>
+				<if test="item.certrelidtype != null">
+					certrelidtype = #{item.certrelidtype},
+				</if>
+				<if test="item.certrelidnum != null">
+					certrelidnum = #{item.certrelidnum},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_ctrctcertrelsgmt_id=#{item.loan_ctrctcertrelsgmt_id}
+		</foreach>
+	</update>
+</mapper>

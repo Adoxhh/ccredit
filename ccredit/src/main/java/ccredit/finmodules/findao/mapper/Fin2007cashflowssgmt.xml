@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.Fin2007cashflowssgmt">
+	<!--初始化分页-->
+	<select id="getFin2007cashflowssgmtListByCondition" resultType="ccredit.finmodules.finmodel.Fin2007cashflowssgmt" parameterType="map">
+		SELECT
+			fin_2007cashflowssgmt_id,
+			cashreceivedfromsalesofgoodsorrendingofservices,
+			taxrefunds,
+			othercashreceivedrelatingtooperatingactivities,
+			totalcashinflowsfromoperatingactivities,
+			cashpaidforgoodsandservices,
+			cashpaidtoandonbehalfofemployees,
+			paymentsofalltypesoftaxes,
+			othercashpaymentsfromoperatingactivities,
+			totalcashoutflowsfromoperatingactivities,
+			netcashflowsfromoperatingactivities,
+			cashreceivedfromreturnofinvestment,
+			cashreceivedfromonvestments,
+			netcashrecetermassets,
+			netcashinflowsofdisposalofsubsidiariesandotherbusinessentities,
+			cashreceivedrelatingtootherinvestingactivities,
+			totalcashinflowsfrominvestingactivities,
+			cashpaidtlongtermassents,
+			cashpaymentsforinvestments,
+			netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits,
+			cashpaymentsrelatedtootherfinancingactivities,
+			subtotalofcashoutflows,
+			netcashflowsfrominvestingactivities,
+			cashreceivedfrominvestors,
+			cashfromborrowings,
+			othercashreceivedrelatingtofinancingactivities,
+			totalcashinflowsfromfinancingactivities,
+			cashrepaymentsfordebts,
+			cashpaymentsfstexpenses,
+			cashpaymentsrelatedtootherfinancingactivities2,
+			totalcashoutflowsfromfinancingactivities,
+			netcashflowsfromfinancingactivities,
+			effectofexchangratechangesoncash,
+			netincreaseincashandcashequivalents,
+			initialcashandcashequivalentsbalance,
+			thefinalcashandcashequivalentsbalance,
+			netprofit,
+			provisionforassetimpairment,
+			depreciationoffixedassets,
+			amortisationofintangibleassets,
+			amortisationoflongtermdefferedexpenses,
+			decreaseofdefferedexpenses,
+			additionofaccuedexpense,
+			lossesonditermassets,
+			lossesonscrappingoffixedassets,
+			profitorlossfromchangesinfairvalue,
+			financeexpense,
+			lossesarsingfrominvestment,
+			deferredincometaxassets,
+			deferredincometaxliabilities,
+			decreaseininventories,
+			decreaseinoperatingreceivables,
+			increaseinoperatingreceivables,
+			others,
+			netcashflowsfromoperatingactivities2,
+			debtstransfertocapital,
+			oneyeardueconvertiblebonds,
+			financingrenttothefixedasset,
+			cashattheendofperiod,
+			cashatthebeginningoftheperiod,
+			cashequivalentsattheendoftheperiod,
+			cashequivalentsatthebeginningoftheperiod,
+			netincreaseincashandcashequivalents2,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007cashflowssgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFin2007cashflowssgmtById" resultType="ccredit.finmodules.finmodel.Fin2007cashflowssgmt" parameterType="string">
+		SELECT
+			fin_2007cashflowssgmt_id,
+			cashreceivedfromsalesofgoodsorrendingofservices,
+			taxrefunds,
+			othercashreceivedrelatingtooperatingactivities,
+			totalcashinflowsfromoperatingactivities,
+			cashpaidforgoodsandservices,
+			cashpaidtoandonbehalfofemployees,
+			paymentsofalltypesoftaxes,
+			othercashpaymentsfromoperatingactivities,
+			totalcashoutflowsfromoperatingactivities,
+			netcashflowsfromoperatingactivities,
+			cashreceivedfromreturnofinvestment,
+			cashreceivedfromonvestments,
+			netcashrecetermassets,
+			netcashinflowsofdisposalofsubsidiariesandotherbusinessentities,
+			cashreceivedrelatingtootherinvestingactivities,
+			totalcashinflowsfrominvestingactivities,
+			cashpaidtlongtermassents,
+			cashpaymentsforinvestments,
+			netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits,
+			cashpaymentsrelatedtootherfinancingactivities,
+			subtotalofcashoutflows,
+			netcashflowsfrominvestingactivities,
+			cashreceivedfrominvestors,
+			cashfromborrowings,
+			othercashreceivedrelatingtofinancingactivities,
+			totalcashinflowsfromfinancingactivities,
+			cashrepaymentsfordebts,
+			cashpaymentsfstexpenses,
+			cashpaymentsrelatedtootherfinancingactivities2,
+			totalcashoutflowsfromfinancingactivities,
+			netcashflowsfromfinancingactivities,
+			effectofexchangratechangesoncash,
+			netincreaseincashandcashequivalents,
+			initialcashandcashequivalentsbalance,
+			thefinalcashandcashequivalentsbalance,
+			netprofit,
+			provisionforassetimpairment,
+			depreciationoffixedassets,
+			amortisationofintangibleassets,
+			amortisationoflongtermdefferedexpenses,
+			decreaseofdefferedexpenses,
+			additionofaccuedexpense,
+			lossesonditermassets,
+			lossesonscrappingoffixedassets,
+			profitorlossfromchangesinfairvalue,
+			financeexpense,
+			lossesarsingfrominvestment,
+			deferredincometaxassets,
+			deferredincometaxliabilities,
+			decreaseininventories,
+			decreaseinoperatingreceivables,
+			increaseinoperatingreceivables,
+			others,
+			netcashflowsfromoperatingactivities2,
+			debtstransfertocapital,
+			oneyeardueconvertiblebonds,
+			financingrenttothefixedasset,
+			cashattheendofperiod,
+			cashatthebeginningoftheperiod,
+			cashequivalentsattheendoftheperiod,
+			cashequivalentsatthebeginningoftheperiod,
+			netincreaseincashandcashequivalents2,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007cashflowssgmt
+		WHERE fin_2007cashflowssgmt_id=#{fin_2007cashflowssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFin2007cashflowssgmt" parameterType="ccredit.finmodules.finmodel.Fin2007cashflowssgmt">
+		INSERT INTO
+			fin_2007cashflowssgmt
+			(
+			fin_2007cashflowssgmt_id,
+			cashreceivedfromsalesofgoodsorrendingofservices,
+			taxrefunds,
+			othercashreceivedrelatingtooperatingactivities,
+			totalcashinflowsfromoperatingactivities,
+			cashpaidforgoodsandservices,
+			cashpaidtoandonbehalfofemployees,
+			paymentsofalltypesoftaxes,
+			othercashpaymentsfromoperatingactivities,
+			totalcashoutflowsfromoperatingactivities,
+			netcashflowsfromoperatingactivities,
+			cashreceivedfromreturnofinvestment,
+			cashreceivedfromonvestments,
+			netcashrecetermassets,
+			netcashinflowsofdisposalofsubsidiariesandotherbusinessentities,
+			cashreceivedrelatingtootherinvestingactivities,
+			totalcashinflowsfrominvestingactivities,
+			cashpaidtlongtermassents,
+			cashpaymentsforinvestments,
+			netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits,
+			cashpaymentsrelatedtootherfinancingactivities,
+			subtotalofcashoutflows,
+			netcashflowsfrominvestingactivities,
+			cashreceivedfrominvestors,
+			cashfromborrowings,
+			othercashreceivedrelatingtofinancingactivities,
+			totalcashinflowsfromfinancingactivities,
+			cashrepaymentsfordebts,
+			cashpaymentsfstexpenses,
+			cashpaymentsrelatedtootherfinancingactivities2,
+			totalcashoutflowsfromfinancingactivities,
+			netcashflowsfromfinancingactivities,
+			effectofexchangratechangesoncash,
+			netincreaseincashandcashequivalents,
+			initialcashandcashequivalentsbalance,
+			thefinalcashandcashequivalentsbalance,
+			netprofit,
+			provisionforassetimpairment,
+			depreciationoffixedassets,
+			amortisationofintangibleassets,
+			amortisationoflongtermdefferedexpenses,
+			decreaseofdefferedexpenses,
+			additionofaccuedexpense,
+			lossesonditermassets,
+			lossesonscrappingoffixedassets,
+			profitorlossfromchangesinfairvalue,
+			financeexpense,
+			lossesarsingfrominvestment,
+			deferredincometaxassets,
+			deferredincometaxliabilities,
+			decreaseininventories,
+			decreaseinoperatingreceivables,
+			increaseinoperatingreceivables,
+			others,
+			netcashflowsfromoperatingactivities2,
+			debtstransfertocapital,
+			oneyeardueconvertiblebonds,
+			financingrenttothefixedasset,
+			cashattheendofperiod,
+			cashatthebeginningoftheperiod,
+			cashequivalentsattheendoftheperiod,
+			cashequivalentsatthebeginningoftheperiod,
+			netincreaseincashandcashequivalents2,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_2007cashflowssgmt_id},
+			#{cashreceivedfromsalesofgoodsorrendingofservices},
+			#{taxrefunds},
+			#{othercashreceivedrelatingtooperatingactivities},
+			#{totalcashinflowsfromoperatingactivities},
+			#{cashpaidforgoodsandservices},
+			#{cashpaidtoandonbehalfofemployees},
+			#{paymentsofalltypesoftaxes},
+			#{othercashpaymentsfromoperatingactivities},
+			#{totalcashoutflowsfromoperatingactivities},
+			#{netcashflowsfromoperatingactivities},
+			#{cashreceivedfromreturnofinvestment},
+			#{cashreceivedfromonvestments},
+			#{netcashrecetermassets},
+			#{netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+			#{cashreceivedrelatingtootherinvestingactivities},
+			#{totalcashinflowsfrominvestingactivities},
+			#{cashpaidtlongtermassents},
+			#{cashpaymentsforinvestments},
+			#{netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+			#{cashpaymentsrelatedtootherfinancingactivities},
+			#{subtotalofcashoutflows},
+			#{netcashflowsfrominvestingactivities},
+			#{cashreceivedfrominvestors},
+			#{cashfromborrowings},
+			#{othercashreceivedrelatingtofinancingactivities},
+			#{totalcashinflowsfromfinancingactivities},
+			#{cashrepaymentsfordebts},
+			#{cashpaymentsfstexpenses},
+			#{cashpaymentsrelatedtootherfinancingactivities2},
+			#{totalcashoutflowsfromfinancingactivities},
+			#{netcashflowsfromfinancingactivities},
+			#{effectofexchangratechangesoncash},
+			#{netincreaseincashandcashequivalents},
+			#{initialcashandcashequivalentsbalance},
+			#{thefinalcashandcashequivalentsbalance},
+			#{netprofit},
+			#{provisionforassetimpairment},
+			#{depreciationoffixedassets},
+			#{amortisationofintangibleassets},
+			#{amortisationoflongtermdefferedexpenses},
+			#{decreaseofdefferedexpenses},
+			#{additionofaccuedexpense},
+			#{lossesonditermassets},
+			#{lossesonscrappingoffixedassets},
+			#{profitorlossfromchangesinfairvalue},
+			#{financeexpense},
+			#{lossesarsingfrominvestment},
+			#{deferredincometaxassets},
+			#{deferredincometaxliabilities},
+			#{decreaseininventories},
+			#{decreaseinoperatingreceivables},
+			#{increaseinoperatingreceivables},
+			#{others},
+			#{netcashflowsfromoperatingactivities2},
+			#{debtstransfertocapital},
+			#{oneyeardueconvertiblebonds},
+			#{financingrenttothefixedasset},
+			#{cashattheendofperiod},
+			#{cashatthebeginningoftheperiod},
+			#{cashequivalentsattheendoftheperiod},
+			#{cashequivalentsatthebeginningoftheperiod},
+			#{netincreaseincashandcashequivalents2},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFin2007cashflowssgmt" parameterType="ccredit.finmodules.finmodel.Fin2007cashflowssgmt">
+		UPDATE
+			fin_2007cashflowssgmt
+		SET
+			cashreceivedfromsalesofgoodsorrendingofservices = #{cashreceivedfromsalesofgoodsorrendingofservices},
+			taxrefunds = #{taxrefunds},
+			othercashreceivedrelatingtooperatingactivities = #{othercashreceivedrelatingtooperatingactivities},
+			totalcashinflowsfromoperatingactivities = #{totalcashinflowsfromoperatingactivities},
+			cashpaidforgoodsandservices = #{cashpaidforgoodsandservices},
+			cashpaidtoandonbehalfofemployees = #{cashpaidtoandonbehalfofemployees},
+			paymentsofalltypesoftaxes = #{paymentsofalltypesoftaxes},
+			othercashpaymentsfromoperatingactivities = #{othercashpaymentsfromoperatingactivities},
+			totalcashoutflowsfromoperatingactivities = #{totalcashoutflowsfromoperatingactivities},
+			netcashflowsfromoperatingactivities = #{netcashflowsfromoperatingactivities},
+			cashreceivedfromreturnofinvestment = #{cashreceivedfromreturnofinvestment},
+			cashreceivedfromonvestments = #{cashreceivedfromonvestments},
+			netcashrecetermassets = #{netcashrecetermassets},
+			netcashinflowsofdisposalofsubsidiariesandotherbusinessentities = #{netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+			cashreceivedrelatingtootherinvestingactivities = #{cashreceivedrelatingtootherinvestingactivities},
+			totalcashinflowsfrominvestingactivities = #{totalcashinflowsfrominvestingactivities},
+			cashpaidtlongtermassents = #{cashpaidtlongtermassents},
+			cashpaymentsforinvestments = #{cashpaymentsforinvestments},
+			netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits = #{netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+			cashpaymentsrelatedtootherfinancingactivities = #{cashpaymentsrelatedtootherfinancingactivities},
+			subtotalofcashoutflows = #{subtotalofcashoutflows},
+			netcashflowsfrominvestingactivities = #{netcashflowsfrominvestingactivities},
+			cashreceivedfrominvestors = #{cashreceivedfrominvestors},
+			cashfromborrowings = #{cashfromborrowings},
+			othercashreceivedrelatingtofinancingactivities = #{othercashreceivedrelatingtofinancingactivities},
+			totalcashinflowsfromfinancingactivities = #{totalcashinflowsfromfinancingactivities},
+			cashrepaymentsfordebts = #{cashrepaymentsfordebts},
+			cashpaymentsfstexpenses = #{cashpaymentsfstexpenses},
+			cashpaymentsrelatedtootherfinancingactivities2 = #{cashpaymentsrelatedtootherfinancingactivities2},
+			totalcashoutflowsfromfinancingactivities = #{totalcashoutflowsfromfinancingactivities},
+			netcashflowsfromfinancingactivities = #{netcashflowsfromfinancingactivities},
+			effectofexchangratechangesoncash = #{effectofexchangratechangesoncash},
+			netincreaseincashandcashequivalents = #{netincreaseincashandcashequivalents},
+			initialcashandcashequivalentsbalance = #{initialcashandcashequivalentsbalance},
+			thefinalcashandcashequivalentsbalance = #{thefinalcashandcashequivalentsbalance},
+			netprofit = #{netprofit},
+			provisionforassetimpairment = #{provisionforassetimpairment},
+			depreciationoffixedassets = #{depreciationoffixedassets},
+			amortisationofintangibleassets = #{amortisationofintangibleassets},
+			amortisationoflongtermdefferedexpenses = #{amortisationoflongtermdefferedexpenses},
+			decreaseofdefferedexpenses = #{decreaseofdefferedexpenses},
+			additionofaccuedexpense = #{additionofaccuedexpense},
+			lossesonditermassets = #{lossesonditermassets},
+			lossesonscrappingoffixedassets = #{lossesonscrappingoffixedassets},
+			profitorlossfromchangesinfairvalue = #{profitorlossfromchangesinfairvalue},
+			financeexpense = #{financeexpense},
+			lossesarsingfrominvestment = #{lossesarsingfrominvestment},
+			deferredincometaxassets = #{deferredincometaxassets},
+			deferredincometaxliabilities = #{deferredincometaxliabilities},
+			decreaseininventories = #{decreaseininventories},
+			decreaseinoperatingreceivables = #{decreaseinoperatingreceivables},
+			increaseinoperatingreceivables = #{increaseinoperatingreceivables},
+			others = #{others},
+			netcashflowsfromoperatingactivities2 = #{netcashflowsfromoperatingactivities2},
+			debtstransfertocapital = #{debtstransfertocapital},
+			oneyeardueconvertiblebonds = #{oneyeardueconvertiblebonds},
+			financingrenttothefixedasset = #{financingrenttothefixedasset},
+			cashattheendofperiod = #{cashattheendofperiod},
+			cashatthebeginningoftheperiod = #{cashatthebeginningoftheperiod},
+			cashequivalentsattheendoftheperiod = #{cashequivalentsattheendoftheperiod},
+			cashequivalentsatthebeginningoftheperiod = #{cashequivalentsatthebeginningoftheperiod},
+			netincreaseincashandcashequivalents2 = #{netincreaseincashandcashequivalents2},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_2007cashflowssgmt_id=#{fin_2007cashflowssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFin2007cashflowssgmtBySelective" parameterType="ccredit.finmodules.finmodel.Fin2007cashflowssgmt">
+		UPDATE
+			fin_2007cashflowssgmt
+		<set>
+			<if test="cashreceivedfromsalesofgoodsorrendingofservices != null">
+				cashreceivedfromsalesofgoodsorrendingofservices = #{cashreceivedfromsalesofgoodsorrendingofservices},
+			</if>
+			<if test="taxrefunds != null">
+				taxrefunds = #{taxrefunds},
+			</if>
+			<if test="othercashreceivedrelatingtooperatingactivities != null">
+				othercashreceivedrelatingtooperatingactivities = #{othercashreceivedrelatingtooperatingactivities},
+			</if>
+			<if test="totalcashinflowsfromoperatingactivities != null">
+				totalcashinflowsfromoperatingactivities = #{totalcashinflowsfromoperatingactivities},
+			</if>
+			<if test="cashpaidforgoodsandservices != null">
+				cashpaidforgoodsandservices = #{cashpaidforgoodsandservices},
+			</if>
+			<if test="cashpaidtoandonbehalfofemployees != null">
+				cashpaidtoandonbehalfofemployees = #{cashpaidtoandonbehalfofemployees},
+			</if>
+			<if test="paymentsofalltypesoftaxes != null">
+				paymentsofalltypesoftaxes = #{paymentsofalltypesoftaxes},
+			</if>
+			<if test="othercashpaymentsfromoperatingactivities != null">
+				othercashpaymentsfromoperatingactivities = #{othercashpaymentsfromoperatingactivities},
+			</if>
+			<if test="totalcashoutflowsfromoperatingactivities != null">
+				totalcashoutflowsfromoperatingactivities = #{totalcashoutflowsfromoperatingactivities},
+			</if>
+			<if test="netcashflowsfromoperatingactivities != null">
+				netcashflowsfromoperatingactivities = #{netcashflowsfromoperatingactivities},
+			</if>
+			<if test="cashreceivedfromreturnofinvestment != null">
+				cashreceivedfromreturnofinvestment = #{cashreceivedfromreturnofinvestment},
+			</if>
+			<if test="cashreceivedfromonvestments != null">
+				cashreceivedfromonvestments = #{cashreceivedfromonvestments},
+			</if>
+			<if test="netcashrecetermassets != null">
+				netcashrecetermassets = #{netcashrecetermassets},
+			</if>
+			<if test="netcashinflowsofdisposalofsubsidiariesandotherbusinessentities != null">
+				netcashinflowsofdisposalofsubsidiariesandotherbusinessentities = #{netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+			</if>
+			<if test="cashreceivedrelatingtootherinvestingactivities != null">
+				cashreceivedrelatingtootherinvestingactivities = #{cashreceivedrelatingtootherinvestingactivities},
+			</if>
+			<if test="totalcashinflowsfrominvestingactivities != null">
+				totalcashinflowsfrominvestingactivities = #{totalcashinflowsfrominvestingactivities},
+			</if>
+			<if test="cashpaidtlongtermassents != null">
+				cashpaidtlongtermassents = #{cashpaidtlongtermassents},
+			</if>
+			<if test="cashpaymentsforinvestments != null">
+				cashpaymentsforinvestments = #{cashpaymentsforinvestments},
+			</if>
+			<if test="netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits != null">
+				netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits = #{netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+			</if>
+			<if test="cashpaymentsrelatedtootherfinancingactivities != null">
+				cashpaymentsrelatedtootherfinancingactivities = #{cashpaymentsrelatedtootherfinancingactivities},
+			</if>
+			<if test="subtotalofcashoutflows != null">
+				subtotalofcashoutflows = #{subtotalofcashoutflows},
+			</if>
+			<if test="netcashflowsfrominvestingactivities != null">
+				netcashflowsfrominvestingactivities = #{netcashflowsfrominvestingactivities},
+			</if>
+			<if test="cashreceivedfrominvestors != null">
+				cashreceivedfrominvestors = #{cashreceivedfrominvestors},
+			</if>
+			<if test="cashfromborrowings != null">
+				cashfromborrowings = #{cashfromborrowings},
+			</if>
+			<if test="othercashreceivedrelatingtofinancingactivities != null">
+				othercashreceivedrelatingtofinancingactivities = #{othercashreceivedrelatingtofinancingactivities},
+			</if>
+			<if test="totalcashinflowsfromfinancingactivities != null">
+				totalcashinflowsfromfinancingactivities = #{totalcashinflowsfromfinancingactivities},
+			</if>
+			<if test="cashrepaymentsfordebts != null">
+				cashrepaymentsfordebts = #{cashrepaymentsfordebts},
+			</if>
+			<if test="cashpaymentsfstexpenses != null">
+				cashpaymentsfstexpenses = #{cashpaymentsfstexpenses},
+			</if>
+			<if test="cashpaymentsrelatedtootherfinancingactivities2 != null">
+				cashpaymentsrelatedtootherfinancingactivities2 = #{cashpaymentsrelatedtootherfinancingactivities2},
+			</if>
+			<if test="totalcashoutflowsfromfinancingactivities != null">
+				totalcashoutflowsfromfinancingactivities = #{totalcashoutflowsfromfinancingactivities},
+			</if>
+			<if test="netcashflowsfromfinancingactivities != null">
+				netcashflowsfromfinancingactivities = #{netcashflowsfromfinancingactivities},
+			</if>
+			<if test="effectofexchangratechangesoncash != null">
+				effectofexchangratechangesoncash = #{effectofexchangratechangesoncash},
+			</if>
+			<if test="netincreaseincashandcashequivalents != null">
+				netincreaseincashandcashequivalents = #{netincreaseincashandcashequivalents},
+			</if>
+			<if test="initialcashandcashequivalentsbalance != null">
+				initialcashandcashequivalentsbalance = #{initialcashandcashequivalentsbalance},
+			</if>
+			<if test="thefinalcashandcashequivalentsbalance != null">
+				thefinalcashandcashequivalentsbalance = #{thefinalcashandcashequivalentsbalance},
+			</if>
+			<if test="netprofit != null">
+				netprofit = #{netprofit},
+			</if>
+			<if test="provisionforassetimpairment != null">
+				provisionforassetimpairment = #{provisionforassetimpairment},
+			</if>
+			<if test="depreciationoffixedassets != null">
+				depreciationoffixedassets = #{depreciationoffixedassets},
+			</if>
+			<if test="amortisationofintangibleassets != null">
+				amortisationofintangibleassets = #{amortisationofintangibleassets},
+			</if>
+			<if test="amortisationoflongtermdefferedexpenses != null">
+				amortisationoflongtermdefferedexpenses = #{amortisationoflongtermdefferedexpenses},
+			</if>
+			<if test="decreaseofdefferedexpenses != null">
+				decreaseofdefferedexpenses = #{decreaseofdefferedexpenses},
+			</if>
+			<if test="additionofaccuedexpense != null">
+				additionofaccuedexpense = #{additionofaccuedexpense},
+			</if>
+			<if test="lossesonditermassets != null">
+				lossesonditermassets = #{lossesonditermassets},
+			</if>
+			<if test="lossesonscrappingoffixedassets != null">
+				lossesonscrappingoffixedassets = #{lossesonscrappingoffixedassets},
+			</if>
+			<if test="profitorlossfromchangesinfairvalue != null">
+				profitorlossfromchangesinfairvalue = #{profitorlossfromchangesinfairvalue},
+			</if>
+			<if test="financeexpense != null">
+				financeexpense = #{financeexpense},
+			</if>
+			<if test="lossesarsingfrominvestment != null">
+				lossesarsingfrominvestment = #{lossesarsingfrominvestment},
+			</if>
+			<if test="deferredincometaxassets != null">
+				deferredincometaxassets = #{deferredincometaxassets},
+			</if>
+			<if test="deferredincometaxliabilities != null">
+				deferredincometaxliabilities = #{deferredincometaxliabilities},
+			</if>
+			<if test="decreaseininventories != null">
+				decreaseininventories = #{decreaseininventories},
+			</if>
+			<if test="decreaseinoperatingreceivables != null">
+				decreaseinoperatingreceivables = #{decreaseinoperatingreceivables},
+			</if>
+			<if test="increaseinoperatingreceivables != null">
+				increaseinoperatingreceivables = #{increaseinoperatingreceivables},
+			</if>
+			<if test="others != null">
+				others = #{others},
+			</if>
+			<if test="netcashflowsfromoperatingactivities2 != null">
+				netcashflowsfromoperatingactivities2 = #{netcashflowsfromoperatingactivities2},
+			</if>
+			<if test="debtstransfertocapital != null">
+				debtstransfertocapital = #{debtstransfertocapital},
+			</if>
+			<if test="oneyeardueconvertiblebonds != null">
+				oneyeardueconvertiblebonds = #{oneyeardueconvertiblebonds},
+			</if>
+			<if test="financingrenttothefixedasset != null">
+				financingrenttothefixedasset = #{financingrenttothefixedasset},
+			</if>
+			<if test="cashattheendofperiod != null">
+				cashattheendofperiod = #{cashattheendofperiod},
+			</if>
+			<if test="cashatthebeginningoftheperiod != null">
+				cashatthebeginningoftheperiod = #{cashatthebeginningoftheperiod},
+			</if>
+			<if test="cashequivalentsattheendoftheperiod != null">
+				cashequivalentsattheendoftheperiod = #{cashequivalentsattheendoftheperiod},
+			</if>
+			<if test="cashequivalentsatthebeginningoftheperiod != null">
+				cashequivalentsatthebeginningoftheperiod = #{cashequivalentsatthebeginningoftheperiod},
+			</if>
+			<if test="netincreaseincashandcashequivalents2 != null">
+				netincreaseincashandcashequivalents2 = #{netincreaseincashandcashequivalents2},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_2007cashflowssgmt_id=#{fin_2007cashflowssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFin2007cashflowssgmt" parameterType="map">
+		DELETE FROM fin_2007cashflowssgmt WHERE fin_2007cashflowssgmt_id IN
+		<foreach item="item" index="index" collection="fin_2007cashflowssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFin2007cashflowssgmt" parameterType="list">
+		INSERT INTO
+			fin_2007cashflowssgmt
+			(
+			fin_2007cashflowssgmt_id,
+			cashreceivedfromsalesofgoodsorrendingofservices,
+			taxrefunds,
+			othercashreceivedrelatingtooperatingactivities,
+			totalcashinflowsfromoperatingactivities,
+			cashpaidforgoodsandservices,
+			cashpaidtoandonbehalfofemployees,
+			paymentsofalltypesoftaxes,
+			othercashpaymentsfromoperatingactivities,
+			totalcashoutflowsfromoperatingactivities,
+			netcashflowsfromoperatingactivities,
+			cashreceivedfromreturnofinvestment,
+			cashreceivedfromonvestments,
+			netcashrecetermassets,
+			netcashinflowsofdisposalofsubsidiariesandotherbusinessentities,
+			cashreceivedrelatingtootherinvestingactivities,
+			totalcashinflowsfrominvestingactivities,
+			cashpaidtlongtermassents,
+			cashpaymentsforinvestments,
+			netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits,
+			cashpaymentsrelatedtootherfinancingactivities,
+			subtotalofcashoutflows,
+			netcashflowsfrominvestingactivities,
+			cashreceivedfrominvestors,
+			cashfromborrowings,
+			othercashreceivedrelatingtofinancingactivities,
+			totalcashinflowsfromfinancingactivities,
+			cashrepaymentsfordebts,
+			cashpaymentsfstexpenses,
+			cashpaymentsrelatedtootherfinancingactivities2,
+			totalcashoutflowsfromfinancingactivities,
+			netcashflowsfromfinancingactivities,
+			effectofexchangratechangesoncash,
+			netincreaseincashandcashequivalents,
+			initialcashandcashequivalentsbalance,
+			thefinalcashandcashequivalentsbalance,
+			netprofit,
+			provisionforassetimpairment,
+			depreciationoffixedassets,
+			amortisationofintangibleassets,
+			amortisationoflongtermdefferedexpenses,
+			decreaseofdefferedexpenses,
+			additionofaccuedexpense,
+			lossesonditermassets,
+			lossesonscrappingoffixedassets,
+			profitorlossfromchangesinfairvalue,
+			financeexpense,
+			lossesarsingfrominvestment,
+			deferredincometaxassets,
+			deferredincometaxliabilities,
+			decreaseininventories,
+			decreaseinoperatingreceivables,
+			increaseinoperatingreceivables,
+			others,
+			netcashflowsfromoperatingactivities2,
+			debtstransfertocapital,
+			oneyeardueconvertiblebonds,
+			financingrenttothefixedasset,
+			cashattheendofperiod,
+			cashatthebeginningoftheperiod,
+			cashequivalentsattheendoftheperiod,
+			cashequivalentsatthebeginningoftheperiod,
+			netincreaseincashandcashequivalents2,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_2007cashflowssgmt_id},
+			#{item.cashreceivedfromsalesofgoodsorrendingofservices},
+			#{item.taxrefunds},
+			#{item.othercashreceivedrelatingtooperatingactivities},
+			#{item.totalcashinflowsfromoperatingactivities},
+			#{item.cashpaidforgoodsandservices},
+			#{item.cashpaidtoandonbehalfofemployees},
+			#{item.paymentsofalltypesoftaxes},
+			#{item.othercashpaymentsfromoperatingactivities},
+			#{item.totalcashoutflowsfromoperatingactivities},
+			#{item.netcashflowsfromoperatingactivities},
+			#{item.cashreceivedfromreturnofinvestment},
+			#{item.cashreceivedfromonvestments},
+			#{item.netcashrecetermassets},
+			#{item.netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+			#{item.cashreceivedrelatingtootherinvestingactivities},
+			#{item.totalcashinflowsfrominvestingactivities},
+			#{item.cashpaidtlongtermassents},
+			#{item.cashpaymentsforinvestments},
+			#{item.netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+			#{item.cashpaymentsrelatedtootherfinancingactivities},
+			#{item.subtotalofcashoutflows},
+			#{item.netcashflowsfrominvestingactivities},
+			#{item.cashreceivedfrominvestors},
+			#{item.cashfromborrowings},
+			#{item.othercashreceivedrelatingtofinancingactivities},
+			#{item.totalcashinflowsfromfinancingactivities},
+			#{item.cashrepaymentsfordebts},
+			#{item.cashpaymentsfstexpenses},
+			#{item.cashpaymentsrelatedtootherfinancingactivities2},
+			#{item.totalcashoutflowsfromfinancingactivities},
+			#{item.netcashflowsfromfinancingactivities},
+			#{item.effectofexchangratechangesoncash},
+			#{item.netincreaseincashandcashequivalents},
+			#{item.initialcashandcashequivalentsbalance},
+			#{item.thefinalcashandcashequivalentsbalance},
+			#{item.netprofit},
+			#{item.provisionforassetimpairment},
+			#{item.depreciationoffixedassets},
+			#{item.amortisationofintangibleassets},
+			#{item.amortisationoflongtermdefferedexpenses},
+			#{item.decreaseofdefferedexpenses},
+			#{item.additionofaccuedexpense},
+			#{item.lossesonditermassets},
+			#{item.lossesonscrappingoffixedassets},
+			#{item.profitorlossfromchangesinfairvalue},
+			#{item.financeexpense},
+			#{item.lossesarsingfrominvestment},
+			#{item.deferredincometaxassets},
+			#{item.deferredincometaxliabilities},
+			#{item.decreaseininventories},
+			#{item.decreaseinoperatingreceivables},
+			#{item.increaseinoperatingreceivables},
+			#{item.others},
+			#{item.netcashflowsfromoperatingactivities2},
+			#{item.debtstransfertocapital},
+			#{item.oneyeardueconvertiblebonds},
+			#{item.financingrenttothefixedasset},
+			#{item.cashattheendofperiod},
+			#{item.cashatthebeginningoftheperiod},
+			#{item.cashequivalentsattheendoftheperiod},
+			#{item.cashequivalentsatthebeginningoftheperiod},
+			#{item.netincreaseincashandcashequivalents2},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFin2007cashflowssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007cashflowssgmt
+			SET
+				cashreceivedfromsalesofgoodsorrendingofservices = #{item.cashreceivedfromsalesofgoodsorrendingofservices},
+				taxrefunds = #{item.taxrefunds},
+				othercashreceivedrelatingtooperatingactivities = #{item.othercashreceivedrelatingtooperatingactivities},
+				totalcashinflowsfromoperatingactivities = #{item.totalcashinflowsfromoperatingactivities},
+				cashpaidforgoodsandservices = #{item.cashpaidforgoodsandservices},
+				cashpaidtoandonbehalfofemployees = #{item.cashpaidtoandonbehalfofemployees},
+				paymentsofalltypesoftaxes = #{item.paymentsofalltypesoftaxes},
+				othercashpaymentsfromoperatingactivities = #{item.othercashpaymentsfromoperatingactivities},
+				totalcashoutflowsfromoperatingactivities = #{item.totalcashoutflowsfromoperatingactivities},
+				netcashflowsfromoperatingactivities = #{item.netcashflowsfromoperatingactivities},
+				cashreceivedfromreturnofinvestment = #{item.cashreceivedfromreturnofinvestment},
+				cashreceivedfromonvestments = #{item.cashreceivedfromonvestments},
+				netcashrecetermassets = #{item.netcashrecetermassets},
+				netcashinflowsofdisposalofsubsidiariesandotherbusinessentities = #{item.netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+				cashreceivedrelatingtootherinvestingactivities = #{item.cashreceivedrelatingtootherinvestingactivities},
+				totalcashinflowsfrominvestingactivities = #{item.totalcashinflowsfrominvestingactivities},
+				cashpaidtlongtermassents = #{item.cashpaidtlongtermassents},
+				cashpaymentsforinvestments = #{item.cashpaymentsforinvestments},
+				netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits = #{item.netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+				cashpaymentsrelatedtootherfinancingactivities = #{item.cashpaymentsrelatedtootherfinancingactivities},
+				subtotalofcashoutflows = #{item.subtotalofcashoutflows},
+				netcashflowsfrominvestingactivities = #{item.netcashflowsfrominvestingactivities},
+				cashreceivedfrominvestors = #{item.cashreceivedfrominvestors},
+				cashfromborrowings = #{item.cashfromborrowings},
+				othercashreceivedrelatingtofinancingactivities = #{item.othercashreceivedrelatingtofinancingactivities},
+				totalcashinflowsfromfinancingactivities = #{item.totalcashinflowsfromfinancingactivities},
+				cashrepaymentsfordebts = #{item.cashrepaymentsfordebts},
+				cashpaymentsfstexpenses = #{item.cashpaymentsfstexpenses},
+				cashpaymentsrelatedtootherfinancingactivities2 = #{item.cashpaymentsrelatedtootherfinancingactivities2},
+				totalcashoutflowsfromfinancingactivities = #{item.totalcashoutflowsfromfinancingactivities},
+				netcashflowsfromfinancingactivities = #{item.netcashflowsfromfinancingactivities},
+				effectofexchangratechangesoncash = #{item.effectofexchangratechangesoncash},
+				netincreaseincashandcashequivalents = #{item.netincreaseincashandcashequivalents},
+				initialcashandcashequivalentsbalance = #{item.initialcashandcashequivalentsbalance},
+				thefinalcashandcashequivalentsbalance = #{item.thefinalcashandcashequivalentsbalance},
+				netprofit = #{item.netprofit},
+				provisionforassetimpairment = #{item.provisionforassetimpairment},
+				depreciationoffixedassets = #{item.depreciationoffixedassets},
+				amortisationofintangibleassets = #{item.amortisationofintangibleassets},
+				amortisationoflongtermdefferedexpenses = #{item.amortisationoflongtermdefferedexpenses},
+				decreaseofdefferedexpenses = #{item.decreaseofdefferedexpenses},
+				additionofaccuedexpense = #{item.additionofaccuedexpense},
+				lossesonditermassets = #{item.lossesonditermassets},
+				lossesonscrappingoffixedassets = #{item.lossesonscrappingoffixedassets},
+				profitorlossfromchangesinfairvalue = #{item.profitorlossfromchangesinfairvalue},
+				financeexpense = #{item.financeexpense},
+				lossesarsingfrominvestment = #{item.lossesarsingfrominvestment},
+				deferredincometaxassets = #{item.deferredincometaxassets},
+				deferredincometaxliabilities = #{item.deferredincometaxliabilities},
+				decreaseininventories = #{item.decreaseininventories},
+				decreaseinoperatingreceivables = #{item.decreaseinoperatingreceivables},
+				increaseinoperatingreceivables = #{item.increaseinoperatingreceivables},
+				others = #{item.others},
+				netcashflowsfromoperatingactivities2 = #{item.netcashflowsfromoperatingactivities2},
+				debtstransfertocapital = #{item.debtstransfertocapital},
+				oneyeardueconvertiblebonds = #{item.oneyeardueconvertiblebonds},
+				financingrenttothefixedasset = #{item.financingrenttothefixedasset},
+				cashattheendofperiod = #{item.cashattheendofperiod},
+				cashatthebeginningoftheperiod = #{item.cashatthebeginningoftheperiod},
+				cashequivalentsattheendoftheperiod = #{item.cashequivalentsattheendoftheperiod},
+				cashequivalentsatthebeginningoftheperiod = #{item.cashequivalentsatthebeginningoftheperiod},
+				netincreaseincashandcashequivalents2 = #{item.netincreaseincashandcashequivalents2},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_2007cashflowssgmt_id=#{item.fin_2007cashflowssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFin2007cashflowssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007cashflowssgmt
+			<set>
+				<if test="item.cashreceivedfromsalesofgoodsorrendingofservices != null">
+					cashreceivedfromsalesofgoodsorrendingofservices = #{item.cashreceivedfromsalesofgoodsorrendingofservices},
+				</if>
+				<if test="item.taxrefunds != null">
+					taxrefunds = #{item.taxrefunds},
+				</if>
+				<if test="item.othercashreceivedrelatingtooperatingactivities != null">
+					othercashreceivedrelatingtooperatingactivities = #{item.othercashreceivedrelatingtooperatingactivities},
+				</if>
+				<if test="item.totalcashinflowsfromoperatingactivities != null">
+					totalcashinflowsfromoperatingactivities = #{item.totalcashinflowsfromoperatingactivities},
+				</if>
+				<if test="item.cashpaidforgoodsandservices != null">
+					cashpaidforgoodsandservices = #{item.cashpaidforgoodsandservices},
+				</if>
+				<if test="item.cashpaidtoandonbehalfofemployees != null">
+					cashpaidtoandonbehalfofemployees = #{item.cashpaidtoandonbehalfofemployees},
+				</if>
+				<if test="item.paymentsofalltypesoftaxes != null">
+					paymentsofalltypesoftaxes = #{item.paymentsofalltypesoftaxes},
+				</if>
+				<if test="item.othercashpaymentsfromoperatingactivities != null">
+					othercashpaymentsfromoperatingactivities = #{item.othercashpaymentsfromoperatingactivities},
+				</if>
+				<if test="item.totalcashoutflowsfromoperatingactivities != null">
+					totalcashoutflowsfromoperatingactivities = #{item.totalcashoutflowsfromoperatingactivities},
+				</if>
+				<if test="item.netcashflowsfromoperatingactivities != null">
+					netcashflowsfromoperatingactivities = #{item.netcashflowsfromoperatingactivities},
+				</if>
+				<if test="item.cashreceivedfromreturnofinvestment != null">
+					cashreceivedfromreturnofinvestment = #{item.cashreceivedfromreturnofinvestment},
+				</if>
+				<if test="item.cashreceivedfromonvestments != null">
+					cashreceivedfromonvestments = #{item.cashreceivedfromonvestments},
+				</if>
+				<if test="item.netcashrecetermassets != null">
+					netcashrecetermassets = #{item.netcashrecetermassets},
+				</if>
+				<if test="item.netcashinflowsofdisposalofsubsidiariesandotherbusinessentities != null">
+					netcashinflowsofdisposalofsubsidiariesandotherbusinessentities = #{item.netcashinflowsofdisposalofsubsidiariesandotherbusinessentities},
+				</if>
+				<if test="item.cashreceivedrelatingtootherinvestingactivities != null">
+					cashreceivedrelatingtootherinvestingactivities = #{item.cashreceivedrelatingtootherinvestingactivities},
+				</if>
+				<if test="item.totalcashinflowsfrominvestingactivities != null">
+					totalcashinflowsfrominvestingactivities = #{item.totalcashinflowsfrominvestingactivities},
+				</if>
+				<if test="item.cashpaidtlongtermassents != null">
+					cashpaidtlongtermassents = #{item.cashpaidtlongtermassents},
+				</if>
+				<if test="item.cashpaymentsforinvestments != null">
+					cashpaymentsforinvestments = #{item.cashpaymentsforinvestments},
+				</if>
+				<if test="item.netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits != null">
+					netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits = #{item.netcashoutflowsofprocurementofsubsidiariesandotherbusinessunits},
+				</if>
+				<if test="item.cashpaymentsrelatedtootherfinancingactivities != null">
+					cashpaymentsrelatedtootherfinancingactivities = #{item.cashpaymentsrelatedtootherfinancingactivities},
+				</if>
+				<if test="item.subtotalofcashoutflows != null">
+					subtotalofcashoutflows = #{item.subtotalofcashoutflows},
+				</if>
+				<if test="item.netcashflowsfrominvestingactivities != null">
+					netcashflowsfrominvestingactivities = #{item.netcashflowsfrominvestingactivities},
+				</if>
+				<if test="item.cashreceivedfrominvestors != null">
+					cashreceivedfrominvestors = #{item.cashreceivedfrominvestors},
+				</if>
+				<if test="item.cashfromborrowings != null">
+					cashfromborrowings = #{item.cashfromborrowings},
+				</if>
+				<if test="item.othercashreceivedrelatingtofinancingactivities != null">
+					othercashreceivedrelatingtofinancingactivities = #{item.othercashreceivedrelatingtofinancingactivities},
+				</if>
+				<if test="item.totalcashinflowsfromfinancingactivities != null">
+					totalcashinflowsfromfinancingactivities = #{item.totalcashinflowsfromfinancingactivities},
+				</if>
+				<if test="item.cashrepaymentsfordebts != null">
+					cashrepaymentsfordebts = #{item.cashrepaymentsfordebts},
+				</if>
+				<if test="item.cashpaymentsfstexpenses != null">
+					cashpaymentsfstexpenses = #{item.cashpaymentsfstexpenses},
+				</if>
+				<if test="item.cashpaymentsrelatedtootherfinancingactivities2 != null">
+					cashpaymentsrelatedtootherfinancingactivities2 = #{item.cashpaymentsrelatedtootherfinancingactivities2},
+				</if>
+				<if test="item.totalcashoutflowsfromfinancingactivities != null">
+					totalcashoutflowsfromfinancingactivities = #{item.totalcashoutflowsfromfinancingactivities},
+				</if>
+				<if test="item.netcashflowsfromfinancingactivities != null">
+					netcashflowsfromfinancingactivities = #{item.netcashflowsfromfinancingactivities},
+				</if>
+				<if test="item.effectofexchangratechangesoncash != null">
+					effectofexchangratechangesoncash = #{item.effectofexchangratechangesoncash},
+				</if>
+				<if test="item.netincreaseincashandcashequivalents != null">
+					netincreaseincashandcashequivalents = #{item.netincreaseincashandcashequivalents},
+				</if>
+				<if test="item.initialcashandcashequivalentsbalance != null">
+					initialcashandcashequivalentsbalance = #{item.initialcashandcashequivalentsbalance},
+				</if>
+				<if test="item.thefinalcashandcashequivalentsbalance != null">
+					thefinalcashandcashequivalentsbalance = #{item.thefinalcashandcashequivalentsbalance},
+				</if>
+				<if test="item.netprofit != null">
+					netprofit = #{item.netprofit},
+				</if>
+				<if test="item.provisionforassetimpairment != null">
+					provisionforassetimpairment = #{item.provisionforassetimpairment},
+				</if>
+				<if test="item.depreciationoffixedassets != null">
+					depreciationoffixedassets = #{item.depreciationoffixedassets},
+				</if>
+				<if test="item.amortisationofintangibleassets != null">
+					amortisationofintangibleassets = #{item.amortisationofintangibleassets},
+				</if>
+				<if test="item.amortisationoflongtermdefferedexpenses != null">
+					amortisationoflongtermdefferedexpenses = #{item.amortisationoflongtermdefferedexpenses},
+				</if>
+				<if test="item.decreaseofdefferedexpenses != null">
+					decreaseofdefferedexpenses = #{item.decreaseofdefferedexpenses},
+				</if>
+				<if test="item.additionofaccuedexpense != null">
+					additionofaccuedexpense = #{item.additionofaccuedexpense},
+				</if>
+				<if test="item.lossesonditermassets != null">
+					lossesonditermassets = #{item.lossesonditermassets},
+				</if>
+				<if test="item.lossesonscrappingoffixedassets != null">
+					lossesonscrappingoffixedassets = #{item.lossesonscrappingoffixedassets},
+				</if>
+				<if test="item.profitorlossfromchangesinfairvalue != null">
+					profitorlossfromchangesinfairvalue = #{item.profitorlossfromchangesinfairvalue},
+				</if>
+				<if test="item.financeexpense != null">
+					financeexpense = #{item.financeexpense},
+				</if>
+				<if test="item.lossesarsingfrominvestment != null">
+					lossesarsingfrominvestment = #{item.lossesarsingfrominvestment},
+				</if>
+				<if test="item.deferredincometaxassets != null">
+					deferredincometaxassets = #{item.deferredincometaxassets},
+				</if>
+				<if test="item.deferredincometaxliabilities != null">
+					deferredincometaxliabilities = #{item.deferredincometaxliabilities},
+				</if>
+				<if test="item.decreaseininventories != null">
+					decreaseininventories = #{item.decreaseininventories},
+				</if>
+				<if test="item.decreaseinoperatingreceivables != null">
+					decreaseinoperatingreceivables = #{item.decreaseinoperatingreceivables},
+				</if>
+				<if test="item.increaseinoperatingreceivables != null">
+					increaseinoperatingreceivables = #{item.increaseinoperatingreceivables},
+				</if>
+				<if test="item.others != null">
+					others = #{item.others},
+				</if>
+				<if test="item.netcashflowsfromoperatingactivities2 != null">
+					netcashflowsfromoperatingactivities2 = #{item.netcashflowsfromoperatingactivities2},
+				</if>
+				<if test="item.debtstransfertocapital != null">
+					debtstransfertocapital = #{item.debtstransfertocapital},
+				</if>
+				<if test="item.oneyeardueconvertiblebonds != null">
+					oneyeardueconvertiblebonds = #{item.oneyeardueconvertiblebonds},
+				</if>
+				<if test="item.financingrenttothefixedasset != null">
+					financingrenttothefixedasset = #{item.financingrenttothefixedasset},
+				</if>
+				<if test="item.cashattheendofperiod != null">
+					cashattheendofperiod = #{item.cashattheendofperiod},
+				</if>
+				<if test="item.cashatthebeginningoftheperiod != null">
+					cashatthebeginningoftheperiod = #{item.cashatthebeginningoftheperiod},
+				</if>
+				<if test="item.cashequivalentsattheendoftheperiod != null">
+					cashequivalentsattheendoftheperiod = #{item.cashequivalentsattheendoftheperiod},
+				</if>
+				<if test="item.cashequivalentsatthebeginningoftheperiod != null">
+					cashequivalentsatthebeginningoftheperiod = #{item.cashequivalentsatthebeginningoftheperiod},
+				</if>
+				<if test="item.netincreaseincashandcashequivalents2 != null">
+					netincreaseincashandcashequivalents2 = #{item.netincreaseincashandcashequivalents2},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_2007cashflowssgmt_id=#{item.fin_2007cashflowssgmt_id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt">
+	<!--初始化分页-->
+	<select id="getLoanOrigcreditorinfsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt" parameterType="map">
+		SELECT
+			loan_origcreditorinfsgmt_id,
+			initcredname,
+			initcedorgcode,
+			origdbtcate,
+			initrpysts,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_origcreditorinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != initcredname">
+			AND initcredname LIKE CONCAT(CONCAT('%',#{initcredname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanOrigcreditorinfsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt" parameterType="string">
+		SELECT
+			loan_origcreditorinfsgmt_id,
+			initcredname,
+			initcedorgcode,
+			origdbtcate,
+			initrpysts,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_origcreditorinfsgmt
+		WHERE loan_origcreditorinfsgmt_id=#{loan_origcreditorinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanOrigcreditorinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt">
+		INSERT INTO
+			loan_origcreditorinfsgmt
+			(
+			loan_origcreditorinfsgmt_id,
+			initcredname,
+			initcedorgcode,
+			origdbtcate,
+			initrpysts,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_origcreditorinfsgmt_id},
+			#{initcredname},
+			#{initcedorgcode},
+			#{origdbtcate},
+			#{initrpysts},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanOrigcreditorinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt">
+		UPDATE
+			loan_origcreditorinfsgmt
+		SET
+			initcredname = #{initcredname},
+			initcedorgcode = #{initcedorgcode},
+			origdbtcate = #{origdbtcate},
+			initrpysts = #{initrpysts},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_origcreditorinfsgmt_id=#{loan_origcreditorinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanOrigcreditorinfsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt">
+		UPDATE
+			loan_origcreditorinfsgmt
+		<set>
+			<if test="initcredname != null">
+				initcredname = #{initcredname},
+			</if>
+			<if test="initcedorgcode != null">
+				initcedorgcode = #{initcedorgcode},
+			</if>
+			<if test="origdbtcate != null">
+				origdbtcate = #{origdbtcate},
+			</if>
+			<if test="initrpysts != null">
+				initrpysts = #{initrpysts},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_origcreditorinfsgmt_id=#{loan_origcreditorinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanOrigcreditorinfsgmt" parameterType="map">
+		DELETE FROM loan_origcreditorinfsgmt WHERE loan_origcreditorinfsgmt_id IN
+		<foreach item="item" index="index" collection="loan_origcreditorinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanOrigcreditorinfsgmt" parameterType="list">
+		INSERT INTO
+			loan_origcreditorinfsgmt
+			(
+			loan_origcreditorinfsgmt_id,
+			initcredname,
+			initcedorgcode,
+			origdbtcate,
+			initrpysts,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_origcreditorinfsgmt_id},
+			#{item.initcredname},
+			#{item.initcedorgcode},
+			#{item.origdbtcate},
+			#{item.initrpysts},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanOrigcreditorinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_origcreditorinfsgmt
+			SET
+				initcredname = #{item.initcredname},
+				initcedorgcode = #{item.initcedorgcode},
+				origdbtcate = #{item.origdbtcate},
+				initrpysts = #{item.initrpysts},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_origcreditorinfsgmt_id=#{item.loan_origcreditorinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanOrigcreditorinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_origcreditorinfsgmt
+			<set>
+				<if test="item.initcredname != null">
+					initcredname = #{item.initcredname},
+				</if>
+				<if test="item.initcedorgcode != null">
+					initcedorgcode = #{item.initcedorgcode},
+				</if>
+				<if test="item.origdbtcate != null">
+					origdbtcate = #{item.origdbtcate},
+				</if>
+				<if test="item.initrpysts != null">
+					initrpysts = #{item.initrpysts},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_origcreditorinfsgmt_id=#{item.loan_origcreditorinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

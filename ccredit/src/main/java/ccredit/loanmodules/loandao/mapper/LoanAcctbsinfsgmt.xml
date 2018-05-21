@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt">
+	<!--初始化分页-->
+	<select id="getLoanAcctbsinfsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt" parameterType="map">
+		SELECT
+			loan_acctbsinfsgmt_id,
+			busilines,
+			busidtllines,
+			opendate,
+			cy,
+			acctcredline,
+			loanamt,
+			flag,
+			duedate,
+			repaymode,
+			repayfreqcy,
+			applybusidist,
+			guarmode,
+			othrepyguarway,
+			loantimelimcat,
+			loafrm,
+			actinvest,
+			fundsou,
+			assettrandflag,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_acctbsinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != busilines">
+			AND busilines LIKE CONCAT(CONCAT('%',#{busilines}),'%')
+		</if>
+	</select>
+	
+	
+	<!--查询对象-->
+	<select id="getLoanAcctbsinfsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt" parameterType="string">
+		SELECT
+			loan_acctbsinfsgmt_id,
+			busilines,
+			busidtllines,
+			opendate,
+			cy,
+			acctcredline,
+			loanamt,
+			flag,
+			duedate,
+			repaymode,
+			repayfreqcy,
+			applybusidist,
+			guarmode,
+			othrepyguarway,
+			loantimelimcat,
+			loafrm,
+			actinvest,
+			fundsou,
+			assettrandflag,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_acctbsinfsgmt
+		WHERE loan_acctbsinfsgmt_id=#{loan_acctbsinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanAcctbsinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt">
+		INSERT INTO
+			loan_acctbsinfsgmt
+			(
+			loan_acctbsinfsgmt_id,
+			busilines,
+			busidtllines,
+			opendate,
+			cy,
+			acctcredline,
+			loanamt,
+			flag,
+			duedate,
+			repaymode,
+			repayfreqcy,
+			applybusidist,
+			guarmode,
+			othrepyguarway,
+			loantimelimcat,
+			loafrm,
+			actinvest,
+			fundsou,
+			assettrandflag,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_acctbsinfsgmt_id},
+			#{busilines},
+			#{busidtllines},
+			#{opendate},
+			#{cy},
+			#{acctcredline},
+			#{loanamt},
+			#{flag},
+			#{duedate},
+			#{repaymode},
+			#{repayfreqcy},
+			#{applybusidist},
+			#{guarmode},
+			#{othrepyguarway},
+			#{loantimelimcat},
+			#{loafrm},
+			#{actinvest},
+			#{fundsou},
+			#{assettrandflag},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanAcctbsinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt">
+		UPDATE
+			loan_acctbsinfsgmt
+		SET
+			busilines = #{busilines},
+			busidtllines = #{busidtllines},
+			opendate = #{opendate},
+			cy = #{cy},
+			acctcredline = #{acctcredline},
+			loanamt = #{loanamt},
+			flag = #{flag},
+			duedate = #{duedate},
+			repaymode = #{repaymode},
+			repayfreqcy = #{repayfreqcy},
+			applybusidist = #{applybusidist},
+			guarmode = #{guarmode},
+			othrepyguarway = #{othrepyguarway},
+			loantimelimcat = #{loantimelimcat},
+			loafrm = #{loafrm},
+			actinvest = #{actinvest},
+			fundsou = #{fundsou},
+			assettrandflag = #{assettrandflag},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_acctbsinfsgmt_id=#{loan_acctbsinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanAcctbsinfsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt">
+		UPDATE
+			loan_acctbsinfsgmt
+		<set>
+			<if test="busilines != null">
+				busilines = #{busilines},
+			</if>
+			<if test="busidtllines != null">
+				busidtllines = #{busidtllines},
+			</if>
+			<if test="opendate != null">
+				opendate = #{opendate},
+			</if>
+			<if test="cy != null">
+				cy = #{cy},
+			</if>
+			<if test="acctcredline != null">
+				acctcredline = #{acctcredline},
+			</if>
+			<if test="loanamt != null">
+				loanamt = #{loanamt},
+			</if>
+			<if test="flag != null">
+				flag = #{flag},
+			</if>
+			<if test="duedate != null">
+				duedate = #{duedate},
+			</if>
+			<if test="repaymode != null">
+				repaymode = #{repaymode},
+			</if>
+			<if test="repayfreqcy != null">
+				repayfreqcy = #{repayfreqcy},
+			</if>
+			<if test="applybusidist != null">
+				applybusidist = #{applybusidist},
+			</if>
+			<if test="guarmode != null">
+				guarmode = #{guarmode},
+			</if>
+			<if test="othrepyguarway != null">
+				othrepyguarway = #{othrepyguarway},
+			</if>
+			<if test="loantimelimcat != null">
+				loantimelimcat = #{loantimelimcat},
+			</if>
+			<if test="loafrm != null">
+				loafrm = #{loafrm},
+			</if>
+			<if test="actinvest != null">
+				actinvest = #{actinvest},
+			</if>
+			<if test="fundsou != null">
+				fundsou = #{fundsou},
+			</if>
+			<if test="assettrandflag != null">
+				assettrandflag = #{assettrandflag},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_acctbsinfsgmt_id=#{loan_acctbsinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanAcctbsinfsgmt" parameterType="map">
+		DELETE FROM loan_acctbsinfsgmt WHERE loan_acctbsinfsgmt_id IN
+		<foreach item="item" index="index" collection="loan_acctbsinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanAcctbsinfsgmt" parameterType="list">
+		INSERT INTO
+			loan_acctbsinfsgmt
+			(
+			loan_acctbsinfsgmt_id,
+			busilines,
+			busidtllines,
+			opendate,
+			cy,
+			acctcredline,
+			loanamt,
+			flag,
+			duedate,
+			repaymode,
+			repayfreqcy,
+			applybusidist,
+			guarmode,
+			othrepyguarway,
+			loantimelimcat,
+			loafrm,
+			actinvest,
+			fundsou,
+			assettrandflag,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_acctbsinfsgmt_id},
+			#{item.busilines},
+			#{item.busidtllines},
+			#{item.opendate},
+			#{item.cy},
+			#{item.acctcredline},
+			#{item.loanamt},
+			#{item.flag},
+			#{item.duedate},
+			#{item.repaymode},
+			#{item.repayfreqcy},
+			#{item.applybusidist},
+			#{item.guarmode},
+			#{item.othrepyguarway},
+			#{item.loantimelimcat},
+			#{item.loafrm},
+			#{item.actinvest},
+			#{item.fundsou},
+			#{item.assettrandflag},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanAcctbsinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_acctbsinfsgmt
+			SET
+				busilines = #{item.busilines},
+				busidtllines = #{item.busidtllines},
+				opendate = #{item.opendate},
+				cy = #{item.cy},
+				acctcredline = #{item.acctcredline},
+				loanamt = #{item.loanamt},
+				flag = #{item.flag},
+				duedate = #{item.duedate},
+				repaymode = #{item.repaymode},
+				repayfreqcy = #{item.repayfreqcy},
+				applybusidist = #{item.applybusidist},
+				guarmode = #{item.guarmode},
+				othrepyguarway = #{item.othrepyguarway},
+				loantimelimcat = #{item.loantimelimcat},
+				loafrm = #{item.loafrm},
+				actinvest = #{item.actinvest},
+				fundsou = #{item.fundsou},
+				assettrandflag = #{item.assettrandflag},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_acctbsinfsgmt_id=#{item.loan_acctbsinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanAcctbsinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_acctbsinfsgmt
+			<set>
+				<if test="item.busilines != null">
+					busilines = #{item.busilines},
+				</if>
+				<if test="item.busidtllines != null">
+					busidtllines = #{item.busidtllines},
+				</if>
+				<if test="item.opendate != null">
+					opendate = #{item.opendate},
+				</if>
+				<if test="item.cy != null">
+					cy = #{item.cy},
+				</if>
+				<if test="item.acctcredline != null">
+					acctcredline = #{item.acctcredline},
+				</if>
+				<if test="item.loanamt != null">
+					loanamt = #{item.loanamt},
+				</if>
+				<if test="item.flag != null">
+					flag = #{item.flag},
+				</if>
+				<if test="item.duedate != null">
+					duedate = #{item.duedate},
+				</if>
+				<if test="item.repaymode != null">
+					repaymode = #{item.repaymode},
+				</if>
+				<if test="item.repayfreqcy != null">
+					repayfreqcy = #{item.repayfreqcy},
+				</if>
+				<if test="item.applybusidist != null">
+					applybusidist = #{item.applybusidist},
+				</if>
+				<if test="item.guarmode != null">
+					guarmode = #{item.guarmode},
+				</if>
+				<if test="item.othrepyguarway != null">
+					othrepyguarway = #{item.othrepyguarway},
+				</if>
+				<if test="item.loantimelimcat != null">
+					loantimelimcat = #{item.loantimelimcat},
+				</if>
+				<if test="item.loafrm != null">
+					loafrm = #{item.loafrm},
+				</if>
+				<if test="item.actinvest != null">
+					actinvest = #{item.actinvest},
+				</if>
+				<if test="item.fundsou != null">
+					fundsou = #{item.fundsou},
+				</if>
+				<if test="item.assettrandflag != null">
+					assettrandflag = #{item.assettrandflag},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_acctbsinfsgmt_id=#{item.loan_acctbsinfsgmt_id}
+		</foreach>
+	</update>
+	
+	<!--查询历史信息 begin-->
+	<!-- 借贷基本信息段 -->
+	<select id="HisLoanAcctbsinfsgmt" resultType="ccredit.loanmodules.loanmodel.LoanAcctbsinfsgmt" parameterType="map">
+		SELECT
+			loan_acctbsinfsgmt_id,
+			busilines,
+			busidtllines,
+			opendate,
+			cy,
+			acctcredline,
+			loanamt,
+			flag,
+			duedate,
+			repaymode,
+			repayfreqcy,
+			applybusidist,
+			guarmode,
+			othrepyguarway,
+			loantimelimcat,
+			loafrm,
+			actinvest,
+			fundsou,
+			assettrandflag,
+			serialno,
+			customid,
+			lastdate,
+			changeflag 
+		FROM 
+			his_loan_acctbsinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_loan_acctbsinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业借贷信息基础段 -->
+	<select id="HisLoanAcctbssgmt" resultType="ccredit.loanmodules.loanmodel.LoanAcctbssgmt" parameterType="map">
+		SELECT
+		    loan_acctbssgmt_id,
+		    infrectype,
+		    acctcode,
+		    accttype,
+		    rptdate,
+		    rptdatecode,
+		    name,
+		    idtype,
+		    idnum,
+		    mngmtorgcode,
+		    serialno,
+		    customid,
+		    lastdate,
+		    changeflag
+		FROM
+		    his_loan_acctbssgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_acctbssgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	
+	<!-- 授信额度信息 -->
+	<select id="HisLoanAcctcredsgmt" resultType="ccredit.loanmodules.loanmodel.LoanAcctcredsgmt" parameterType="map">
+		SELECT
+			loan_acctcredsgmt_id,
+			mcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_acctcredsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_acctcredsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 特定交易说明his_loan_acctspectrstdspnsgmt -->
+	<select id="HisLoanAcctspectrstdspnsgmt" resultType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt" parameterType="map">
+		SELECT
+			loan_acctspectrstdspnsgmt_id,
+			cagoftrdnm,
+			chantrantype,
+			trandate,
+			tranamt,
+			duetranmon,
+			detinfo,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_acctspectrstdspnsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_acctspectrstdspnsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 还款表现信息his_loan_actlbltyinfsgmt -->
+	<select id="HisLoanActlbltyinfsgmt" resultType="ccredit.loanmodules.loanmodel.LoanActlbltyinfsgmt" parameterType="map">
+		SELECT
+			loan_actlbltyinfsgmt_id,
+			acctstatus,
+			acctbal,
+			balchgdate,
+			fivecate,
+			fivecateadjdate,
+			pymtprd,
+			totoverd,
+			overdprinc,
+			overddy,
+			latrpydate,
+			latrpyamt,
+			latrpypri,
+			rpmttype,
+			latagrrrpydate,
+			latagrrrpyamt,
+			nxtagrrrpydate,
+			closedate,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_actlbltyinfsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_actlbltyinfsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 联保人信息his_loan_cosignersgmt -->
+	<select id="HisLoanCosignersgmt" resultType="ccredit.loanmodules.loanmodel.LoanCosignersgmt" parameterType="map">
+		SELECT
+			loan_cosignersgmt_id,
+			cosignersnm,
+			cosignerstype,
+			cosignersname,
+			cosignersidtype,
+			cosignersidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_cosignersgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_cosignersgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 授信额度信息his_loan_creditlimsgmt -->
+	<select id="HisLoanCreditlimsgmt" resultType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt" parameterType="map">
+		SELECT
+			loan_creditlimsgmt_id,
+			creditlimtype,
+			limloopflg,
+			creditlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_creditlimsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_creditlimsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 企业授信协议信息基础段his_loan_ctrctbssgmt -->
+	<select id="HisLoanCtrctbssgmt" resultType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt" parameterType="map">
+		SELECT
+			loan_ctrctbssgmt_id,
+			infrectype,
+			contractcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_ctrctbssgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_ctrctbssgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 共同受信人信息his_loan_ctrctcertrelsgmt -->
+	<select id="HisLoanCtrctcertrelsgmt" resultType="ccredit.loanmodules.loanmodel.LoanCtrctcertrelsgmt" parameterType="map">
+		SELECT
+			loan_ctrctcertrelsgmt_id,
+			brernm,
+			brertype,
+			certrelname,
+			certrelidtype,
+			certrelidnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_ctrctcertrelsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_ctrctcertrelsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	
+	
+	<!-- 最高额保证合同信息基础段his_loan_guarbssgmt -->
+	<select id="HisLoanGuarbssgmt" resultType="ccredit.loanmodules.loanmodel.LoanGuarbssgmt" parameterType="map">
+		SELECT
+			loan_guarbssgmt_id,
+			infrectype,
+			guarmccode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_guarbssgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_guarbssgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 最高额额度信息his_loan_guarcreditlimsgmt -->
+	<select id="HisLoanGuarcreditlimsgmt" resultType="ccredit.loanmodules.loanmodel.LoanGuarcreditlimsgmt" parameterType="map">
+		SELECT
+			loan_guarcreditlimsgmt_id,
+			limloopflg,
+			guarlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_guarcreditlimsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_guarcreditlimsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 抵质押物信息his_loan_motgacltalctrctinfsgmt -->
+	<select id="HisLoanMotgacltalctrctinfsgmt" resultType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt" parameterType="map">
+		SELECT
+			loan_motgacltalctrctinfsgmt_id,
+			ccnm,
+			ccc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_motgacltalctrctinfsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_motgacltalctrctinfsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 初始债权说明his_loan_origcreditorinfsgmt -->
+	<select id="HisLoanOrigcreditorinfsgmt" resultType="ccredit.loanmodules.loanmodel.LoanOrigcreditorinfsgmt" parameterType="map">
+		SELECT
+			loan_origcreditorinfsgmt_id,
+			initcredname,
+			initcedorgcode,
+			origdbtcate,
+			initrpysts,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_origcreditorinfsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_origcreditorinfsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!-- 相关还款责任人his_loan_rltrepymtinfsgmt -->
+	<select id="HisLoanRltrepymtinfsgmt" resultType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt" parameterType="map">
+		SELECT
+			loan_rltrepymtinfsgmt_id,
+			rltrepymtnm,
+			arlpidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			wartysign,
+			maxguarmcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_loan_rltrepymtinfsgmt
+		WHERE
+		    RP_DATE =
+		    (
+		      SELECT  MAX(RP_DATE)  FROM   his_loan_rltrepymtinfsgmt 
+		     )
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if> 
+	</select>
+	<!--查询历史信息 end-->
+</mapper>

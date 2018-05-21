@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.xmlmodules.xmlmodel.Xmltemplate">
+	<!--初始化分页-->
+	<select id="getXmltemplateListByCondition" resultType="ccredit.xmlmodules.xmlmodel.Xmltemplate" parameterType="map">
+		SELECT
+			id,
+			templatename,
+			templatecode,
+			bigtypecode,
+			middletypecode,
+			infreptype,
+			rptdatecode,
+			status,
+			description,
+			tag,
+			createtime
+		FROM 
+			xmltemplate
+		WHERE 1=1
+		<if test="null != templatename">
+			AND templatename LIKE CONCAT(CONCAT('%',#{templatename}),'%')
+		</if>
+		<if test="null != middletypecode">
+			AND middletypecode = #{middletypecode}
+		</if>
+		<if test="null != infreptype">
+			AND infreptype = #{infreptype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getXmltemplateById" resultType="ccredit.xmlmodules.xmlmodel.Xmltemplate" parameterType="string">
+		SELECT
+			id,
+			templatename,
+			templatecode,
+			bigtypecode,
+			middletypecode,
+			infreptype,
+			rptdatecode,
+			status,
+			description,
+			tag,
+			createtime
+		FROM 
+			xmltemplate
+		WHERE id=#{id}
+	</select>
+
+	<!--添加-->
+	<insert id="addXmltemplate" parameterType="ccredit.xmlmodules.xmlmodel.Xmltemplate">
+		INSERT INTO
+			xmltemplate
+			(
+			id,
+			templatename,
+			templatecode,
+			bigtypecode,
+			middletypecode,
+			infreptype,
+			rptdatecode,
+			status,
+			description,
+			tag,
+			createtime
+			)
+			VALUES
+			(
+			#{id},
+			#{templatename},
+			#{templatecode},
+			#{bigtypecode},
+			#{middletypecode},
+			#{infreptype},
+			#{rptdatecode},
+			#{status},
+			#{description},
+			#{tag},
+			#{createtime}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateXmltemplate" parameterType="ccredit.xmlmodules.xmlmodel.Xmltemplate">
+		UPDATE
+			xmltemplate
+		SET
+			templatename = #{templatename},
+			templatecode = #{templatecode},
+			bigtypecode = #{bigtypecode},
+			middletypecode = #{middletypecode},
+			infreptype = #{infreptype},
+			rptdatecode = #{rptdatecode},
+			status = #{status},
+			description = #{description},
+			tag = #{tag},
+			createtime = #{createtime}
+		WHERE id=#{id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateXmltemplateBySelective" parameterType="ccredit.xmlmodules.xmlmodel.Xmltemplate">
+		UPDATE
+			xmltemplate
+		<set>
+			<if test="templatename != null">
+				templatename = #{templatename},
+			</if>
+			<if test="templatecode != null">
+				templatecode = #{templatecode},
+			</if>
+			<if test="bigtypecode != null">
+				bigtypecode = #{bigtypecode},
+			</if>
+			<if test="middletypecode != null">
+				middletypecode = #{middletypecode},
+			</if>
+			<if test="infreptype != null">
+				infreptype = #{infreptype},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="tag != null">
+				tag = #{tag},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<!--删除-->
+	<delete id="delXmltemplate" parameterType="map">
+		DELETE FROM xmltemplate WHERE id IN
+		<foreach item="item" index="index" collection="id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchXmltemplate" parameterType="list">
+		INSERT INTO
+			xmltemplate
+			(
+			id,
+			templatename,
+			templatecode,
+			bigtypecode,
+			middletypecode,
+			infreptype,
+			rptdatecode,
+			status,
+			description,
+			tag,
+			createtime
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.id},
+			#{item.templatename},
+			#{item.templatecode},
+			#{item.bigtypecode},
+			#{item.middletypecode},
+			#{item.infreptype},
+			#{item.rptdatecode},
+			#{item.status},
+			#{item.description},
+			#{item.tag},
+			#{item.createtime}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchXmltemplate" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmltemplate
+			SET
+				templatename = #{item.templatename},
+				templatecode = #{item.templatecode},
+				bigtypecode = #{item.bigtypecode},
+				middletypecode = #{item.middletypecode},
+				infreptype = #{item.infreptype},
+				rptdatecode = #{item.rptdatecode},
+				status = #{item.status},
+				description = #{item.description},
+				tag = #{item.tag},
+				createtime = #{item.createtime}
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchXmltemplateBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmltemplate
+			<set>
+				<if test="item.templatename != null">
+					templatename = #{item.templatename},
+				</if>
+				<if test="item.templatecode != null">
+					templatecode = #{item.templatecode},
+				</if>
+				<if test="item.bigtypecode != null">
+					bigtypecode = #{item.bigtypecode},
+				</if>
+				<if test="item.middletypecode != null">
+					middletypecode = #{item.middletypecode},
+				</if>
+				<if test="item.infreptype != null">
+					infreptype = #{item.infreptype},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.status != null">
+					status = #{item.status},
+				</if>
+				<if test="item.description != null">
+					description = #{item.description},
+				</if>
+				<if test="item.tag != null">
+					tag = #{item.tag},
+				</if>
+				<if test="item.createtime != null">
+					createtime = #{item.createtime},
+				</if>
+			</set>
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+</mapper>

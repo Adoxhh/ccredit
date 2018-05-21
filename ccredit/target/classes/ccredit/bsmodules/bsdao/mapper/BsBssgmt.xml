@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsBssgmt">
+	<!--初始化分页-->
+	<select id="getBsBssgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsBssgmt" parameterType="map">
+		SELECT
+			bssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			rptdatecode,
+			infsurccode,
+			cimoc,
+			customertype,
+			etpsts,
+			orgtype,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_bssgmt
+		WHERE 1=1
+		<if test="null != entname">
+			AND entname LIKE CONCAT(CONCAT('%',#{entname}),'%')
+		</if>
+		<if test="null != customertype">
+			AND customertype = #{customertype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsBssgmtById" resultType="ccredit.bsmodules.bsmodel.BsBssgmt" parameterType="string">
+		SELECT
+			bssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			rptdatecode,
+			infsurccode,
+			cimoc,
+			customertype,
+			etpsts,
+			orgtype,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_bssgmt
+		WHERE bssgmt_id=#{bssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsBssgmt" parameterType="ccredit.bsmodules.bsmodel.BsBssgmt">
+		INSERT INTO
+			bs_bssgmt
+			(
+			bssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			rptdatecode,
+			infsurccode,
+			cimoc,
+			customertype,
+			etpsts,
+			orgtype,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bssgmt_id},
+			#{infrectype},
+			#{entname},
+			#{entcerttype},
+			#{entcertnum},
+			#{rptdate},
+			#{rptdatecode},
+			#{infsurccode},
+			#{cimoc},
+			#{customertype},
+			#{etpsts},
+			#{orgtype},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsBssgmt" parameterType="ccredit.bsmodules.bsmodel.BsBssgmt">
+		UPDATE
+			bs_bssgmt
+		SET
+			infrectype = #{infrectype},
+			entname = #{entname},
+			entcerttype = #{entcerttype},
+			entcertnum = #{entcertnum},
+			rptdate = #{rptdate},
+			rptdatecode = #{rptdatecode},
+			infsurccode = #{infsurccode},
+			cimoc = #{cimoc},
+			customertype = #{customertype},
+			etpsts = #{etpsts},
+			orgtype = #{orgtype},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bssgmt_id=#{bssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsBssgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsBssgmt">
+		UPDATE
+			bs_bssgmt
+		<set>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="entname != null">
+				entname = #{entname},
+			</if>
+			<if test="entcerttype != null">
+				entcerttype = #{entcerttype},
+			</if>
+			<if test="entcertnum != null">
+				entcertnum = #{entcertnum},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="infsurccode != null">
+				infsurccode = #{infsurccode},
+			</if>
+			<if test="cimoc != null">
+				cimoc = #{cimoc},
+			</if>
+			<if test="customertype != null">
+				customertype = #{customertype},
+			</if>
+			<if test="etpsts != null">
+				etpsts = #{etpsts},
+			</if>
+			<if test="orgtype != null">
+				orgtype = #{orgtype},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bssgmt_id=#{bssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsBssgmt" parameterType="map">
+		DELETE FROM bs_bssgmt WHERE bssgmt_id IN
+		<foreach item="item" index="index" collection="bssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsBssgmt" parameterType="list">
+		INSERT INTO
+			bs_bssgmt
+			(
+			bssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			rptdatecode,
+			infsurccode,
+			cimoc,
+			customertype,
+			etpsts,
+			orgtype,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bssgmt_id},
+			#{item.infrectype},
+			#{item.entname},
+			#{item.entcerttype},
+			#{item.entcertnum},
+			#{item.rptdate},
+			#{item.rptdatecode},
+			#{item.infsurccode},
+			#{item.cimoc},
+			#{item.customertype},
+			#{item.etpsts},
+			#{item.orgtype},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsBssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_bssgmt
+			SET
+				infrectype = #{item.infrectype},
+				entname = #{item.entname},
+				entcerttype = #{item.entcerttype},
+				entcertnum = #{item.entcertnum},
+				rptdate = #{item.rptdate},
+				rptdatecode = #{item.rptdatecode},
+				infsurccode = #{item.infsurccode},
+				cimoc = #{item.cimoc},
+				customertype = #{item.customertype},
+				etpsts = #{item.etpsts},
+				orgtype = #{item.orgtype},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bssgmt_id=#{item.bssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsBssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_bssgmt
+			<set>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.entname != null">
+					entname = #{item.entname},
+				</if>
+				<if test="item.entcerttype != null">
+					entcerttype = #{item.entcerttype},
+				</if>
+				<if test="item.entcertnum != null">
+					entcertnum = #{item.entcertnum},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.infsurccode != null">
+					infsurccode = #{item.infsurccode},
+				</if>
+				<if test="item.cimoc != null">
+					cimoc = #{item.cimoc},
+				</if>
+				<if test="item.customertype != null">
+					customertype = #{item.customertype},
+				</if>
+				<if test="item.etpsts != null">
+					etpsts = #{item.etpsts},
+				</if>
+				<if test="item.orgtype != null">
+					orgtype = #{item.orgtype},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bssgmt_id=#{item.bssgmt_id}
+		</foreach>
+	</update>
+	
+	<!--查询历史信息 begin-->
+	<!-- 实际控制人his_bs_actucotrlinfsgmt -->
+	<select id="his_bs_actucotrlinfsgmt" resultType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt" parameterType="map">
+		SELECT
+			bs_actucotrlinfsgmt_id,
+			actucotrlnm,
+			actucotrlidtype1,
+			actucotrlname,
+			actucotrlidtype2,
+			actucotrlidnum,
+			actucotrlinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_actucotrlinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_actucotrlinfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	<!-- 企业基本信息基础段his_bs_bssgmt -->
+	<select id="his_bs_bssgmt" resultType="ccredit.bsmodules.bsmodel.BsBssgmt" parameterType="map">
+		SELECT
+			bssgmt_id,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			rptdate,
+			rptdatecode,
+			infsurccode,
+			cimoc,
+			customertype,
+			etpsts,
+			orgtype,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_bssgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_bssgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 联系方式his_bs_cotainfsgmt -->
+	<select id="his_bs_cotainfsgmt" resultType="ccredit.bsmodules.bsmodel.BsCotainfsgmt" parameterType="map">
+		SELECT
+			bs_cotainfsgmt_id,
+			conadddistrictcode,
+			conadd,
+			conphone,
+			finconphone,
+			cotainfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_cotainfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_cotainfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!-- 身份标识整合信息记录his_bs_enctfitginf -->
+	<select id="his_bs_enctfitginf" resultType="ccredit.bsmodules.bsmodel.BsEnctfitginf" parameterType="map">
+		SELECT
+			enctfitginf_id,
+			customid,
+			infrectype,
+			entname,
+			entcerttype,
+			entcertnum,
+			othentcerttype,
+			othentcertnum,
+			certassflg,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_enctfitginf
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_enctfitginf
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 企业间关联关系信息记录his_bs_enicdnrltpinf -->
+	<select id="his_bs_enicdnrltpinf" resultType="ccredit.bsmodules.bsmodel.BsEnicdnrltpinf" parameterType="map">
+		SELECT
+			enicdnrltpinf_id,
+			infrectype,
+			customid,
+			entname,
+			entcerttype,
+			entcertnum,
+			bcustomid,
+			assoentname,
+			assoentcerttype,
+			assoentcertnum,
+			assotype,
+			assosign,
+			rptdate,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_enicdnrltpinf
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_enicdnrltpinf
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 基本概况信息his_bs_fcsinfsgmt -->
+	<select id="his_bs_fcsinfsgmt" resultType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt" parameterType="map">
+		SELECT
+			bs_fcsinfsgmt_id,
+			nationality,
+			regadd,
+			admdivofreg,
+			establishdate,
+			bizenddate,
+			bizrange,
+			ecoinduscate,
+			ecotype,
+			entscale,
+			fcsinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_fcsinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_fcsinfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	
+	<!-- 其他标识表his_bs_idsgmt -->
+	<select id="his_bs_idsgmt" resultType="ccredit.bsmodules.bsmodel.BsIdsgmt" parameterType="map">
+		SELECT
+			bs_idsgmt_id,
+			idnm,
+			othentcerttype,
+			othentcertnum,
+			idinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_idsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_idsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 主要组成人员his_bs_mnmmbinfsgmt -->
+	<select id="his_bs_mnmmbinfsgmt" resultType="ccredit.bsmodules.bsmodel.BsMnmmbinfsgmt" parameterType="map">
+		SELECT
+			bs_mnmmbinfsgmt_id,
+			mmbnm,
+			mmbalias,
+			mmbidtype,
+			mmbidnum,
+			mmbpstn,
+			mnmmbinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_mnmmbinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_mnmmbinfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 注册资本及主要出资人his_bs_mnshahodinfsgmt -->
+	<select id="his_bs_mnshahodinfsgmt" resultType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt" parameterType="map">
+		SELECT
+			bs_mnshahodinfsgmt_id,
+			regcapcurrency,
+			regcap,
+			mnsharhodnm,
+			sharhodtype,
+			sharhodidtype1,
+			sharhodname,
+			sharhodidtype2,
+			sharhodidnum,
+			invratio,
+			mnshahodinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_mnshahodinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_mnshahodinfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+	
+	<!-- 上级机构his_bs_spvsgathrtyinfsgmt -->
+	<select id="his_bs_spvsgathrtyinfsgmt" resultType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt" parameterType="map">
+		SELECT
+			bs_spvsgathrtyinfsgmt_id,
+			suporgtype,
+			suporgname,
+			suporgcerttype,
+			suporgcertnum,
+			suporginfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_bs_spvsgathrtyinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_bs_spvsgathrtyinfsgmt
+			)
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>	
+	
+	<!--查询历史信息 end-->
+</mapper>

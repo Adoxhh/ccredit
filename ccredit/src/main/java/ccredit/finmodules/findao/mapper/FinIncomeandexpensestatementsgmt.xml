@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt">
+	<!--初始化分页-->
+	<select id="getFinIncomeandexpensestatementsgmtListByCondition" resultType="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt" parameterType="map">
+		SELECT
+			fin_incomeandexpensestatementsgmt_id,
+			currentfinancialsubsidycarriedoverbalance,
+			financialsubsidyrevenue,
+			undertakingsexpenditurefinancialsubsidyexpenditure,
+			currentundertakingscarriedoverbalance,
+			undertakingsclassrevenue,
+			undertakingsrevenue,
+			superiorsubsidyrevenue,
+			revenueturnedoverbysubsidiaryunit,
+			otherrevenue,
+			donationincome,
+			undertakingsclassexpenditure,
+			undertakingsexpenditurenonfinancialsubsidyexpenditure,
+			paymenttothehigherauthority,
+			granttotheauxiliaryorganization,
+			otherexpenditure,
+			currentoperatingbalance,
+			operatingrevenue,
+			operatingexpenditure,
+			operatingbalancemadeupforofthepreviousyearsoperatingloss,
+			nonfinancialsubsidycarriedoverbalancethisyear,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalancethisyear,
+			enterpriseincometaxpayable,
+			specialfundstoextract,
+			publicfundturnedinto,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_incomeandexpensestatementsgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFinIncomeandexpensestatementsgmtById" resultType="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt" parameterType="string">
+		SELECT
+			fin_incomeandexpensestatementsgmt_id,
+			currentfinancialsubsidycarriedoverbalance,
+			financialsubsidyrevenue,
+			undertakingsexpenditurefinancialsubsidyexpenditure,
+			currentundertakingscarriedoverbalance,
+			undertakingsclassrevenue,
+			undertakingsrevenue,
+			superiorsubsidyrevenue,
+			revenueturnedoverbysubsidiaryunit,
+			otherrevenue,
+			donationincome,
+			undertakingsclassexpenditure,
+			undertakingsexpenditurenonfinancialsubsidyexpenditure,
+			paymenttothehigherauthority,
+			granttotheauxiliaryorganization,
+			otherexpenditure,
+			currentoperatingbalance,
+			operatingrevenue,
+			operatingexpenditure,
+			operatingbalancemadeupforofthepreviousyearsoperatingloss,
+			nonfinancialsubsidycarriedoverbalancethisyear,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalancethisyear,
+			enterpriseincometaxpayable,
+			specialfundstoextract,
+			publicfundturnedinto,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_incomeandexpensestatementsgmt
+		WHERE fin_incomeandexpensestatementsgmt_id=#{fin_incomeandexpensestatementsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFinIncomeandexpensestatementsgmt" parameterType="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt">
+		INSERT INTO
+			fin_incomeandexpensestatementsgmt
+			(
+			fin_incomeandexpensestatementsgmt_id,
+			currentfinancialsubsidycarriedoverbalance,
+			financialsubsidyrevenue,
+			undertakingsexpenditurefinancialsubsidyexpenditure,
+			currentundertakingscarriedoverbalance,
+			undertakingsclassrevenue,
+			undertakingsrevenue,
+			superiorsubsidyrevenue,
+			revenueturnedoverbysubsidiaryunit,
+			otherrevenue,
+			donationincome,
+			undertakingsclassexpenditure,
+			undertakingsexpenditurenonfinancialsubsidyexpenditure,
+			paymenttothehigherauthority,
+			granttotheauxiliaryorganization,
+			otherexpenditure,
+			currentoperatingbalance,
+			operatingrevenue,
+			operatingexpenditure,
+			operatingbalancemadeupforofthepreviousyearsoperatingloss,
+			nonfinancialsubsidycarriedoverbalancethisyear,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalancethisyear,
+			enterpriseincometaxpayable,
+			specialfundstoextract,
+			publicfundturnedinto,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_incomeandexpensestatementsgmt_id},
+			#{currentfinancialsubsidycarriedoverbalance},
+			#{financialsubsidyrevenue},
+			#{undertakingsexpenditurefinancialsubsidyexpenditure},
+			#{currentundertakingscarriedoverbalance},
+			#{undertakingsclassrevenue},
+			#{undertakingsrevenue},
+			#{superiorsubsidyrevenue},
+			#{revenueturnedoverbysubsidiaryunit},
+			#{otherrevenue},
+			#{donationincome},
+			#{undertakingsclassexpenditure},
+			#{undertakingsexpenditurenonfinancialsubsidyexpenditure},
+			#{paymenttothehigherauthority},
+			#{granttotheauxiliaryorganization},
+			#{otherexpenditure},
+			#{currentoperatingbalance},
+			#{operatingrevenue},
+			#{operatingexpenditure},
+			#{operatingbalancemadeupforofthepreviousyearsoperatingloss},
+			#{nonfinancialsubsidycarriedoverbalancethisyear},
+			#{nonfinancialaidcarriedover},
+			#{nonfinancialaidbalancethisyear},
+			#{enterpriseincometaxpayable},
+			#{specialfundstoextract},
+			#{publicfundturnedinto},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFinIncomeandexpensestatementsgmt" parameterType="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt">
+		UPDATE
+			fin_incomeandexpensestatementsgmt
+		SET
+			currentfinancialsubsidycarriedoverbalance = #{currentfinancialsubsidycarriedoverbalance},
+			financialsubsidyrevenue = #{financialsubsidyrevenue},
+			undertakingsexpenditurefinancialsubsidyexpenditure = #{undertakingsexpenditurefinancialsubsidyexpenditure},
+			currentundertakingscarriedoverbalance = #{currentundertakingscarriedoverbalance},
+			undertakingsclassrevenue = #{undertakingsclassrevenue},
+			undertakingsrevenue = #{undertakingsrevenue},
+			superiorsubsidyrevenue = #{superiorsubsidyrevenue},
+			revenueturnedoverbysubsidiaryunit = #{revenueturnedoverbysubsidiaryunit},
+			otherrevenue = #{otherrevenue},
+			donationincome = #{donationincome},
+			undertakingsclassexpenditure = #{undertakingsclassexpenditure},
+			undertakingsexpenditurenonfinancialsubsidyexpenditure = #{undertakingsexpenditurenonfinancialsubsidyexpenditure},
+			paymenttothehigherauthority = #{paymenttothehigherauthority},
+			granttotheauxiliaryorganization = #{granttotheauxiliaryorganization},
+			otherexpenditure = #{otherexpenditure},
+			currentoperatingbalance = #{currentoperatingbalance},
+			operatingrevenue = #{operatingrevenue},
+			operatingexpenditure = #{operatingexpenditure},
+			operatingbalancemadeupforofthepreviousyearsoperatingloss = #{operatingbalancemadeupforofthepreviousyearsoperatingloss},
+			nonfinancialsubsidycarriedoverbalancethisyear = #{nonfinancialsubsidycarriedoverbalancethisyear},
+			nonfinancialaidcarriedover = #{nonfinancialaidcarriedover},
+			nonfinancialaidbalancethisyear = #{nonfinancialaidbalancethisyear},
+			enterpriseincometaxpayable = #{enterpriseincometaxpayable},
+			specialfundstoextract = #{specialfundstoextract},
+			publicfundturnedinto = #{publicfundturnedinto},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_incomeandexpensestatementsgmt_id=#{fin_incomeandexpensestatementsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFinIncomeandexpensestatementsgmtBySelective" parameterType="ccredit.finmodules.finmodel.FinIncomeandexpensestatementsgmt">
+		UPDATE
+			fin_incomeandexpensestatementsgmt
+		<set>
+			<if test="currentfinancialsubsidycarriedoverbalance != null">
+				currentfinancialsubsidycarriedoverbalance = #{currentfinancialsubsidycarriedoverbalance},
+			</if>
+			<if test="financialsubsidyrevenue != null">
+				financialsubsidyrevenue = #{financialsubsidyrevenue},
+			</if>
+			<if test="undertakingsexpenditurefinancialsubsidyexpenditure != null">
+				undertakingsexpenditurefinancialsubsidyexpenditure = #{undertakingsexpenditurefinancialsubsidyexpenditure},
+			</if>
+			<if test="currentundertakingscarriedoverbalance != null">
+				currentundertakingscarriedoverbalance = #{currentundertakingscarriedoverbalance},
+			</if>
+			<if test="undertakingsclassrevenue != null">
+				undertakingsclassrevenue = #{undertakingsclassrevenue},
+			</if>
+			<if test="undertakingsrevenue != null">
+				undertakingsrevenue = #{undertakingsrevenue},
+			</if>
+			<if test="superiorsubsidyrevenue != null">
+				superiorsubsidyrevenue = #{superiorsubsidyrevenue},
+			</if>
+			<if test="revenueturnedoverbysubsidiaryunit != null">
+				revenueturnedoverbysubsidiaryunit = #{revenueturnedoverbysubsidiaryunit},
+			</if>
+			<if test="otherrevenue != null">
+				otherrevenue = #{otherrevenue},
+			</if>
+			<if test="donationincome != null">
+				donationincome = #{donationincome},
+			</if>
+			<if test="undertakingsclassexpenditure != null">
+				undertakingsclassexpenditure = #{undertakingsclassexpenditure},
+			</if>
+			<if test="undertakingsexpenditurenonfinancialsubsidyexpenditure != null">
+				undertakingsexpenditurenonfinancialsubsidyexpenditure = #{undertakingsexpenditurenonfinancialsubsidyexpenditure},
+			</if>
+			<if test="paymenttothehigherauthority != null">
+				paymenttothehigherauthority = #{paymenttothehigherauthority},
+			</if>
+			<if test="granttotheauxiliaryorganization != null">
+				granttotheauxiliaryorganization = #{granttotheauxiliaryorganization},
+			</if>
+			<if test="otherexpenditure != null">
+				otherexpenditure = #{otherexpenditure},
+			</if>
+			<if test="currentoperatingbalance != null">
+				currentoperatingbalance = #{currentoperatingbalance},
+			</if>
+			<if test="operatingrevenue != null">
+				operatingrevenue = #{operatingrevenue},
+			</if>
+			<if test="operatingexpenditure != null">
+				operatingexpenditure = #{operatingexpenditure},
+			</if>
+			<if test="operatingbalancemadeupforofthepreviousyearsoperatingloss != null">
+				operatingbalancemadeupforofthepreviousyearsoperatingloss = #{operatingbalancemadeupforofthepreviousyearsoperatingloss},
+			</if>
+			<if test="nonfinancialsubsidycarriedoverbalancethisyear != null">
+				nonfinancialsubsidycarriedoverbalancethisyear = #{nonfinancialsubsidycarriedoverbalancethisyear},
+			</if>
+			<if test="nonfinancialaidcarriedover != null">
+				nonfinancialaidcarriedover = #{nonfinancialaidcarriedover},
+			</if>
+			<if test="nonfinancialaidbalancethisyear != null">
+				nonfinancialaidbalancethisyear = #{nonfinancialaidbalancethisyear},
+			</if>
+			<if test="enterpriseincometaxpayable != null">
+				enterpriseincometaxpayable = #{enterpriseincometaxpayable},
+			</if>
+			<if test="specialfundstoextract != null">
+				specialfundstoextract = #{specialfundstoextract},
+			</if>
+			<if test="publicfundturnedinto != null">
+				publicfundturnedinto = #{publicfundturnedinto},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_incomeandexpensestatementsgmt_id=#{fin_incomeandexpensestatementsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFinIncomeandexpensestatementsgmt" parameterType="map">
+		DELETE FROM fin_incomeandexpensestatementsgmt WHERE fin_incomeandexpensestatementsgmt_id IN
+		<foreach item="item" index="index" collection="fin_incomeandexpensestatementsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFinIncomeandexpensestatementsgmt" parameterType="list">
+		INSERT INTO
+			fin_incomeandexpensestatementsgmt
+			(
+			fin_incomeandexpensestatementsgmt_id,
+			currentfinancialsubsidycarriedoverbalance,
+			financialsubsidyrevenue,
+			undertakingsexpenditurefinancialsubsidyexpenditure,
+			currentundertakingscarriedoverbalance,
+			undertakingsclassrevenue,
+			undertakingsrevenue,
+			superiorsubsidyrevenue,
+			revenueturnedoverbysubsidiaryunit,
+			otherrevenue,
+			donationincome,
+			undertakingsclassexpenditure,
+			undertakingsexpenditurenonfinancialsubsidyexpenditure,
+			paymenttothehigherauthority,
+			granttotheauxiliaryorganization,
+			otherexpenditure,
+			currentoperatingbalance,
+			operatingrevenue,
+			operatingexpenditure,
+			operatingbalancemadeupforofthepreviousyearsoperatingloss,
+			nonfinancialsubsidycarriedoverbalancethisyear,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalancethisyear,
+			enterpriseincometaxpayable,
+			specialfundstoextract,
+			publicfundturnedinto,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_incomeandexpensestatementsgmt_id},
+			#{item.currentfinancialsubsidycarriedoverbalance},
+			#{item.financialsubsidyrevenue},
+			#{item.undertakingsexpenditurefinancialsubsidyexpenditure},
+			#{item.currentundertakingscarriedoverbalance},
+			#{item.undertakingsclassrevenue},
+			#{item.undertakingsrevenue},
+			#{item.superiorsubsidyrevenue},
+			#{item.revenueturnedoverbysubsidiaryunit},
+			#{item.otherrevenue},
+			#{item.donationincome},
+			#{item.undertakingsclassexpenditure},
+			#{item.undertakingsexpenditurenonfinancialsubsidyexpenditure},
+			#{item.paymenttothehigherauthority},
+			#{item.granttotheauxiliaryorganization},
+			#{item.otherexpenditure},
+			#{item.currentoperatingbalance},
+			#{item.operatingrevenue},
+			#{item.operatingexpenditure},
+			#{item.operatingbalancemadeupforofthepreviousyearsoperatingloss},
+			#{item.nonfinancialsubsidycarriedoverbalancethisyear},
+			#{item.nonfinancialaidcarriedover},
+			#{item.nonfinancialaidbalancethisyear},
+			#{item.enterpriseincometaxpayable},
+			#{item.specialfundstoextract},
+			#{item.publicfundturnedinto},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFinIncomeandexpensestatementsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_incomeandexpensestatementsgmt
+			SET
+				currentfinancialsubsidycarriedoverbalance = #{item.currentfinancialsubsidycarriedoverbalance},
+				financialsubsidyrevenue = #{item.financialsubsidyrevenue},
+				undertakingsexpenditurefinancialsubsidyexpenditure = #{item.undertakingsexpenditurefinancialsubsidyexpenditure},
+				currentundertakingscarriedoverbalance = #{item.currentundertakingscarriedoverbalance},
+				undertakingsclassrevenue = #{item.undertakingsclassrevenue},
+				undertakingsrevenue = #{item.undertakingsrevenue},
+				superiorsubsidyrevenue = #{item.superiorsubsidyrevenue},
+				revenueturnedoverbysubsidiaryunit = #{item.revenueturnedoverbysubsidiaryunit},
+				otherrevenue = #{item.otherrevenue},
+				donationincome = #{item.donationincome},
+				undertakingsclassexpenditure = #{item.undertakingsclassexpenditure},
+				undertakingsexpenditurenonfinancialsubsidyexpenditure = #{item.undertakingsexpenditurenonfinancialsubsidyexpenditure},
+				paymenttothehigherauthority = #{item.paymenttothehigherauthority},
+				granttotheauxiliaryorganization = #{item.granttotheauxiliaryorganization},
+				otherexpenditure = #{item.otherexpenditure},
+				currentoperatingbalance = #{item.currentoperatingbalance},
+				operatingrevenue = #{item.operatingrevenue},
+				operatingexpenditure = #{item.operatingexpenditure},
+				operatingbalancemadeupforofthepreviousyearsoperatingloss = #{item.operatingbalancemadeupforofthepreviousyearsoperatingloss},
+				nonfinancialsubsidycarriedoverbalancethisyear = #{item.nonfinancialsubsidycarriedoverbalancethisyear},
+				nonfinancialaidcarriedover = #{item.nonfinancialaidcarriedover},
+				nonfinancialaidbalancethisyear = #{item.nonfinancialaidbalancethisyear},
+				enterpriseincometaxpayable = #{item.enterpriseincometaxpayable},
+				specialfundstoextract = #{item.specialfundstoextract},
+				publicfundturnedinto = #{item.publicfundturnedinto},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_incomeandexpensestatementsgmt_id=#{item.fin_incomeandexpensestatementsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFinIncomeandexpensestatementsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_incomeandexpensestatementsgmt
+			<set>
+				<if test="item.currentfinancialsubsidycarriedoverbalance != null">
+					currentfinancialsubsidycarriedoverbalance = #{item.currentfinancialsubsidycarriedoverbalance},
+				</if>
+				<if test="item.financialsubsidyrevenue != null">
+					financialsubsidyrevenue = #{item.financialsubsidyrevenue},
+				</if>
+				<if test="item.undertakingsexpenditurefinancialsubsidyexpenditure != null">
+					undertakingsexpenditurefinancialsubsidyexpenditure = #{item.undertakingsexpenditurefinancialsubsidyexpenditure},
+				</if>
+				<if test="item.currentundertakingscarriedoverbalance != null">
+					currentundertakingscarriedoverbalance = #{item.currentundertakingscarriedoverbalance},
+				</if>
+				<if test="item.undertakingsclassrevenue != null">
+					undertakingsclassrevenue = #{item.undertakingsclassrevenue},
+				</if>
+				<if test="item.undertakingsrevenue != null">
+					undertakingsrevenue = #{item.undertakingsrevenue},
+				</if>
+				<if test="item.superiorsubsidyrevenue != null">
+					superiorsubsidyrevenue = #{item.superiorsubsidyrevenue},
+				</if>
+				<if test="item.revenueturnedoverbysubsidiaryunit != null">
+					revenueturnedoverbysubsidiaryunit = #{item.revenueturnedoverbysubsidiaryunit},
+				</if>
+				<if test="item.otherrevenue != null">
+					otherrevenue = #{item.otherrevenue},
+				</if>
+				<if test="item.donationincome != null">
+					donationincome = #{item.donationincome},
+				</if>
+				<if test="item.undertakingsclassexpenditure != null">
+					undertakingsclassexpenditure = #{item.undertakingsclassexpenditure},
+				</if>
+				<if test="item.undertakingsexpenditurenonfinancialsubsidyexpenditure != null">
+					undertakingsexpenditurenonfinancialsubsidyexpenditure = #{item.undertakingsexpenditurenonfinancialsubsidyexpenditure},
+				</if>
+				<if test="item.paymenttothehigherauthority != null">
+					paymenttothehigherauthority = #{item.paymenttothehigherauthority},
+				</if>
+				<if test="item.granttotheauxiliaryorganization != null">
+					granttotheauxiliaryorganization = #{item.granttotheauxiliaryorganization},
+				</if>
+				<if test="item.otherexpenditure != null">
+					otherexpenditure = #{item.otherexpenditure},
+				</if>
+				<if test="item.currentoperatingbalance != null">
+					currentoperatingbalance = #{item.currentoperatingbalance},
+				</if>
+				<if test="item.operatingrevenue != null">
+					operatingrevenue = #{item.operatingrevenue},
+				</if>
+				<if test="item.operatingexpenditure != null">
+					operatingexpenditure = #{item.operatingexpenditure},
+				</if>
+				<if test="item.operatingbalancemadeupforofthepreviousyearsoperatingloss != null">
+					operatingbalancemadeupforofthepreviousyearsoperatingloss = #{item.operatingbalancemadeupforofthepreviousyearsoperatingloss},
+				</if>
+				<if test="item.nonfinancialsubsidycarriedoverbalancethisyear != null">
+					nonfinancialsubsidycarriedoverbalancethisyear = #{item.nonfinancialsubsidycarriedoverbalancethisyear},
+				</if>
+				<if test="item.nonfinancialaidcarriedover != null">
+					nonfinancialaidcarriedover = #{item.nonfinancialaidcarriedover},
+				</if>
+				<if test="item.nonfinancialaidbalancethisyear != null">
+					nonfinancialaidbalancethisyear = #{item.nonfinancialaidbalancethisyear},
+				</if>
+				<if test="item.enterpriseincometaxpayable != null">
+					enterpriseincometaxpayable = #{item.enterpriseincometaxpayable},
+				</if>
+				<if test="item.specialfundstoextract != null">
+					specialfundstoextract = #{item.specialfundstoextract},
+				</if>
+				<if test="item.publicfundturnedinto != null">
+					publicfundturnedinto = #{item.publicfundturnedinto},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_incomeandexpensestatementsgmt_id=#{item.fin_incomeandexpensestatementsgmt_id}
+		</foreach>
+	</update>
+</mapper>

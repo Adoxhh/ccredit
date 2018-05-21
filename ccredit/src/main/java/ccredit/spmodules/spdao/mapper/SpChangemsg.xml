@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.spmodules.spmodel.SpChangemsg">
+	<!--初始化分页-->
+	<select id="getSpChangemsgListByCondition" resultType="ccredit.spmodules.spmodel.SpChangemsg" parameterType="map">
+		SELECT
+			changemsg_id,
+			customid,
+			serialno,
+			infrectype,
+			odbnescode,
+			nwbnescode,
+			rptdate,
+			mdfcsgmtcode,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+		FROM 
+			sp_changemsg
+		WHERE 1=1
+		<if test="null != infrectype">
+			AND infrectype = #{infrectype}
+		</if>
+		<if test="null != status">
+			AND status = #{status}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getSpChangemsgById" resultType="ccredit.spmodules.spmodel.SpChangemsg" parameterType="string">
+		SELECT
+			changemsg_id,
+			customid,
+			serialno,
+			infrectype,
+			odbnescode,
+			nwbnescode,
+			rptdate,
+			mdfcsgmtcode,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+		FROM 
+			sp_changemsg
+		WHERE changemsg_id=#{changemsg_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addSpChangemsg" parameterType="ccredit.spmodules.spmodel.SpChangemsg">
+		INSERT INTO
+			sp_changemsg
+			(
+			changemsg_id,
+			customid,
+			serialno,
+			infrectype,
+			odbnescode,
+			nwbnescode,
+			rptdate,
+			mdfcsgmtcode,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+			)
+			VALUES
+			(
+			#{changemsg_id},
+			#{customid},
+			#{serialno},
+			#{infrectype},
+			#{odbnescode},
+			#{nwbnescode},
+			#{rptdate},
+			#{mdfcsgmtcode},
+			#{reason},
+			#{applyman},
+			#{auditman},
+			#{credittime},
+			#{sendtime},
+			#{xml},
+			#{filename},
+			#{status}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateSpChangemsg" parameterType="ccredit.spmodules.spmodel.SpChangemsg">
+		UPDATE
+			sp_changemsg
+		SET
+			customid = #{customid},
+			serialno = #{serialno},
+			infrectype = #{infrectype},
+			odbnescode = #{odbnescode},
+			nwbnescode = #{nwbnescode},
+			rptdate = #{rptdate},
+			mdfcsgmtcode = #{mdfcsgmtcode},
+			reason = #{reason},
+			applyman = #{applyman},
+			auditman = #{auditman},
+			credittime = #{credittime},
+			sendtime = #{sendtime},
+			xml = #{xml},
+			filename = #{filename},
+			status = #{status}
+		WHERE changemsg_id=#{changemsg_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateSpChangemsgBySelective" parameterType="ccredit.spmodules.spmodel.SpChangemsg">
+		UPDATE
+			sp_changemsg
+		<set>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="odbnescode != null">
+				odbnescode = #{odbnescode},
+			</if>
+			<if test="nwbnescode != null">
+				nwbnescode = #{nwbnescode},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="mdfcsgmtcode != null">
+				mdfcsgmtcode = #{mdfcsgmtcode},
+			</if>
+			<if test="reason != null">
+				reason = #{reason},
+			</if>
+			<if test="applyman != null">
+				applyman = #{applyman},
+			</if>
+			<if test="auditman != null">
+				auditman = #{auditman},
+			</if>
+			<if test="credittime != null">
+				credittime = #{credittime},
+			</if>
+			<if test="sendtime != null">
+				sendtime = #{sendtime},
+			</if>
+			<if test="xml != null">
+				xml = #{xml},
+			</if>
+			<if test="filename != null">
+				filename = #{filename},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+		</set>
+		WHERE changemsg_id=#{changemsg_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delSpChangemsg" parameterType="map">
+		DELETE FROM sp_changemsg WHERE changemsg_id IN
+		<foreach item="item" index="index" collection="changemsg_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchSpChangemsg" parameterType="list">
+		INSERT INTO
+			sp_changemsg
+			(
+			changemsg_id,
+			customid,
+			serialno,
+			infrectype,
+			odbnescode,
+			nwbnescode,
+			rptdate,
+			mdfcsgmtcode,
+			reason,
+			applyman,
+			auditman,
+			credittime,
+			sendtime,
+			xml,
+			filename,
+			status
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.changemsg_id},
+			#{item.customid},
+			#{item.serialno},
+			#{item.infrectype},
+			#{item.odbnescode},
+			#{item.nwbnescode},
+			#{item.rptdate},
+			#{item.mdfcsgmtcode},
+			#{item.reason},
+			#{item.applyman},
+			#{item.auditman},
+			#{item.credittime},
+			#{item.sendtime},
+			#{item.xml},
+			#{item.filename},
+			#{item.status}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchSpChangemsg" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_changemsg
+			SET
+				customid = #{item.customid},
+				serialno = #{item.serialno},
+				infrectype = #{item.infrectype},
+				odbnescode = #{item.odbnescode},
+				nwbnescode = #{item.nwbnescode},
+				rptdate = #{item.rptdate},
+				mdfcsgmtcode = #{item.mdfcsgmtcode},
+				reason = #{item.reason},
+				applyman = #{item.applyman},
+				auditman = #{item.auditman},
+				credittime = #{item.credittime},
+				sendtime = #{item.sendtime},
+				xml = #{item.xml},
+				filename = #{item.filename},
+				status = #{item.status}
+			WHERE changemsg_id=#{item.changemsg_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchSpChangemsgBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_changemsg
+			<set>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.odbnescode != null">
+					odbnescode = #{item.odbnescode},
+				</if>
+				<if test="item.nwbnescode != null">
+					nwbnescode = #{item.nwbnescode},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.mdfcsgmtcode != null">
+					mdfcsgmtcode = #{item.mdfcsgmtcode},
+				</if>
+				<if test="item.reason != null">
+					reason = #{item.reason},
+				</if>
+				<if test="item.applyman != null">
+					applyman = #{item.applyman},
+				</if>
+				<if test="item.auditman != null">
+					auditman = #{item.auditman},
+				</if>
+				<if test="item.credittime != null">
+					credittime = #{item.credittime},
+				</if>
+				<if test="item.sendtime != null">
+					sendtime = #{item.sendtime},
+				</if>
+				<if test="item.xml != null">
+					xml = #{item.xml},
+				</if>
+				<if test="item.filename != null">
+					filename = #{item.filename},
+				</if>
+				<if test="item.status != null">
+					status = #{item.status},
+				</if>
+			</set>
+			WHERE changemsg_id=#{item.changemsg_id}
+		</foreach>
+	</update>
+</mapper>

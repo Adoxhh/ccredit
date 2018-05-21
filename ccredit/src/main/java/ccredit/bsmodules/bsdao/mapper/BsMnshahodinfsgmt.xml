@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt">
+	<!--初始化分页-->
+	<select id="getBsMnshahodinfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt" parameterType="map">
+		SELECT
+			bs_mnshahodinfsgmt_id,
+			regcapcurrency,
+			regcap,
+			mnsharhodnm,
+			sharhodtype,
+			sharhodidtype1,
+			sharhodname,
+			sharhodidtype2,
+			sharhodidnum,
+			invratio,
+			mnshahodinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_mnshahodinfsgmt
+		WHERE 1=1
+		<if test="null != sharhodtype">
+			AND sharhodtype = #{sharhodtype}
+		</if>
+		<if test="null != sharhodname">
+			AND sharhodname LIKE CONCAT(CONCAT('%',#{sharhodname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsMnshahodinfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt" parameterType="string">
+		SELECT
+			bs_mnshahodinfsgmt_id,
+			regcapcurrency,
+			regcap,
+			mnsharhodnm,
+			sharhodtype,
+			sharhodidtype1,
+			sharhodname,
+			sharhodidtype2,
+			sharhodidnum,
+			invratio,
+			mnshahodinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_mnshahodinfsgmt
+		WHERE bs_mnshahodinfsgmt_id=#{bs_mnshahodinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsMnshahodinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt">
+		INSERT INTO
+			bs_mnshahodinfsgmt
+			(
+			bs_mnshahodinfsgmt_id,
+			regcapcurrency,
+			regcap,
+			mnsharhodnm,
+			sharhodtype,
+			sharhodidtype1,
+			sharhodname,
+			sharhodidtype2,
+			sharhodidnum,
+			invratio,
+			mnshahodinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_mnshahodinfsgmt_id},
+			#{regcapcurrency},
+			#{regcap},
+			#{mnsharhodnm},
+			#{sharhodtype},
+			#{sharhodidtype1},
+			#{sharhodname},
+			#{sharhodidtype2},
+			#{sharhodidnum},
+			#{invratio},
+			#{mnshahodinfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsMnshahodinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt">
+		UPDATE
+			bs_mnshahodinfsgmt
+		SET
+			regcapcurrency = #{regcapcurrency},
+			regcap = #{regcap},
+			mnsharhodnm = #{mnsharhodnm},
+			sharhodtype = #{sharhodtype},
+			sharhodidtype1 = #{sharhodidtype1},
+			sharhodname = #{sharhodname},
+			sharhodidtype2 = #{sharhodidtype2},
+			sharhodidnum = #{sharhodidnum},
+			invratio = #{invratio},
+			mnshahodinfoupdate = #{mnshahodinfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_mnshahodinfsgmt_id=#{bs_mnshahodinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsMnshahodinfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsMnshahodinfsgmt">
+		UPDATE
+			bs_mnshahodinfsgmt
+		<set>
+			<if test="regcapcurrency != null">
+				regcapcurrency = #{regcapcurrency},
+			</if>
+			<if test="regcap != null">
+				regcap = #{regcap},
+			</if>
+			<if test="mnsharhodnm != null">
+				mnsharhodnm = #{mnsharhodnm},
+			</if>
+			<if test="sharhodtype != null">
+				sharhodtype = #{sharhodtype},
+			</if>
+			<if test="sharhodidtype1 != null">
+				sharhodidtype1 = #{sharhodidtype1},
+			</if>
+			<if test="sharhodname != null">
+				sharhodname = #{sharhodname},
+			</if>
+			<if test="sharhodidtype2 != null">
+				sharhodidtype2 = #{sharhodidtype2},
+			</if>
+			<if test="sharhodidnum != null">
+				sharhodidnum = #{sharhodidnum},
+			</if>
+			<if test="invratio != null">
+				invratio = #{invratio},
+			</if>
+			<if test="mnshahodinfoupdate != null">
+				mnshahodinfoupdate = #{mnshahodinfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_mnshahodinfsgmt_id=#{bs_mnshahodinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsMnshahodinfsgmt" parameterType="map">
+		DELETE FROM bs_mnshahodinfsgmt WHERE bs_mnshahodinfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_mnshahodinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsMnshahodinfsgmt" parameterType="list">
+		INSERT INTO
+			bs_mnshahodinfsgmt
+			(
+			bs_mnshahodinfsgmt_id,
+			regcapcurrency,
+			regcap,
+			mnsharhodnm,
+			sharhodtype,
+			sharhodidtype1,
+			sharhodname,
+			sharhodidtype2,
+			sharhodidnum,
+			invratio,
+			mnshahodinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_mnshahodinfsgmt_id},
+			#{item.regcapcurrency},
+			#{item.regcap},
+			#{item.mnsharhodnm},
+			#{item.sharhodtype},
+			#{item.sharhodidtype1},
+			#{item.sharhodname},
+			#{item.sharhodidtype2},
+			#{item.sharhodidnum},
+			#{item.invratio},
+			#{item.mnshahodinfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsMnshahodinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_mnshahodinfsgmt
+			SET
+				regcapcurrency = #{item.regcapcurrency},
+				regcap = #{item.regcap},
+				mnsharhodnm = #{item.mnsharhodnm},
+				sharhodtype = #{item.sharhodtype},
+				sharhodidtype1 = #{item.sharhodidtype1},
+				sharhodname = #{item.sharhodname},
+				sharhodidtype2 = #{item.sharhodidtype2},
+				sharhodidnum = #{item.sharhodidnum},
+				invratio = #{item.invratio},
+				mnshahodinfoupdate = #{item.mnshahodinfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_mnshahodinfsgmt_id=#{item.bs_mnshahodinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsMnshahodinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_mnshahodinfsgmt
+			<set>
+				<if test="item.regcapcurrency != null">
+					regcapcurrency = #{item.regcapcurrency},
+				</if>
+				<if test="item.regcap != null">
+					regcap = #{item.regcap},
+				</if>
+				<if test="item.mnsharhodnm != null">
+					mnsharhodnm = #{item.mnsharhodnm},
+				</if>
+				<if test="item.sharhodtype != null">
+					sharhodtype = #{item.sharhodtype},
+				</if>
+				<if test="item.sharhodidtype1 != null">
+					sharhodidtype1 = #{item.sharhodidtype1},
+				</if>
+				<if test="item.sharhodname != null">
+					sharhodname = #{item.sharhodname},
+				</if>
+				<if test="item.sharhodidtype2 != null">
+					sharhodidtype2 = #{item.sharhodidtype2},
+				</if>
+				<if test="item.sharhodidnum != null">
+					sharhodidnum = #{item.sharhodidnum},
+				</if>
+				<if test="item.invratio != null">
+					invratio = #{item.invratio},
+				</if>
+				<if test="item.mnshahodinfoupdate != null">
+					mnshahodinfoupdate = #{item.mnshahodinfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_mnshahodinfsgmt_id=#{item.bs_mnshahodinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

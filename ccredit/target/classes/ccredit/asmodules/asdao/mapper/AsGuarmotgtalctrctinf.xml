@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf">
+	<!--初始化分页-->
+	<select id="getAsGuarmotgtalctrctinfListByCondition" resultType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf" parameterType="map">
+		SELECT
+			guarmotgtalctrctinf_id,
+			serialno,
+			customid,
+			ccnm,
+			ccc,
+			lastdate,
+			changeflag
+		FROM 
+			as_guarmotgtalctrctinf
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getAsGuarmotgtalctrctinfById" resultType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf" parameterType="string">
+		SELECT
+			guarmotgtalctrctinf_id,
+			serialno,
+			customid,
+			ccnm,
+			ccc,
+			lastdate,
+			changeflag
+		FROM 
+			as_guarmotgtalctrctinf
+		WHERE guarmotgtalctrctinf_id=#{guarmotgtalctrctinf_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addAsGuarmotgtalctrctinf" parameterType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf">
+		INSERT INTO
+			as_guarmotgtalctrctinf
+			(
+			guarmotgtalctrctinf_id,
+			serialno,
+			customid,
+			ccnm,
+			ccc,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{guarmotgtalctrctinf_id},
+			#{serialno},
+			#{customid},
+			#{ccnm},
+			#{ccc},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateAsGuarmotgtalctrctinf" parameterType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf">
+		UPDATE
+			as_guarmotgtalctrctinf
+		SET
+			serialno = #{serialno},
+			customid = #{customid},
+			ccnm = #{ccnm},
+			ccc = #{ccc},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE guarmotgtalctrctinf_id=#{guarmotgtalctrctinf_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateAsGuarmotgtalctrctinfBySelective" parameterType="ccredit.asmodules.asmodel.AsGuarmotgtalctrctinf">
+		UPDATE
+			as_guarmotgtalctrctinf
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="ccnm != null">
+				ccnm = #{ccnm},
+			</if>
+			<if test="ccc != null">
+				ccc = #{ccc},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE guarmotgtalctrctinf_id=#{guarmotgtalctrctinf_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delAsGuarmotgtalctrctinf" parameterType="map">
+		DELETE FROM as_guarmotgtalctrctinf WHERE guarmotgtalctrctinf_id IN
+		<foreach item="item" index="index" collection="guarmotgtalctrctinf_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchAsGuarmotgtalctrctinf" parameterType="list">
+		INSERT INTO
+			as_guarmotgtalctrctinf
+			(
+			guarmotgtalctrctinf_id,
+			serialno,
+			customid,
+			ccnm,
+			ccc,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.guarmotgtalctrctinf_id},
+			#{item.serialno},
+			#{item.customid},
+			#{item.ccnm},
+			#{item.ccc},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchAsGuarmotgtalctrctinf" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guarmotgtalctrctinf
+			SET
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				ccnm = #{item.ccnm},
+				ccc = #{item.ccc},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE guarmotgtalctrctinf_id=#{item.guarmotgtalctrctinf_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchAsGuarmotgtalctrctinfBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guarmotgtalctrctinf
+			<set>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.ccnm != null">
+					ccnm = #{item.ccnm},
+				</if>
+				<if test="item.ccc != null">
+					ccc = #{item.ccc},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE guarmotgtalctrctinf_id=#{item.guarmotgtalctrctinf_id}
+		</foreach>
+	</update>
+</mapper>

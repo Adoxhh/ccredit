@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt">
+	<!--初始化分页-->
+	<select id="getPlMotgacltalctrctbssgmtListByCondition" resultType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt" parameterType="map">
+		SELECT
+			pl_motgacltalctrctbssgmt_id,
+			infrectype,
+			cccode,
+			rptdate,
+			rptdatecode,
+			infoidtype,
+			name,
+			certtype,
+			certnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgacltalctrctbssgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != cccode">
+			AND cccode LIKE CONCAT(CONCAT('%',#{cccode}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getPlMotgacltalctrctbssgmtById" resultType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt" parameterType="string">
+		SELECT
+			pl_motgacltalctrctbssgmt_id,
+			infrectype,
+			cccode,
+			rptdate,
+			rptdatecode,
+			infoidtype,
+			name,
+			certtype,
+			certnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgacltalctrctbssgmt
+		WHERE pl_motgacltalctrctbssgmt_id=#{pl_motgacltalctrctbssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addPlMotgacltalctrctbssgmt" parameterType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt">
+		INSERT INTO
+			pl_motgacltalctrctbssgmt
+			(
+			pl_motgacltalctrctbssgmt_id,
+			infrectype,
+			cccode,
+			rptdate,
+			rptdatecode,
+			infoidtype,
+			name,
+			certtype,
+			certnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{pl_motgacltalctrctbssgmt_id},
+			#{infrectype},
+			#{cccode},
+			#{rptdate},
+			#{rptdatecode},
+			#{infoidtype},
+			#{name},
+			#{certtype},
+			#{certnum},
+			#{mngmtorgcode},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updatePlMotgacltalctrctbssgmt" parameterType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt">
+		UPDATE
+			pl_motgacltalctrctbssgmt
+		SET
+			infrectype = #{infrectype},
+			cccode = #{cccode},
+			rptdate = #{rptdate},
+			rptdatecode = #{rptdatecode},
+			infoidtype = #{infoidtype},
+			name = #{name},
+			certtype = #{certtype},
+			certnum = #{certnum},
+			mngmtorgcode = #{mngmtorgcode},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE pl_motgacltalctrctbssgmt_id=#{pl_motgacltalctrctbssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updatePlMotgacltalctrctbssgmtBySelective" parameterType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt">
+		UPDATE
+			pl_motgacltalctrctbssgmt
+		<set>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="cccode != null">
+				cccode = #{cccode},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="infoidtype != null">
+				infoidtype = #{infoidtype},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="certtype != null">
+				certtype = #{certtype},
+			</if>
+			<if test="certnum != null">
+				certnum = #{certnum},
+			</if>
+			<if test="mngmtorgcode != null">
+				mngmtorgcode = #{mngmtorgcode},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE pl_motgacltalctrctbssgmt_id=#{pl_motgacltalctrctbssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delPlMotgacltalctrctbssgmt" parameterType="map">
+		DELETE FROM pl_motgacltalctrctbssgmt WHERE pl_motgacltalctrctbssgmt_id IN
+		<foreach item="item" index="index" collection="pl_motgacltalctrctbssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchPlMotgacltalctrctbssgmt" parameterType="list">
+		INSERT INTO
+			pl_motgacltalctrctbssgmt
+			(
+			pl_motgacltalctrctbssgmt_id,
+			infrectype,
+			cccode,
+			rptdate,
+			rptdatecode,
+			infoidtype,
+			name,
+			certtype,
+			certnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.pl_motgacltalctrctbssgmt_id},
+			#{item.infrectype},
+			#{item.cccode},
+			#{item.rptdate},
+			#{item.rptdatecode},
+			#{item.infoidtype},
+			#{item.name},
+			#{item.certtype},
+			#{item.certnum},
+			#{item.mngmtorgcode},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchPlMotgacltalctrctbssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgacltalctrctbssgmt
+			SET
+				infrectype = #{item.infrectype},
+				cccode = #{item.cccode},
+				rptdate = #{item.rptdate},
+				rptdatecode = #{item.rptdatecode},
+				infoidtype = #{item.infoidtype},
+				name = #{item.name},
+				certtype = #{item.certtype},
+				certnum = #{item.certnum},
+				mngmtorgcode = #{item.mngmtorgcode},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE pl_motgacltalctrctbssgmt_id=#{item.pl_motgacltalctrctbssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchPlMotgacltalctrctbssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgacltalctrctbssgmt
+			<set>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.cccode != null">
+					cccode = #{item.cccode},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.infoidtype != null">
+					infoidtype = #{item.infoidtype},
+				</if>
+				<if test="item.name != null">
+					name = #{item.name},
+				</if>
+				<if test="item.certtype != null">
+					certtype = #{item.certtype},
+				</if>
+				<if test="item.certnum != null">
+					certnum = #{item.certnum},
+				</if>
+				<if test="item.mngmtorgcode != null">
+					mngmtorgcode = #{item.mngmtorgcode},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE pl_motgacltalctrctbssgmt_id=#{item.pl_motgacltalctrctbssgmt_id}
+		</foreach>
+	</update>
+	
+	
+	<!--查询历史信息 begin-->
+	
+	<!-- 抵(质)押合同信息记录基础段his_pl_motgacltalctrctbssgmt -->
+	<select id="his_pl_motgacltalctrctbssgmt" resultType="ccredit.plmodules.plmodel.PlMotgacltalctrctbssgmt" parameterType="map">
+		SELECT
+			pl_motgacltalctrctbssgmt_id,
+			infrectype,
+			cccode,
+			rptdate,
+			rptdatecode,
+			infoidtype,
+			name,
+			certtype,
+			certnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_pl_motgacltalctrctbssgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_pl_motgacltalctrctbssgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 抵(质)押合同基本信息段his_pl_motgacltalbsinfsgmt -->
+	<select id="his_pl_motgacltalbsinfsgmt" resultType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt" parameterType="map">
+		SELECT
+			pl_motgacltalbsinfsgmt_id,
+			guartype,
+			ccamt,
+			cy,
+			ccvaldate,
+			ccexpdate,
+			maxguar,
+			ccstatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_pl_motgacltalbsinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_pl_motgacltalbsinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 抵(质)押合同共同债务人信息his_pl_comrecinfsgmt -->
+	<select id="his_pl_comrecinfsgmt" resultType="ccredit.plmodules.plmodel.PlComrecinfsgmt" parameterType="map">
+		SELECT
+			pl_comrecinfsgmt_id,
+			grtdnm,
+			infoidtype,
+			guarname,
+			guarcerttype,
+			guarcertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_pl_comrecinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_pl_comrecinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 抵押物信息his_pl_motgaproptinfsgmt -->
+	<select id="his_pl_motgaproptinfsgmt" resultType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt" parameterType="map">
+		SELECT
+			pl_motgaproptinfsgmt_id,
+			plenm,
+			pletype,
+			motgaproptidtype,
+			plecertid,
+			pledistr,
+			plevalue,
+			valorgtype,
+			valdate,
+			pledgortype,
+			pledgorname,
+			pleorcerttype,
+			pleorcertnum,
+			pledesc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_pl_motgaproptinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_pl_motgaproptinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!-- 质物信息his_pl_cltalinfsgmt -->
+	<select id="his_pl_cltalinfsgmt" resultType="ccredit.plmodules.plmodel.PlCltalinfsgmt" parameterType="map">
+		SELECT
+			pl_cltalinfsgmt_id,
+			impnm,
+			imptype,
+			impval,
+			ippc,
+			pawnname,
+			pawncerttype,
+			pawncertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			his_pl_cltalinfsgmt
+		WHERE 
+			RP_DATE =
+			(
+			  SELECT  MAX(RP_DATE) FROM  his_pl_cltalinfsgmt
+			)
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+	</select>
+	
+	<!--查询历史信息 end-->
+</mapper>

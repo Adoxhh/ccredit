@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt">
+	<!--初始化分页-->
+	<select id="getBsActucotrlinfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt" parameterType="map">
+		SELECT
+			bs_actucotrlinfsgmt_id,
+			actucotrlnm,
+			actucotrlidtype1,
+			actucotrlname,
+			actucotrlidtype2,
+			actucotrlidnum,
+			actucotrlinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_actucotrlinfsgmt
+		WHERE 1=1
+		<if test="null != actucotrlname">
+			AND actucotrlname LIKE CONCAT(CONCAT('%',#{actucotrlname}),'%')
+		</if>
+		<if test="null != actucotrlidtype1">
+			AND actucotrlidtype1 = #{actucotrlidtype1}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsActucotrlinfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt" parameterType="string">
+		SELECT
+			bs_actucotrlinfsgmt_id,
+			actucotrlnm,
+			actucotrlidtype1,
+			actucotrlname,
+			actucotrlidtype2,
+			actucotrlidnum,
+			actucotrlinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_actucotrlinfsgmt
+		WHERE bs_actucotrlinfsgmt_id=#{bs_actucotrlinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsActucotrlinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt">
+		INSERT INTO
+			bs_actucotrlinfsgmt
+			(
+			bs_actucotrlinfsgmt_id,
+			actucotrlnm,
+			actucotrlidtype1,
+			actucotrlname,
+			actucotrlidtype2,
+			actucotrlidnum,
+			actucotrlinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_actucotrlinfsgmt_id},
+			#{actucotrlnm},
+			#{actucotrlidtype1},
+			#{actucotrlname},
+			#{actucotrlidtype2},
+			#{actucotrlidnum},
+			#{actucotrlinfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsActucotrlinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt">
+		UPDATE
+			bs_actucotrlinfsgmt
+		SET
+			actucotrlnm = #{actucotrlnm},
+			actucotrlidtype1 = #{actucotrlidtype1},
+			actucotrlname = #{actucotrlname},
+			actucotrlidtype2 = #{actucotrlidtype2},
+			actucotrlidnum = #{actucotrlidnum},
+			actucotrlinfoupdate = #{actucotrlinfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_actucotrlinfsgmt_id=#{bs_actucotrlinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsActucotrlinfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsActucotrlinfsgmt">
+		UPDATE
+			bs_actucotrlinfsgmt
+		<set>
+			<if test="actucotrlnm != null">
+				actucotrlnm = #{actucotrlnm},
+			</if>
+			<if test="actucotrlidtype1 != null">
+				actucotrlidtype1 = #{actucotrlidtype1},
+			</if>
+			<if test="actucotrlname != null">
+				actucotrlname = #{actucotrlname},
+			</if>
+			<if test="actucotrlidtype2 != null">
+				actucotrlidtype2 = #{actucotrlidtype2},
+			</if>
+			<if test="actucotrlidnum != null">
+				actucotrlidnum = #{actucotrlidnum},
+			</if>
+			<if test="actucotrlinfoupdate != null">
+				actucotrlinfoupdate = #{actucotrlinfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_actucotrlinfsgmt_id=#{bs_actucotrlinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsActucotrlinfsgmt" parameterType="map">
+		DELETE FROM bs_actucotrlinfsgmt WHERE bs_actucotrlinfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_actucotrlinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsActucotrlinfsgmt" parameterType="list">
+		INSERT INTO
+			bs_actucotrlinfsgmt
+			(
+			bs_actucotrlinfsgmt_id,
+			actucotrlnm,
+			actucotrlidtype1,
+			actucotrlname,
+			actucotrlidtype2,
+			actucotrlidnum,
+			actucotrlinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_actucotrlinfsgmt_id},
+			#{item.actucotrlnm},
+			#{item.actucotrlidtype1},
+			#{item.actucotrlname},
+			#{item.actucotrlidtype2},
+			#{item.actucotrlidnum},
+			#{item.actucotrlinfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsActucotrlinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_actucotrlinfsgmt
+			SET
+				actucotrlnm = #{item.actucotrlnm},
+				actucotrlidtype1 = #{item.actucotrlidtype1},
+				actucotrlname = #{item.actucotrlname},
+				actucotrlidtype2 = #{item.actucotrlidtype2},
+				actucotrlidnum = #{item.actucotrlidnum},
+				actucotrlinfoupdate = #{item.actucotrlinfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_actucotrlinfsgmt_id=#{item.bs_actucotrlinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsActucotrlinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_actucotrlinfsgmt
+			<set>
+				<if test="item.actucotrlnm != null">
+					actucotrlnm = #{item.actucotrlnm},
+				</if>
+				<if test="item.actucotrlidtype1 != null">
+					actucotrlidtype1 = #{item.actucotrlidtype1},
+				</if>
+				<if test="item.actucotrlname != null">
+					actucotrlname = #{item.actucotrlname},
+				</if>
+				<if test="item.actucotrlidtype2 != null">
+					actucotrlidtype2 = #{item.actucotrlidtype2},
+				</if>
+				<if test="item.actucotrlidnum != null">
+					actucotrlidnum = #{item.actucotrlidnum},
+				</if>
+				<if test="item.actucotrlinfoupdate != null">
+					actucotrlinfoupdate = #{item.actucotrlinfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_actucotrlinfsgmt_id=#{item.bs_actucotrlinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

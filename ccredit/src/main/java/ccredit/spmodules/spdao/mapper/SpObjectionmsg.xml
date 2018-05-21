@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.spmodules.spmodel.SpObjectionmsg">
+	<!--初始化分页-->
+	<select id="getSpObjectionmsgListByCondition" resultType="ccredit.spmodules.spmodel.SpObjectionmsg" parameterType="map">
+		SELECT
+			objectionmsg_id,
+			applydept,
+			regperson,
+			theme,
+			applytime,
+			applyperson,
+			applyphone,
+			description,
+			checkperson,
+			status,
+			result,
+			advice
+		FROM 
+			sp_objectionmsg
+		WHERE 1=1
+		<if test="null != applyperson">
+			AND applyperson LIKE CONCAT(CONCAT('%',#{applyperson}),'%')
+		</if>
+			<if test="null != status">
+			AND status = #{status}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getSpObjectionmsgById" resultType="ccredit.spmodules.spmodel.SpObjectionmsg" parameterType="string">
+		SELECT
+			objectionmsg_id,
+			applydept,
+			regperson,
+			theme,
+			applytime,
+			applyperson,
+			applyphone,
+			description,
+			checkperson,
+			status,
+			result,
+			advice
+		FROM 
+			sp_objectionmsg
+		WHERE objectionmsg_id=#{objectionmsg_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addSpObjectionmsg" parameterType="ccredit.spmodules.spmodel.SpObjectionmsg">
+		INSERT INTO
+			sp_objectionmsg
+			(
+			objectionmsg_id,
+			applydept,
+			regperson,
+			theme,
+			applytime,
+			applyperson,
+			applyphone,
+			description,
+			checkperson,
+			status,
+			result,
+			advice
+			)
+			VALUES
+			(
+			#{objectionmsg_id},
+			#{applydept},
+			#{regperson},
+			#{theme},
+			#{applytime},
+			#{applyperson},
+			#{applyphone},
+			#{description},
+			#{checkperson},
+			#{status},
+			#{result},
+			#{advice}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateSpObjectionmsg" parameterType="ccredit.spmodules.spmodel.SpObjectionmsg">
+		UPDATE
+			sp_objectionmsg
+		SET
+			applydept = #{applydept},
+			regperson = #{regperson},
+			theme = #{theme},
+			applytime = #{applytime},
+			applyperson = #{applyperson},
+			applyphone = #{applyphone},
+			description = #{description},
+			checkperson = #{checkperson},
+			status = #{status},
+			result = #{result},
+			advice = #{advice}
+		WHERE objectionmsg_id=#{objectionmsg_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateSpObjectionmsgBySelective" parameterType="ccredit.spmodules.spmodel.SpObjectionmsg">
+		UPDATE
+			sp_objectionmsg
+		<set>
+			<if test="applydept != null">
+				applydept = #{applydept},
+			</if>
+			<if test="regperson != null">
+				regperson = #{regperson},
+			</if>
+			<if test="theme != null">
+				theme = #{theme},
+			</if>
+			<if test="applytime != null">
+				applytime = #{applytime},
+			</if>
+			<if test="applyperson != null">
+				applyperson = #{applyperson},
+			</if>
+			<if test="applyphone != null">
+				applyphone = #{applyphone},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+			<if test="checkperson != null">
+				checkperson = #{checkperson},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="result != null">
+				result = #{result},
+			</if>
+			<if test="advice != null">
+				advice = #{advice},
+			</if>
+		</set>
+		WHERE objectionmsg_id=#{objectionmsg_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delSpObjectionmsg" parameterType="map">
+		DELETE FROM sp_objectionmsg WHERE objectionmsg_id IN
+		<foreach item="item" index="index" collection="objectionmsg_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchSpObjectionmsg" parameterType="list">
+		INSERT INTO
+			sp_objectionmsg
+			(
+			objectionmsg_id,
+			applydept,
+			regperson,
+			theme,
+			applytime,
+			applyperson,
+			applyphone,
+			description,
+			checkperson,
+			status,
+			result,
+			advice
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.objectionmsg_id},
+			#{item.applydept},
+			#{item.regperson},
+			#{item.theme},
+			#{item.applytime},
+			#{item.applyperson},
+			#{item.applyphone},
+			#{item.description},
+			#{item.checkperson},
+			#{item.status},
+			#{item.result},
+			#{item.advice}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchSpObjectionmsg" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_objectionmsg
+			SET
+				applydept = #{item.applydept},
+				regperson = #{item.regperson},
+				theme = #{item.theme},
+				applytime = #{item.applytime},
+				applyperson = #{item.applyperson},
+				applyphone = #{item.applyphone},
+				description = #{item.description},
+				checkperson = #{item.checkperson},
+				status = #{item.status},
+				result = #{item.result},
+				advice = #{item.advice}
+			WHERE objectionmsg_id=#{item.objectionmsg_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchSpObjectionmsgBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				sp_objectionmsg
+			<set>
+				<if test="item.applydept != null">
+					applydept = #{item.applydept},
+				</if>
+				<if test="item.regperson != null">
+					regperson = #{item.regperson},
+				</if>
+				<if test="item.theme != null">
+					theme = #{item.theme},
+				</if>
+				<if test="item.applytime != null">
+					applytime = #{item.applytime},
+				</if>
+				<if test="item.applyperson != null">
+					applyperson = #{item.applyperson},
+				</if>
+				<if test="item.applyphone != null">
+					applyphone = #{item.applyphone},
+				</if>
+				<if test="item.description != null">
+					description = #{item.description},
+				</if>
+				<if test="item.checkperson != null">
+					checkperson = #{item.checkperson},
+				</if>
+				<if test="item.status != null">
+					status = #{item.status},
+				</if>
+				<if test="item.result != null">
+					result = #{item.result},
+				</if>
+				<if test="item.advice != null">
+					advice = #{item.advice},
+				</if>
+			</set>
+			WHERE objectionmsg_id=#{item.objectionmsg_id}
+		</foreach>
+	</update>
+</mapper>

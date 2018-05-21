@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.plmodules.plmodel.PlCltalinfsgmt">
+	<!--初始化分页-->
+	<select id="getPlCltalinfsgmtListByCondition" resultType="ccredit.plmodules.plmodel.PlCltalinfsgmt" parameterType="map">
+		SELECT
+			pl_cltalinfsgmt_id,
+			impnm,
+			imptype,
+			impval,
+			ippc,
+			pawnname,
+			pawncerttype,
+			pawncertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_cltalinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != pawnname">
+			AND pawnname LIKE CONCAT(CONCAT('%',#{pawnname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getPlCltalinfsgmtById" resultType="ccredit.plmodules.plmodel.PlCltalinfsgmt" parameterType="string">
+		SELECT
+			pl_cltalinfsgmt_id,
+			impnm,
+			imptype,
+			impval,
+			ippc,
+			pawnname,
+			pawncerttype,
+			pawncertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_cltalinfsgmt
+		WHERE pl_cltalinfsgmt_id=#{pl_cltalinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addPlCltalinfsgmt" parameterType="ccredit.plmodules.plmodel.PlCltalinfsgmt">
+		INSERT INTO
+			pl_cltalinfsgmt
+			(
+			pl_cltalinfsgmt_id,
+			impnm,
+			imptype,
+			impval,
+			ippc,
+			pawnname,
+			pawncerttype,
+			pawncertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{pl_cltalinfsgmt_id},
+			#{impnm},
+			#{imptype},
+			#{impval},
+			#{ippc},
+			#{pawnname},
+			#{pawncerttype},
+			#{pawncertnum},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updatePlCltalinfsgmt" parameterType="ccredit.plmodules.plmodel.PlCltalinfsgmt">
+		UPDATE
+			pl_cltalinfsgmt
+		SET
+			impnm = #{impnm},
+			imptype = #{imptype},
+			impval = #{impval},
+			ippc = #{ippc},
+			pawnname = #{pawnname},
+			pawncerttype = #{pawncerttype},
+			pawncertnum = #{pawncertnum},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE pl_cltalinfsgmt_id=#{pl_cltalinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updatePlCltalinfsgmtBySelective" parameterType="ccredit.plmodules.plmodel.PlCltalinfsgmt">
+		UPDATE
+			pl_cltalinfsgmt
+		<set>
+			<if test="impnm != null">
+				impnm = #{impnm},
+			</if>
+			<if test="imptype != null">
+				imptype = #{imptype},
+			</if>
+			<if test="impval != null">
+				impval = #{impval},
+			</if>
+			<if test="ippc != null">
+				ippc = #{ippc},
+			</if>
+			<if test="pawnname != null">
+				pawnname = #{pawnname},
+			</if>
+			<if test="pawncerttype != null">
+				pawncerttype = #{pawncerttype},
+			</if>
+			<if test="pawncertnum != null">
+				pawncertnum = #{pawncertnum},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE pl_cltalinfsgmt_id=#{pl_cltalinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delPlCltalinfsgmt" parameterType="map">
+		DELETE FROM pl_cltalinfsgmt WHERE pl_cltalinfsgmt_id IN
+		<foreach item="item" index="index" collection="pl_cltalinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchPlCltalinfsgmt" parameterType="list">
+		INSERT INTO
+			pl_cltalinfsgmt
+			(
+			pl_cltalinfsgmt_id,
+			impnm,
+			imptype,
+			impval,
+			ippc,
+			pawnname,
+			pawncerttype,
+			pawncertnum,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.pl_cltalinfsgmt_id},
+			#{item.impnm},
+			#{item.imptype},
+			#{item.impval},
+			#{item.ippc},
+			#{item.pawnname},
+			#{item.pawncerttype},
+			#{item.pawncertnum},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchPlCltalinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_cltalinfsgmt
+			SET
+				impnm = #{item.impnm},
+				imptype = #{item.imptype},
+				impval = #{item.impval},
+				ippc = #{item.ippc},
+				pawnname = #{item.pawnname},
+				pawncerttype = #{item.pawncerttype},
+				pawncertnum = #{item.pawncertnum},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE pl_cltalinfsgmt_id=#{item.pl_cltalinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchPlCltalinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_cltalinfsgmt
+			<set>
+				<if test="item.impnm != null">
+					impnm = #{item.impnm},
+				</if>
+				<if test="item.imptype != null">
+					imptype = #{item.imptype},
+				</if>
+				<if test="item.impval != null">
+					impval = #{item.impval},
+				</if>
+				<if test="item.ippc != null">
+					ippc = #{item.ippc},
+				</if>
+				<if test="item.pawnname != null">
+					pawnname = #{item.pawnname},
+				</if>
+				<if test="item.pawncerttype != null">
+					pawncerttype = #{item.pawncerttype},
+				</if>
+				<if test="item.pawncertnum != null">
+					pawncertnum = #{item.pawncertnum},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE pl_cltalinfsgmt_id=#{item.pl_cltalinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

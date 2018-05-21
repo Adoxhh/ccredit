@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsFcsinfsgmt">
+	<!--初始化分页-->
+	<select id="getBsFcsinfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt" parameterType="map">
+		SELECT
+			bs_fcsinfsgmt_id,
+			nationality,
+			regadd,
+			admdivofreg,
+			establishdate,
+			bizenddate,
+			bizrange,
+			ecoinduscate,
+			ecotype,
+			entscale,
+			fcsinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_fcsinfsgmt
+		WHERE 1=1
+		<if test="null != entscale">
+			AND entscale = #{entscale}
+		</if>
+		<if test="null != ecotype">
+			AND ecotype = #{ecotype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsFcsinfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt" parameterType="string">
+		SELECT
+			bs_fcsinfsgmt_id,
+			nationality,
+			regadd,
+			admdivofreg,
+			establishdate,
+			bizenddate,
+			bizrange,
+			ecoinduscate,
+			ecotype,
+			entscale,
+			fcsinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_fcsinfsgmt
+		WHERE bs_fcsinfsgmt_id=#{bs_fcsinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsFcsinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt">
+		INSERT INTO
+			bs_fcsinfsgmt
+			(
+			bs_fcsinfsgmt_id,
+			nationality,
+			regadd,
+			admdivofreg,
+			establishdate,
+			bizenddate,
+			bizrange,
+			ecoinduscate,
+			ecotype,
+			entscale,
+			fcsinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_fcsinfsgmt_id},
+			#{nationality},
+			#{regadd},
+			#{admdivofreg},
+			#{establishdate},
+			#{bizenddate},
+			#{bizrange},
+			#{ecoinduscate},
+			#{ecotype},
+			#{entscale},
+			#{fcsinfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsFcsinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt">
+		UPDATE
+			bs_fcsinfsgmt
+		SET
+			nationality = #{nationality},
+			regadd = #{regadd},
+			admdivofreg = #{admdivofreg},
+			establishdate = #{establishdate},
+			bizenddate = #{bizenddate},
+			bizrange = #{bizrange},
+			ecoinduscate = #{ecoinduscate},
+			ecotype = #{ecotype},
+			entscale = #{entscale},
+			fcsinfoupdate = #{fcsinfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_fcsinfsgmt_id=#{bs_fcsinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsFcsinfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsFcsinfsgmt">
+		UPDATE
+			bs_fcsinfsgmt
+		<set>
+			<if test="nationality != null">
+				nationality = #{nationality},
+			</if>
+			<if test="regadd != null">
+				regadd = #{regadd},
+			</if>
+			<if test="admdivofreg != null">
+				admdivofreg = #{admdivofreg},
+			</if>
+			<if test="establishdate != null">
+				establishdate = #{establishdate},
+			</if>
+			<if test="bizenddate != null">
+				bizenddate = #{bizenddate},
+			</if>
+			<if test="bizrange != null">
+				bizrange = #{bizrange},
+			</if>
+			<if test="ecoinduscate != null">
+				ecoinduscate = #{ecoinduscate},
+			</if>
+			<if test="ecotype != null">
+				ecotype = #{ecotype},
+			</if>
+			<if test="entscale != null">
+				entscale = #{entscale},
+			</if>
+			<if test="fcsinfoupdate != null">
+				fcsinfoupdate = #{fcsinfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_fcsinfsgmt_id=#{bs_fcsinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsFcsinfsgmt" parameterType="map">
+		DELETE FROM bs_fcsinfsgmt WHERE bs_fcsinfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_fcsinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsFcsinfsgmt" parameterType="list">
+		INSERT INTO
+			bs_fcsinfsgmt
+			(
+			bs_fcsinfsgmt_id,
+			nationality,
+			regadd,
+			admdivofreg,
+			establishdate,
+			bizenddate,
+			bizrange,
+			ecoinduscate,
+			ecotype,
+			entscale,
+			fcsinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_fcsinfsgmt_id},
+			#{item.nationality},
+			#{item.regadd},
+			#{item.admdivofreg},
+			#{item.establishdate},
+			#{item.bizenddate},
+			#{item.bizrange},
+			#{item.ecoinduscate},
+			#{item.ecotype},
+			#{item.entscale},
+			#{item.fcsinfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsFcsinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_fcsinfsgmt
+			SET
+				nationality = #{item.nationality},
+				regadd = #{item.regadd},
+				admdivofreg = #{item.admdivofreg},
+				establishdate = #{item.establishdate},
+				bizenddate = #{item.bizenddate},
+				bizrange = #{item.bizrange},
+				ecoinduscate = #{item.ecoinduscate},
+				ecotype = #{item.ecotype},
+				entscale = #{item.entscale},
+				fcsinfoupdate = #{item.fcsinfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_fcsinfsgmt_id=#{item.bs_fcsinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsFcsinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_fcsinfsgmt
+			<set>
+				<if test="item.nationality != null">
+					nationality = #{item.nationality},
+				</if>
+				<if test="item.regadd != null">
+					regadd = #{item.regadd},
+				</if>
+				<if test="item.admdivofreg != null">
+					admdivofreg = #{item.admdivofreg},
+				</if>
+				<if test="item.establishdate != null">
+					establishdate = #{item.establishdate},
+				</if>
+				<if test="item.bizenddate != null">
+					bizenddate = #{item.bizenddate},
+				</if>
+				<if test="item.bizrange != null">
+					bizrange = #{item.bizrange},
+				</if>
+				<if test="item.ecoinduscate != null">
+					ecoinduscate = #{item.ecoinduscate},
+				</if>
+				<if test="item.ecotype != null">
+					ecotype = #{item.ecotype},
+				</if>
+				<if test="item.entscale != null">
+					entscale = #{item.entscale},
+				</if>
+				<if test="item.fcsinfoupdate != null">
+					fcsinfoupdate = #{item.fcsinfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_fcsinfsgmt_id=#{item.bs_fcsinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

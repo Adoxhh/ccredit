@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt">
+	<!--初始化分页-->
+	<select id="getLoanRltrepymtinfsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt" parameterType="map">
+		SELECT
+			loan_rltrepymtinfsgmt_id,
+			rltrepymtnm,
+			arlpidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			wartysign,
+			maxguarmcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_rltrepymtinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != arlpname">
+			AND arlpname LIKE CONCAT(CONCAT('%',#{arlpname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanRltrepymtinfsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt" parameterType="string">
+		SELECT
+			loan_rltrepymtinfsgmt_id,
+			rltrepymtnm,
+			arlpidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			wartysign,
+			maxguarmcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_rltrepymtinfsgmt
+		WHERE loan_rltrepymtinfsgmt_id=#{loan_rltrepymtinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanRltrepymtinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt">
+		INSERT INTO
+			loan_rltrepymtinfsgmt
+			(
+			loan_rltrepymtinfsgmt_id,
+			rltrepymtnm,
+			arlpidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			wartysign,
+			maxguarmcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_rltrepymtinfsgmt_id},
+			#{rltrepymtnm},
+			#{arlpidtype},
+			#{arlpname},
+			#{arlpcerttype},
+			#{arlpcertnum},
+			#{arlptype},
+			#{arlpamt},
+			#{wartysign},
+			#{maxguarmcc},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanRltrepymtinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt">
+		UPDATE
+			loan_rltrepymtinfsgmt
+		SET
+			rltrepymtnm = #{rltrepymtnm},
+			arlpidtype = #{arlpidtype},
+			arlpname = #{arlpname},
+			arlpcerttype = #{arlpcerttype},
+			arlpcertnum = #{arlpcertnum},
+			arlptype = #{arlptype},
+			arlpamt = #{arlpamt},
+			wartysign = #{wartysign},
+			maxguarmcc = #{maxguarmcc},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_rltrepymtinfsgmt_id=#{loan_rltrepymtinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanRltrepymtinfsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanRltrepymtinfsgmt">
+		UPDATE
+			loan_rltrepymtinfsgmt
+		<set>
+			<if test="rltrepymtnm != null">
+				rltrepymtnm = #{rltrepymtnm},
+			</if>
+			<if test="arlpidtype != null">
+				arlpidtype = #{arlpidtype},
+			</if>
+			<if test="arlpname != null">
+				arlpname = #{arlpname},
+			</if>
+			<if test="arlpcerttype != null">
+				arlpcerttype = #{arlpcerttype},
+			</if>
+			<if test="arlpcertnum != null">
+				arlpcertnum = #{arlpcertnum},
+			</if>
+			<if test="arlptype != null">
+				arlptype = #{arlptype},
+			</if>
+			<if test="arlpamt != null">
+				arlpamt = #{arlpamt},
+			</if>
+			<if test="wartysign != null">
+				wartysign = #{wartysign},
+			</if>
+			<if test="maxguarmcc != null">
+				maxguarmcc = #{maxguarmcc},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_rltrepymtinfsgmt_id=#{loan_rltrepymtinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanRltrepymtinfsgmt" parameterType="map">
+		DELETE FROM loan_rltrepymtinfsgmt WHERE loan_rltrepymtinfsgmt_id IN
+		<foreach item="item" index="index" collection="loan_rltrepymtinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanRltrepymtinfsgmt" parameterType="list">
+		INSERT INTO
+			loan_rltrepymtinfsgmt
+			(
+			loan_rltrepymtinfsgmt_id,
+			rltrepymtnm,
+			arlpidtype,
+			arlpname,
+			arlpcerttype,
+			arlpcertnum,
+			arlptype,
+			arlpamt,
+			wartysign,
+			maxguarmcc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_rltrepymtinfsgmt_id},
+			#{item.rltrepymtnm},
+			#{item.arlpidtype},
+			#{item.arlpname},
+			#{item.arlpcerttype},
+			#{item.arlpcertnum},
+			#{item.arlptype},
+			#{item.arlpamt},
+			#{item.wartysign},
+			#{item.maxguarmcc},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanRltrepymtinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_rltrepymtinfsgmt
+			SET
+				rltrepymtnm = #{item.rltrepymtnm},
+				arlpidtype = #{item.arlpidtype},
+				arlpname = #{item.arlpname},
+				arlpcerttype = #{item.arlpcerttype},
+				arlpcertnum = #{item.arlpcertnum},
+				arlptype = #{item.arlptype},
+				arlpamt = #{item.arlpamt},
+				wartysign = #{item.wartysign},
+				maxguarmcc = #{item.maxguarmcc},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_rltrepymtinfsgmt_id=#{item.loan_rltrepymtinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanRltrepymtinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_rltrepymtinfsgmt
+			<set>
+				<if test="item.rltrepymtnm != null">
+					rltrepymtnm = #{item.rltrepymtnm},
+				</if>
+				<if test="item.arlpidtype != null">
+					arlpidtype = #{item.arlpidtype},
+				</if>
+				<if test="item.arlpname != null">
+					arlpname = #{item.arlpname},
+				</if>
+				<if test="item.arlpcerttype != null">
+					arlpcerttype = #{item.arlpcerttype},
+				</if>
+				<if test="item.arlpcertnum != null">
+					arlpcertnum = #{item.arlpcertnum},
+				</if>
+				<if test="item.arlptype != null">
+					arlptype = #{item.arlptype},
+				</if>
+				<if test="item.arlpamt != null">
+					arlpamt = #{item.arlpamt},
+				</if>
+				<if test="item.wartysign != null">
+					wartysign = #{item.wartysign},
+				</if>
+				<if test="item.maxguarmcc != null">
+					maxguarmcc = #{item.maxguarmcc},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_rltrepymtinfsgmt_id=#{item.loan_rltrepymtinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

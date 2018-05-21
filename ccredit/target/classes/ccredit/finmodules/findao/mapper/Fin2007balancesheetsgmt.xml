@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt">
+	<!--初始化分页-->
+	<select id="getFin2007balancesheetsgmtListByCondition" resultType="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt" parameterType="map">
+		SELECT
+			fin_2007balancesheetsgmt_id,
+			currencyfunds,
+			financialassetsheldfortrading,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			interestreceivable,
+			dividendsreceivable,
+			otherreceivables,
+			inventories,
+			currentportionofnoncurrentassets,
+			othercurrentassets,
+			totalcurrentassets,
+			financialassetsavailableforsale,
+			heldtomaturityinvestments,
+			longtermequityinvestment,
+			longtermreceivables,
+			investmentproperties,
+			fixedassets,
+			constructioninprogress,
+			constructionmaterials,
+			fixedassetspendingfordisposal,
+			noncurrentbiologicalassets,
+			oilandgasassets,
+			intangibleassets,
+			developmentdisbursements,
+			goodwill,
+			longtermdeferredexpenses,
+			deferredtaxassets,
+			othernoncurrentassets,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			financialliabilitiesheldfortrading,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			interestpayable,
+			employeebenefitspayable,
+			taxspayable,
+			dividendspayable,
+			otherpayables,
+			currentportionoflongtermliabilities,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			bondspayables,
+			longtermpayables,
+			grantspayable,
+			provisions,
+			deferredtaxliabilities,
+			othernoncurrentliabilities,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			paidincapitalorsharecapital,
+			capitalrrserve,
+			lesstreasurystocks,
+			surplusreserve,
+			unappropriatedprofit,
+			totalequity,
+			totalequityandliabilities,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007balancesheetsgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFin2007balancesheetsgmtById" resultType="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt" parameterType="string">
+		SELECT
+			fin_2007balancesheetsgmt_id,
+			currencyfunds,
+			financialassetsheldfortrading,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			interestreceivable,
+			dividendsreceivable,
+			otherreceivables,
+			inventories,
+			currentportionofnoncurrentassets,
+			othercurrentassets,
+			totalcurrentassets,
+			financialassetsavailableforsale,
+			heldtomaturityinvestments,
+			longtermequityinvestment,
+			longtermreceivables,
+			investmentproperties,
+			fixedassets,
+			constructioninprogress,
+			constructionmaterials,
+			fixedassetspendingfordisposal,
+			noncurrentbiologicalassets,
+			oilandgasassets,
+			intangibleassets,
+			developmentdisbursements,
+			goodwill,
+			longtermdeferredexpenses,
+			deferredtaxassets,
+			othernoncurrentassets,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			financialliabilitiesheldfortrading,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			interestpayable,
+			employeebenefitspayable,
+			taxspayable,
+			dividendspayable,
+			otherpayables,
+			currentportionoflongtermliabilities,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			bondspayables,
+			longtermpayables,
+			grantspayable,
+			provisions,
+			deferredtaxliabilities,
+			othernoncurrentliabilities,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			paidincapitalorsharecapital,
+			capitalrrserve,
+			lesstreasurystocks,
+			surplusreserve,
+			unappropriatedprofit,
+			totalequity,
+			totalequityandliabilities,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_2007balancesheetsgmt
+		WHERE fin_2007balancesheetsgmt_id=#{fin_2007balancesheetsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFin2007balancesheetsgmt" parameterType="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt">
+		INSERT INTO
+			fin_2007balancesheetsgmt
+			(
+			fin_2007balancesheetsgmt_id,
+			currencyfunds,
+			financialassetsheldfortrading,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			interestreceivable,
+			dividendsreceivable,
+			otherreceivables,
+			inventories,
+			currentportionofnoncurrentassets,
+			othercurrentassets,
+			totalcurrentassets,
+			financialassetsavailableforsale,
+			heldtomaturityinvestments,
+			longtermequityinvestment,
+			longtermreceivables,
+			investmentproperties,
+			fixedassets,
+			constructioninprogress,
+			constructionmaterials,
+			fixedassetspendingfordisposal,
+			noncurrentbiologicalassets,
+			oilandgasassets,
+			intangibleassets,
+			developmentdisbursements,
+			goodwill,
+			longtermdeferredexpenses,
+			deferredtaxassets,
+			othernoncurrentassets,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			financialliabilitiesheldfortrading,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			interestpayable,
+			employeebenefitspayable,
+			taxspayable,
+			dividendspayable,
+			otherpayables,
+			currentportionoflongtermliabilities,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			bondspayables,
+			longtermpayables,
+			grantspayable,
+			provisions,
+			deferredtaxliabilities,
+			othernoncurrentliabilities,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			paidincapitalorsharecapital,
+			capitalrrserve,
+			lesstreasurystocks,
+			surplusreserve,
+			unappropriatedprofit,
+			totalequity,
+			totalequityandliabilities,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_2007balancesheetsgmt_id},
+			#{currencyfunds},
+			#{financialassetsheldfortrading},
+			#{notesreceivable},
+			#{accountsreceivable},
+			#{prepayments},
+			#{interestreceivable},
+			#{dividendsreceivable},
+			#{otherreceivables},
+			#{inventories},
+			#{currentportionofnoncurrentassets},
+			#{othercurrentassets},
+			#{totalcurrentassets},
+			#{financialassetsavailableforsale},
+			#{heldtomaturityinvestments},
+			#{longtermequityinvestment},
+			#{longtermreceivables},
+			#{investmentproperties},
+			#{fixedassets},
+			#{constructioninprogress},
+			#{constructionmaterials},
+			#{fixedassetspendingfordisposal},
+			#{noncurrentbiologicalassets},
+			#{oilandgasassets},
+			#{intangibleassets},
+			#{developmentdisbursements},
+			#{goodwill},
+			#{longtermdeferredexpenses},
+			#{deferredtaxassets},
+			#{othernoncurrentassets},
+			#{totalnoncurrentassets},
+			#{totalassets},
+			#{shorttermborrowings},
+			#{financialliabilitiesheldfortrading},
+			#{notespayable},
+			#{accountspayab1e},
+			#{receiptsinadvance},
+			#{interestpayable},
+			#{employeebenefitspayable},
+			#{taxspayable},
+			#{dividendspayable},
+			#{otherpayables},
+			#{currentportionoflongtermliabilities},
+			#{othercurrentliabilities},
+			#{totalcurrentliabilities},
+			#{longtermborrowings},
+			#{bondspayables},
+			#{longtermpayables},
+			#{grantspayable},
+			#{provisions},
+			#{deferredtaxliabilities},
+			#{othernoncurrentliabilities},
+			#{totalnoncurrentliabilities},
+			#{totalliabilities},
+			#{paidincapitalorsharecapital},
+			#{capitalrrserve},
+			#{lesstreasurystocks},
+			#{surplusreserve},
+			#{unappropriatedprofit},
+			#{totalequity},
+			#{totalequityandliabilities},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFin2007balancesheetsgmt" parameterType="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt">
+		UPDATE
+			fin_2007balancesheetsgmt
+		SET
+			currencyfunds = #{currencyfunds},
+			financialassetsheldfortrading = #{financialassetsheldfortrading},
+			notesreceivable = #{notesreceivable},
+			accountsreceivable = #{accountsreceivable},
+			prepayments = #{prepayments},
+			interestreceivable = #{interestreceivable},
+			dividendsreceivable = #{dividendsreceivable},
+			otherreceivables = #{otherreceivables},
+			inventories = #{inventories},
+			currentportionofnoncurrentassets = #{currentportionofnoncurrentassets},
+			othercurrentassets = #{othercurrentassets},
+			totalcurrentassets = #{totalcurrentassets},
+			financialassetsavailableforsale = #{financialassetsavailableforsale},
+			heldtomaturityinvestments = #{heldtomaturityinvestments},
+			longtermequityinvestment = #{longtermequityinvestment},
+			longtermreceivables = #{longtermreceivables},
+			investmentproperties = #{investmentproperties},
+			fixedassets = #{fixedassets},
+			constructioninprogress = #{constructioninprogress},
+			constructionmaterials = #{constructionmaterials},
+			fixedassetspendingfordisposal = #{fixedassetspendingfordisposal},
+			noncurrentbiologicalassets = #{noncurrentbiologicalassets},
+			oilandgasassets = #{oilandgasassets},
+			intangibleassets = #{intangibleassets},
+			developmentdisbursements = #{developmentdisbursements},
+			goodwill = #{goodwill},
+			longtermdeferredexpenses = #{longtermdeferredexpenses},
+			deferredtaxassets = #{deferredtaxassets},
+			othernoncurrentassets = #{othernoncurrentassets},
+			totalnoncurrentassets = #{totalnoncurrentassets},
+			totalassets = #{totalassets},
+			shorttermborrowings = #{shorttermborrowings},
+			financialliabilitiesheldfortrading = #{financialliabilitiesheldfortrading},
+			notespayable = #{notespayable},
+			accountspayab1e = #{accountspayab1e},
+			receiptsinadvance = #{receiptsinadvance},
+			interestpayable = #{interestpayable},
+			employeebenefitspayable = #{employeebenefitspayable},
+			taxspayable = #{taxspayable},
+			dividendspayable = #{dividendspayable},
+			otherpayables = #{otherpayables},
+			currentportionoflongtermliabilities = #{currentportionoflongtermliabilities},
+			othercurrentliabilities = #{othercurrentliabilities},
+			totalcurrentliabilities = #{totalcurrentliabilities},
+			longtermborrowings = #{longtermborrowings},
+			bondspayables = #{bondspayables},
+			longtermpayables = #{longtermpayables},
+			grantspayable = #{grantspayable},
+			provisions = #{provisions},
+			deferredtaxliabilities = #{deferredtaxliabilities},
+			othernoncurrentliabilities = #{othernoncurrentliabilities},
+			totalnoncurrentliabilities = #{totalnoncurrentliabilities},
+			totalliabilities = #{totalliabilities},
+			paidincapitalorsharecapital = #{paidincapitalorsharecapital},
+			capitalrrserve = #{capitalrrserve},
+			lesstreasurystocks = #{lesstreasurystocks},
+			surplusreserve = #{surplusreserve},
+			unappropriatedprofit = #{unappropriatedprofit},
+			totalequity = #{totalequity},
+			totalequityandliabilities = #{totalequityandliabilities},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_2007balancesheetsgmt_id=#{fin_2007balancesheetsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFin2007balancesheetsgmtBySelective" parameterType="ccredit.finmodules.finmodel.Fin2007balancesheetsgmt">
+		UPDATE
+			fin_2007balancesheetsgmt
+		<set>
+			<if test="currencyfunds != null">
+				currencyfunds = #{currencyfunds},
+			</if>
+			<if test="financialassetsheldfortrading != null">
+				financialassetsheldfortrading = #{financialassetsheldfortrading},
+			</if>
+			<if test="notesreceivable != null">
+				notesreceivable = #{notesreceivable},
+			</if>
+			<if test="accountsreceivable != null">
+				accountsreceivable = #{accountsreceivable},
+			</if>
+			<if test="prepayments != null">
+				prepayments = #{prepayments},
+			</if>
+			<if test="interestreceivable != null">
+				interestreceivable = #{interestreceivable},
+			</if>
+			<if test="dividendsreceivable != null">
+				dividendsreceivable = #{dividendsreceivable},
+			</if>
+			<if test="otherreceivables != null">
+				otherreceivables = #{otherreceivables},
+			</if>
+			<if test="inventories != null">
+				inventories = #{inventories},
+			</if>
+			<if test="currentportionofnoncurrentassets != null">
+				currentportionofnoncurrentassets = #{currentportionofnoncurrentassets},
+			</if>
+			<if test="othercurrentassets != null">
+				othercurrentassets = #{othercurrentassets},
+			</if>
+			<if test="totalcurrentassets != null">
+				totalcurrentassets = #{totalcurrentassets},
+			</if>
+			<if test="financialassetsavailableforsale != null">
+				financialassetsavailableforsale = #{financialassetsavailableforsale},
+			</if>
+			<if test="heldtomaturityinvestments != null">
+				heldtomaturityinvestments = #{heldtomaturityinvestments},
+			</if>
+			<if test="longtermequityinvestment != null">
+				longtermequityinvestment = #{longtermequityinvestment},
+			</if>
+			<if test="longtermreceivables != null">
+				longtermreceivables = #{longtermreceivables},
+			</if>
+			<if test="investmentproperties != null">
+				investmentproperties = #{investmentproperties},
+			</if>
+			<if test="fixedassets != null">
+				fixedassets = #{fixedassets},
+			</if>
+			<if test="constructioninprogress != null">
+				constructioninprogress = #{constructioninprogress},
+			</if>
+			<if test="constructionmaterials != null">
+				constructionmaterials = #{constructionmaterials},
+			</if>
+			<if test="fixedassetspendingfordisposal != null">
+				fixedassetspendingfordisposal = #{fixedassetspendingfordisposal},
+			</if>
+			<if test="noncurrentbiologicalassets != null">
+				noncurrentbiologicalassets = #{noncurrentbiologicalassets},
+			</if>
+			<if test="oilandgasassets != null">
+				oilandgasassets = #{oilandgasassets},
+			</if>
+			<if test="intangibleassets != null">
+				intangibleassets = #{intangibleassets},
+			</if>
+			<if test="developmentdisbursements != null">
+				developmentdisbursements = #{developmentdisbursements},
+			</if>
+			<if test="goodwill != null">
+				goodwill = #{goodwill},
+			</if>
+			<if test="longtermdeferredexpenses != null">
+				longtermdeferredexpenses = #{longtermdeferredexpenses},
+			</if>
+			<if test="deferredtaxassets != null">
+				deferredtaxassets = #{deferredtaxassets},
+			</if>
+			<if test="othernoncurrentassets != null">
+				othernoncurrentassets = #{othernoncurrentassets},
+			</if>
+			<if test="totalnoncurrentassets != null">
+				totalnoncurrentassets = #{totalnoncurrentassets},
+			</if>
+			<if test="totalassets != null">
+				totalassets = #{totalassets},
+			</if>
+			<if test="shorttermborrowings != null">
+				shorttermborrowings = #{shorttermborrowings},
+			</if>
+			<if test="financialliabilitiesheldfortrading != null">
+				financialliabilitiesheldfortrading = #{financialliabilitiesheldfortrading},
+			</if>
+			<if test="notespayable != null">
+				notespayable = #{notespayable},
+			</if>
+			<if test="accountspayab1e != null">
+				accountspayab1e = #{accountspayab1e},
+			</if>
+			<if test="receiptsinadvance != null">
+				receiptsinadvance = #{receiptsinadvance},
+			</if>
+			<if test="interestpayable != null">
+				interestpayable = #{interestpayable},
+			</if>
+			<if test="employeebenefitspayable != null">
+				employeebenefitspayable = #{employeebenefitspayable},
+			</if>
+			<if test="taxspayable != null">
+				taxspayable = #{taxspayable},
+			</if>
+			<if test="dividendspayable != null">
+				dividendspayable = #{dividendspayable},
+			</if>
+			<if test="otherpayables != null">
+				otherpayables = #{otherpayables},
+			</if>
+			<if test="currentportionoflongtermliabilities != null">
+				currentportionoflongtermliabilities = #{currentportionoflongtermliabilities},
+			</if>
+			<if test="othercurrentliabilities != null">
+				othercurrentliabilities = #{othercurrentliabilities},
+			</if>
+			<if test="totalcurrentliabilities != null">
+				totalcurrentliabilities = #{totalcurrentliabilities},
+			</if>
+			<if test="longtermborrowings != null">
+				longtermborrowings = #{longtermborrowings},
+			</if>
+			<if test="bondspayables != null">
+				bondspayables = #{bondspayables},
+			</if>
+			<if test="longtermpayables != null">
+				longtermpayables = #{longtermpayables},
+			</if>
+			<if test="grantspayable != null">
+				grantspayable = #{grantspayable},
+			</if>
+			<if test="provisions != null">
+				provisions = #{provisions},
+			</if>
+			<if test="deferredtaxliabilities != null">
+				deferredtaxliabilities = #{deferredtaxliabilities},
+			</if>
+			<if test="othernoncurrentliabilities != null">
+				othernoncurrentliabilities = #{othernoncurrentliabilities},
+			</if>
+			<if test="totalnoncurrentliabilities != null">
+				totalnoncurrentliabilities = #{totalnoncurrentliabilities},
+			</if>
+			<if test="totalliabilities != null">
+				totalliabilities = #{totalliabilities},
+			</if>
+			<if test="paidincapitalorsharecapital != null">
+				paidincapitalorsharecapital = #{paidincapitalorsharecapital},
+			</if>
+			<if test="capitalrrserve != null">
+				capitalrrserve = #{capitalrrserve},
+			</if>
+			<if test="lesstreasurystocks != null">
+				lesstreasurystocks = #{lesstreasurystocks},
+			</if>
+			<if test="surplusreserve != null">
+				surplusreserve = #{surplusreserve},
+			</if>
+			<if test="unappropriatedprofit != null">
+				unappropriatedprofit = #{unappropriatedprofit},
+			</if>
+			<if test="totalequity != null">
+				totalequity = #{totalequity},
+			</if>
+			<if test="totalequityandliabilities != null">
+				totalequityandliabilities = #{totalequityandliabilities},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_2007balancesheetsgmt_id=#{fin_2007balancesheetsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFin2007balancesheetsgmt" parameterType="map">
+		DELETE FROM fin_2007balancesheetsgmt WHERE fin_2007balancesheetsgmt_id IN
+		<foreach item="item" index="index" collection="fin_2007balancesheetsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFin2007balancesheetsgmt" parameterType="list">
+		INSERT INTO
+			fin_2007balancesheetsgmt
+			(
+			fin_2007balancesheetsgmt_id,
+			currencyfunds,
+			financialassetsheldfortrading,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			interestreceivable,
+			dividendsreceivable,
+			otherreceivables,
+			inventories,
+			currentportionofnoncurrentassets,
+			othercurrentassets,
+			totalcurrentassets,
+			financialassetsavailableforsale,
+			heldtomaturityinvestments,
+			longtermequityinvestment,
+			longtermreceivables,
+			investmentproperties,
+			fixedassets,
+			constructioninprogress,
+			constructionmaterials,
+			fixedassetspendingfordisposal,
+			noncurrentbiologicalassets,
+			oilandgasassets,
+			intangibleassets,
+			developmentdisbursements,
+			goodwill,
+			longtermdeferredexpenses,
+			deferredtaxassets,
+			othernoncurrentassets,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			financialliabilitiesheldfortrading,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			interestpayable,
+			employeebenefitspayable,
+			taxspayable,
+			dividendspayable,
+			otherpayables,
+			currentportionoflongtermliabilities,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			bondspayables,
+			longtermpayables,
+			grantspayable,
+			provisions,
+			deferredtaxliabilities,
+			othernoncurrentliabilities,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			paidincapitalorsharecapital,
+			capitalrrserve,
+			lesstreasurystocks,
+			surplusreserve,
+			unappropriatedprofit,
+			totalequity,
+			totalequityandliabilities,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_2007balancesheetsgmt_id},
+			#{item.currencyfunds},
+			#{item.financialassetsheldfortrading},
+			#{item.notesreceivable},
+			#{item.accountsreceivable},
+			#{item.prepayments},
+			#{item.interestreceivable},
+			#{item.dividendsreceivable},
+			#{item.otherreceivables},
+			#{item.inventories},
+			#{item.currentportionofnoncurrentassets},
+			#{item.othercurrentassets},
+			#{item.totalcurrentassets},
+			#{item.financialassetsavailableforsale},
+			#{item.heldtomaturityinvestments},
+			#{item.longtermequityinvestment},
+			#{item.longtermreceivables},
+			#{item.investmentproperties},
+			#{item.fixedassets},
+			#{item.constructioninprogress},
+			#{item.constructionmaterials},
+			#{item.fixedassetspendingfordisposal},
+			#{item.noncurrentbiologicalassets},
+			#{item.oilandgasassets},
+			#{item.intangibleassets},
+			#{item.developmentdisbursements},
+			#{item.goodwill},
+			#{item.longtermdeferredexpenses},
+			#{item.deferredtaxassets},
+			#{item.othernoncurrentassets},
+			#{item.totalnoncurrentassets},
+			#{item.totalassets},
+			#{item.shorttermborrowings},
+			#{item.financialliabilitiesheldfortrading},
+			#{item.notespayable},
+			#{item.accountspayab1e},
+			#{item.receiptsinadvance},
+			#{item.interestpayable},
+			#{item.employeebenefitspayable},
+			#{item.taxspayable},
+			#{item.dividendspayable},
+			#{item.otherpayables},
+			#{item.currentportionoflongtermliabilities},
+			#{item.othercurrentliabilities},
+			#{item.totalcurrentliabilities},
+			#{item.longtermborrowings},
+			#{item.bondspayables},
+			#{item.longtermpayables},
+			#{item.grantspayable},
+			#{item.provisions},
+			#{item.deferredtaxliabilities},
+			#{item.othernoncurrentliabilities},
+			#{item.totalnoncurrentliabilities},
+			#{item.totalliabilities},
+			#{item.paidincapitalorsharecapital},
+			#{item.capitalrrserve},
+			#{item.lesstreasurystocks},
+			#{item.surplusreserve},
+			#{item.unappropriatedprofit},
+			#{item.totalequity},
+			#{item.totalequityandliabilities},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFin2007balancesheetsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007balancesheetsgmt
+			SET
+				currencyfunds = #{item.currencyfunds},
+				financialassetsheldfortrading = #{item.financialassetsheldfortrading},
+				notesreceivable = #{item.notesreceivable},
+				accountsreceivable = #{item.accountsreceivable},
+				prepayments = #{item.prepayments},
+				interestreceivable = #{item.interestreceivable},
+				dividendsreceivable = #{item.dividendsreceivable},
+				otherreceivables = #{item.otherreceivables},
+				inventories = #{item.inventories},
+				currentportionofnoncurrentassets = #{item.currentportionofnoncurrentassets},
+				othercurrentassets = #{item.othercurrentassets},
+				totalcurrentassets = #{item.totalcurrentassets},
+				financialassetsavailableforsale = #{item.financialassetsavailableforsale},
+				heldtomaturityinvestments = #{item.heldtomaturityinvestments},
+				longtermequityinvestment = #{item.longtermequityinvestment},
+				longtermreceivables = #{item.longtermreceivables},
+				investmentproperties = #{item.investmentproperties},
+				fixedassets = #{item.fixedassets},
+				constructioninprogress = #{item.constructioninprogress},
+				constructionmaterials = #{item.constructionmaterials},
+				fixedassetspendingfordisposal = #{item.fixedassetspendingfordisposal},
+				noncurrentbiologicalassets = #{item.noncurrentbiologicalassets},
+				oilandgasassets = #{item.oilandgasassets},
+				intangibleassets = #{item.intangibleassets},
+				developmentdisbursements = #{item.developmentdisbursements},
+				goodwill = #{item.goodwill},
+				longtermdeferredexpenses = #{item.longtermdeferredexpenses},
+				deferredtaxassets = #{item.deferredtaxassets},
+				othernoncurrentassets = #{item.othernoncurrentassets},
+				totalnoncurrentassets = #{item.totalnoncurrentassets},
+				totalassets = #{item.totalassets},
+				shorttermborrowings = #{item.shorttermborrowings},
+				financialliabilitiesheldfortrading = #{item.financialliabilitiesheldfortrading},
+				notespayable = #{item.notespayable},
+				accountspayab1e = #{item.accountspayab1e},
+				receiptsinadvance = #{item.receiptsinadvance},
+				interestpayable = #{item.interestpayable},
+				employeebenefitspayable = #{item.employeebenefitspayable},
+				taxspayable = #{item.taxspayable},
+				dividendspayable = #{item.dividendspayable},
+				otherpayables = #{item.otherpayables},
+				currentportionoflongtermliabilities = #{item.currentportionoflongtermliabilities},
+				othercurrentliabilities = #{item.othercurrentliabilities},
+				totalcurrentliabilities = #{item.totalcurrentliabilities},
+				longtermborrowings = #{item.longtermborrowings},
+				bondspayables = #{item.bondspayables},
+				longtermpayables = #{item.longtermpayables},
+				grantspayable = #{item.grantspayable},
+				provisions = #{item.provisions},
+				deferredtaxliabilities = #{item.deferredtaxliabilities},
+				othernoncurrentliabilities = #{item.othernoncurrentliabilities},
+				totalnoncurrentliabilities = #{item.totalnoncurrentliabilities},
+				totalliabilities = #{item.totalliabilities},
+				paidincapitalorsharecapital = #{item.paidincapitalorsharecapital},
+				capitalrrserve = #{item.capitalrrserve},
+				lesstreasurystocks = #{item.lesstreasurystocks},
+				surplusreserve = #{item.surplusreserve},
+				unappropriatedprofit = #{item.unappropriatedprofit},
+				totalequity = #{item.totalequity},
+				totalequityandliabilities = #{item.totalequityandliabilities},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_2007balancesheetsgmt_id=#{item.fin_2007balancesheetsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFin2007balancesheetsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_2007balancesheetsgmt
+			<set>
+				<if test="item.currencyfunds != null">
+					currencyfunds = #{item.currencyfunds},
+				</if>
+				<if test="item.financialassetsheldfortrading != null">
+					financialassetsheldfortrading = #{item.financialassetsheldfortrading},
+				</if>
+				<if test="item.notesreceivable != null">
+					notesreceivable = #{item.notesreceivable},
+				</if>
+				<if test="item.accountsreceivable != null">
+					accountsreceivable = #{item.accountsreceivable},
+				</if>
+				<if test="item.prepayments != null">
+					prepayments = #{item.prepayments},
+				</if>
+				<if test="item.interestreceivable != null">
+					interestreceivable = #{item.interestreceivable},
+				</if>
+				<if test="item.dividendsreceivable != null">
+					dividendsreceivable = #{item.dividendsreceivable},
+				</if>
+				<if test="item.otherreceivables != null">
+					otherreceivables = #{item.otherreceivables},
+				</if>
+				<if test="item.inventories != null">
+					inventories = #{item.inventories},
+				</if>
+				<if test="item.currentportionofnoncurrentassets != null">
+					currentportionofnoncurrentassets = #{item.currentportionofnoncurrentassets},
+				</if>
+				<if test="item.othercurrentassets != null">
+					othercurrentassets = #{item.othercurrentassets},
+				</if>
+				<if test="item.totalcurrentassets != null">
+					totalcurrentassets = #{item.totalcurrentassets},
+				</if>
+				<if test="item.financialassetsavailableforsale != null">
+					financialassetsavailableforsale = #{item.financialassetsavailableforsale},
+				</if>
+				<if test="item.heldtomaturityinvestments != null">
+					heldtomaturityinvestments = #{item.heldtomaturityinvestments},
+				</if>
+				<if test="item.longtermequityinvestment != null">
+					longtermequityinvestment = #{item.longtermequityinvestment},
+				</if>
+				<if test="item.longtermreceivables != null">
+					longtermreceivables = #{item.longtermreceivables},
+				</if>
+				<if test="item.investmentproperties != null">
+					investmentproperties = #{item.investmentproperties},
+				</if>
+				<if test="item.fixedassets != null">
+					fixedassets = #{item.fixedassets},
+				</if>
+				<if test="item.constructioninprogress != null">
+					constructioninprogress = #{item.constructioninprogress},
+				</if>
+				<if test="item.constructionmaterials != null">
+					constructionmaterials = #{item.constructionmaterials},
+				</if>
+				<if test="item.fixedassetspendingfordisposal != null">
+					fixedassetspendingfordisposal = #{item.fixedassetspendingfordisposal},
+				</if>
+				<if test="item.noncurrentbiologicalassets != null">
+					noncurrentbiologicalassets = #{item.noncurrentbiologicalassets},
+				</if>
+				<if test="item.oilandgasassets != null">
+					oilandgasassets = #{item.oilandgasassets},
+				</if>
+				<if test="item.intangibleassets != null">
+					intangibleassets = #{item.intangibleassets},
+				</if>
+				<if test="item.developmentdisbursements != null">
+					developmentdisbursements = #{item.developmentdisbursements},
+				</if>
+				<if test="item.goodwill != null">
+					goodwill = #{item.goodwill},
+				</if>
+				<if test="item.longtermdeferredexpenses != null">
+					longtermdeferredexpenses = #{item.longtermdeferredexpenses},
+				</if>
+				<if test="item.deferredtaxassets != null">
+					deferredtaxassets = #{item.deferredtaxassets},
+				</if>
+				<if test="item.othernoncurrentassets != null">
+					othernoncurrentassets = #{item.othernoncurrentassets},
+				</if>
+				<if test="item.totalnoncurrentassets != null">
+					totalnoncurrentassets = #{item.totalnoncurrentassets},
+				</if>
+				<if test="item.totalassets != null">
+					totalassets = #{item.totalassets},
+				</if>
+				<if test="item.shorttermborrowings != null">
+					shorttermborrowings = #{item.shorttermborrowings},
+				</if>
+				<if test="item.financialliabilitiesheldfortrading != null">
+					financialliabilitiesheldfortrading = #{item.financialliabilitiesheldfortrading},
+				</if>
+				<if test="item.notespayable != null">
+					notespayable = #{item.notespayable},
+				</if>
+				<if test="item.accountspayab1e != null">
+					accountspayab1e = #{item.accountspayab1e},
+				</if>
+				<if test="item.receiptsinadvance != null">
+					receiptsinadvance = #{item.receiptsinadvance},
+				</if>
+				<if test="item.interestpayable != null">
+					interestpayable = #{item.interestpayable},
+				</if>
+				<if test="item.employeebenefitspayable != null">
+					employeebenefitspayable = #{item.employeebenefitspayable},
+				</if>
+				<if test="item.taxspayable != null">
+					taxspayable = #{item.taxspayable},
+				</if>
+				<if test="item.dividendspayable != null">
+					dividendspayable = #{item.dividendspayable},
+				</if>
+				<if test="item.otherpayables != null">
+					otherpayables = #{item.otherpayables},
+				</if>
+				<if test="item.currentportionoflongtermliabilities != null">
+					currentportionoflongtermliabilities = #{item.currentportionoflongtermliabilities},
+				</if>
+				<if test="item.othercurrentliabilities != null">
+					othercurrentliabilities = #{item.othercurrentliabilities},
+				</if>
+				<if test="item.totalcurrentliabilities != null">
+					totalcurrentliabilities = #{item.totalcurrentliabilities},
+				</if>
+				<if test="item.longtermborrowings != null">
+					longtermborrowings = #{item.longtermborrowings},
+				</if>
+				<if test="item.bondspayables != null">
+					bondspayables = #{item.bondspayables},
+				</if>
+				<if test="item.longtermpayables != null">
+					longtermpayables = #{item.longtermpayables},
+				</if>
+				<if test="item.grantspayable != null">
+					grantspayable = #{item.grantspayable},
+				</if>
+				<if test="item.provisions != null">
+					provisions = #{item.provisions},
+				</if>
+				<if test="item.deferredtaxliabilities != null">
+					deferredtaxliabilities = #{item.deferredtaxliabilities},
+				</if>
+				<if test="item.othernoncurrentliabilities != null">
+					othernoncurrentliabilities = #{item.othernoncurrentliabilities},
+				</if>
+				<if test="item.totalnoncurrentliabilities != null">
+					totalnoncurrentliabilities = #{item.totalnoncurrentliabilities},
+				</if>
+				<if test="item.totalliabilities != null">
+					totalliabilities = #{item.totalliabilities},
+				</if>
+				<if test="item.paidincapitalorsharecapital != null">
+					paidincapitalorsharecapital = #{item.paidincapitalorsharecapital},
+				</if>
+				<if test="item.capitalrrserve != null">
+					capitalrrserve = #{item.capitalrrserve},
+				</if>
+				<if test="item.lesstreasurystocks != null">
+					lesstreasurystocks = #{item.lesstreasurystocks},
+				</if>
+				<if test="item.surplusreserve != null">
+					surplusreserve = #{item.surplusreserve},
+				</if>
+				<if test="item.unappropriatedprofit != null">
+					unappropriatedprofit = #{item.unappropriatedprofit},
+				</if>
+				<if test="item.totalequity != null">
+					totalequity = #{item.totalequity},
+				</if>
+				<if test="item.totalequityandliabilities != null">
+					totalequityandliabilities = #{item.totalequityandliabilities},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_2007balancesheetsgmt_id=#{item.fin_2007balancesheetsgmt_id}
+		</foreach>
+	</update>
+</mapper>

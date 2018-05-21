@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt">
+	<!--初始化分页-->
+	<select id="getPlMotgaproptinfsgmtListByCondition" resultType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt" parameterType="map">
+		SELECT
+			pl_motgaproptinfsgmt_id,
+			plenm,
+			pletype,
+			motgaproptidtype,
+			plecertid,
+			pledistr,
+			plevalue,
+			valorgtype,
+			valdate,
+			pledgortype,
+			pledgorname,
+			pleorcerttype,
+			pleorcertnum,
+			pledesc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgaproptinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != plecertid">
+			AND plecertid LIKE CONCAT(CONCAT('%',#{plecertid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getPlMotgaproptinfsgmtById" resultType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt" parameterType="string">
+		SELECT
+			pl_motgaproptinfsgmt_id,
+			plenm,
+			pletype,
+			motgaproptidtype,
+			plecertid,
+			pledistr,
+			plevalue,
+			valorgtype,
+			valdate,
+			pledgortype,
+			pledgorname,
+			pleorcerttype,
+			pleorcertnum,
+			pledesc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgaproptinfsgmt
+		WHERE pl_motgaproptinfsgmt_id=#{pl_motgaproptinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addPlMotgaproptinfsgmt" parameterType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt">
+		INSERT INTO
+			pl_motgaproptinfsgmt
+			(
+			pl_motgaproptinfsgmt_id,
+			plenm,
+			pletype,
+			motgaproptidtype,
+			plecertid,
+			pledistr,
+			plevalue,
+			valorgtype,
+			valdate,
+			pledgortype,
+			pledgorname,
+			pleorcerttype,
+			pleorcertnum,
+			pledesc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{pl_motgaproptinfsgmt_id},
+			#{plenm},
+			#{pletype},
+			#{motgaproptidtype},
+			#{plecertid},
+			#{pledistr},
+			#{plevalue},
+			#{valorgtype},
+			#{valdate},
+			#{pledgortype},
+			#{pledgorname},
+			#{pleorcerttype},
+			#{pleorcertnum},
+			#{pledesc},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updatePlMotgaproptinfsgmt" parameterType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt">
+		UPDATE
+			pl_motgaproptinfsgmt
+		SET
+			plenm = #{plenm},
+			pletype = #{pletype},
+			motgaproptidtype = #{motgaproptidtype},
+			plecertid = #{plecertid},
+			pledistr = #{pledistr},
+			plevalue = #{plevalue},
+			valorgtype = #{valorgtype},
+			valdate = #{valdate},
+			pledgortype = #{pledgortype},
+			pledgorname = #{pledgorname},
+			pleorcerttype = #{pleorcerttype},
+			pleorcertnum = #{pleorcertnum},
+			pledesc = #{pledesc},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE pl_motgaproptinfsgmt_id=#{pl_motgaproptinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updatePlMotgaproptinfsgmtBySelective" parameterType="ccredit.plmodules.plmodel.PlMotgaproptinfsgmt">
+		UPDATE
+			pl_motgaproptinfsgmt
+		<set>
+			<if test="plenm != null">
+				plenm = #{plenm},
+			</if>
+			<if test="pletype != null">
+				pletype = #{pletype},
+			</if>
+			<if test="motgaproptidtype != null">
+				motgaproptidtype = #{motgaproptidtype},
+			</if>
+			<if test="plecertid != null">
+				plecertid = #{plecertid},
+			</if>
+			<if test="pledistr != null">
+				pledistr = #{pledistr},
+			</if>
+			<if test="plevalue != null">
+				plevalue = #{plevalue},
+			</if>
+			<if test="valorgtype != null">
+				valorgtype = #{valorgtype},
+			</if>
+			<if test="valdate != null">
+				valdate = #{valdate},
+			</if>
+			<if test="pledgortype != null">
+				pledgortype = #{pledgortype},
+			</if>
+			<if test="pledgorname != null">
+				pledgorname = #{pledgorname},
+			</if>
+			<if test="pleorcerttype != null">
+				pleorcerttype = #{pleorcerttype},
+			</if>
+			<if test="pleorcertnum != null">
+				pleorcertnum = #{pleorcertnum},
+			</if>
+			<if test="pledesc != null">
+				pledesc = #{pledesc},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE pl_motgaproptinfsgmt_id=#{pl_motgaproptinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delPlMotgaproptinfsgmt" parameterType="map">
+		DELETE FROM pl_motgaproptinfsgmt WHERE pl_motgaproptinfsgmt_id IN
+		<foreach item="item" index="index" collection="pl_motgaproptinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchPlMotgaproptinfsgmt" parameterType="list">
+		INSERT INTO
+			pl_motgaproptinfsgmt
+			(
+			pl_motgaproptinfsgmt_id,
+			plenm,
+			pletype,
+			motgaproptidtype,
+			plecertid,
+			pledistr,
+			plevalue,
+			valorgtype,
+			valdate,
+			pledgortype,
+			pledgorname,
+			pleorcerttype,
+			pleorcertnum,
+			pledesc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.pl_motgaproptinfsgmt_id},
+			#{item.plenm},
+			#{item.pletype},
+			#{item.motgaproptidtype},
+			#{item.plecertid},
+			#{item.pledistr},
+			#{item.plevalue},
+			#{item.valorgtype},
+			#{item.valdate},
+			#{item.pledgortype},
+			#{item.pledgorname},
+			#{item.pleorcerttype},
+			#{item.pleorcertnum},
+			#{item.pledesc},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchPlMotgaproptinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgaproptinfsgmt
+			SET
+				plenm = #{item.plenm},
+				pletype = #{item.pletype},
+				motgaproptidtype = #{item.motgaproptidtype},
+				plecertid = #{item.plecertid},
+				pledistr = #{item.pledistr},
+				plevalue = #{item.plevalue},
+				valorgtype = #{item.valorgtype},
+				valdate = #{item.valdate},
+				pledgortype = #{item.pledgortype},
+				pledgorname = #{item.pledgorname},
+				pleorcerttype = #{item.pleorcerttype},
+				pleorcertnum = #{item.pleorcertnum},
+				pledesc = #{item.pledesc},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE pl_motgaproptinfsgmt_id=#{item.pl_motgaproptinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchPlMotgaproptinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgaproptinfsgmt
+			<set>
+				<if test="item.plenm != null">
+					plenm = #{item.plenm},
+				</if>
+				<if test="item.pletype != null">
+					pletype = #{item.pletype},
+				</if>
+				<if test="item.motgaproptidtype != null">
+					motgaproptidtype = #{item.motgaproptidtype},
+				</if>
+				<if test="item.plecertid != null">
+					plecertid = #{item.plecertid},
+				</if>
+				<if test="item.pledistr != null">
+					pledistr = #{item.pledistr},
+				</if>
+				<if test="item.plevalue != null">
+					plevalue = #{item.plevalue},
+				</if>
+				<if test="item.valorgtype != null">
+					valorgtype = #{item.valorgtype},
+				</if>
+				<if test="item.valdate != null">
+					valdate = #{item.valdate},
+				</if>
+				<if test="item.pledgortype != null">
+					pledgortype = #{item.pledgortype},
+				</if>
+				<if test="item.pledgorname != null">
+					pledgorname = #{item.pledgorname},
+				</if>
+				<if test="item.pleorcerttype != null">
+					pleorcerttype = #{item.pleorcerttype},
+				</if>
+				<if test="item.pleorcertnum != null">
+					pleorcertnum = #{item.pleorcertnum},
+				</if>
+				<if test="item.pledesc != null">
+					pledesc = #{item.pledesc},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE pl_motgaproptinfsgmt_id=#{item.pl_motgaproptinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

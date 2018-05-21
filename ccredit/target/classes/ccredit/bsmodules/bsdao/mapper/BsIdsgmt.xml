@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsIdsgmt">
+	<!--初始化分页-->
+	<select id="getBsIdsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsIdsgmt" parameterType="map">
+		SELECT
+			bs_idsgmt_id,
+			idnm,
+			othentcerttype,
+			othentcertnum,
+			idinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_idsgmt
+		WHERE 1=1
+		<if test="null != othentcerttype">
+			AND othentcerttype = #{othentcerttype}
+		</if>
+		<if test="null != changeflag">
+			AND changeflag = #{changeflag}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsIdsgmtById" resultType="ccredit.bsmodules.bsmodel.BsIdsgmt" parameterType="string">
+		SELECT
+			bs_idsgmt_id,
+			idnm,
+			othentcerttype,
+			othentcertnum,
+			idinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_idsgmt
+		WHERE bs_idsgmt_id=#{bs_idsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsIdsgmt" parameterType="ccredit.bsmodules.bsmodel.BsIdsgmt">
+		INSERT INTO
+			bs_idsgmt
+			(
+			bs_idsgmt_id,
+			idnm,
+			othentcerttype,
+			othentcertnum,
+			idinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_idsgmt_id},
+			#{idnm},
+			#{othentcerttype},
+			#{othentcertnum},
+			#{idinfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsIdsgmt" parameterType="ccredit.bsmodules.bsmodel.BsIdsgmt">
+		UPDATE
+			bs_idsgmt
+		SET
+			idnm = #{idnm},
+			othentcerttype = #{othentcerttype},
+			othentcertnum = #{othentcertnum},
+			idinfoupdate = #{idinfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_idsgmt_id=#{bs_idsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsIdsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsIdsgmt">
+		UPDATE
+			bs_idsgmt
+		<set>
+			<if test="idnm != null">
+				idnm = #{idnm},
+			</if>
+			<if test="othentcerttype != null">
+				othentcerttype = #{othentcerttype},
+			</if>
+			<if test="othentcertnum != null">
+				othentcertnum = #{othentcertnum},
+			</if>
+			<if test="idinfoupdate != null">
+				idinfoupdate = #{idinfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_idsgmt_id=#{bs_idsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsIdsgmt" parameterType="map">
+		DELETE FROM bs_idsgmt WHERE bs_idsgmt_id IN
+		<foreach item="item" index="index" collection="bs_idsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsIdsgmt" parameterType="list">
+		INSERT INTO
+			bs_idsgmt
+			(
+			bs_idsgmt_id,
+			idnm,
+			othentcerttype,
+			othentcertnum,
+			idinfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_idsgmt_id},
+			#{item.idnm},
+			#{item.othentcerttype},
+			#{item.othentcertnum},
+			#{item.idinfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsIdsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_idsgmt
+			SET
+				idnm = #{item.idnm},
+				othentcerttype = #{item.othentcerttype},
+				othentcertnum = #{item.othentcertnum},
+				idinfoupdate = #{item.idinfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_idsgmt_id=#{item.bs_idsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsIdsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_idsgmt
+			<set>
+				<if test="item.idnm != null">
+					idnm = #{item.idnm},
+				</if>
+				<if test="item.othentcerttype != null">
+					othentcerttype = #{item.othentcerttype},
+				</if>
+				<if test="item.othentcertnum != null">
+					othentcertnum = #{item.othentcertnum},
+				</if>
+				<if test="item.idinfoupdate != null">
+					idinfoupdate = #{item.idinfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_idsgmt_id=#{item.bs_idsgmt_id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt">
+	<!--初始化分页-->
+	<select id="getLoanCtrctbssgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt" parameterType="map">
+		SELECT
+			loan_ctrctbssgmt_id,
+			infrectype,
+			contractcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_ctrctbssgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != contractcode">
+			AND contractcode LIKE CONCAT(CONCAT('%',#{contractcode}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanCtrctbssgmtById" resultType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt" parameterType="string">
+		SELECT
+			loan_ctrctbssgmt_id,
+			infrectype,
+			contractcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_ctrctbssgmt
+		WHERE loan_ctrctbssgmt_id=#{loan_ctrctbssgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanCtrctbssgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt">
+		INSERT INTO
+			loan_ctrctbssgmt
+			(
+			loan_ctrctbssgmt_id,
+			infrectype,
+			contractcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_ctrctbssgmt_id},
+			#{infrectype},
+			#{contractcode},
+			#{rptdate},
+			#{rptdatecode},
+			#{name},
+			#{idtype},
+			#{idnum},
+			#{mngmtorgcode},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanCtrctbssgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt">
+		UPDATE
+			loan_ctrctbssgmt
+		SET
+			infrectype = #{infrectype},
+			contractcode = #{contractcode},
+			rptdate = #{rptdate},
+			rptdatecode = #{rptdatecode},
+			name = #{name},
+			idtype = #{idtype},
+			idnum = #{idnum},
+			mngmtorgcode = #{mngmtorgcode},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_ctrctbssgmt_id=#{loan_ctrctbssgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanCtrctbssgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanCtrctbssgmt">
+		UPDATE
+			loan_ctrctbssgmt
+		<set>
+			<if test="infrectype != null">
+				infrectype = #{infrectype},
+			</if>
+			<if test="contractcode != null">
+				contractcode = #{contractcode},
+			</if>
+			<if test="rptdate != null">
+				rptdate = #{rptdate},
+			</if>
+			<if test="rptdatecode != null">
+				rptdatecode = #{rptdatecode},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="idtype != null">
+				idtype = #{idtype},
+			</if>
+			<if test="idnum != null">
+				idnum = #{idnum},
+			</if>
+			<if test="mngmtorgcode != null">
+				mngmtorgcode = #{mngmtorgcode},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_ctrctbssgmt_id=#{loan_ctrctbssgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanCtrctbssgmt" parameterType="map">
+		DELETE FROM loan_ctrctbssgmt WHERE loan_ctrctbssgmt_id IN
+		<foreach item="item" index="index" collection="loan_ctrctbssgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanCtrctbssgmt" parameterType="list">
+		INSERT INTO
+			loan_ctrctbssgmt
+			(
+			loan_ctrctbssgmt_id,
+			infrectype,
+			contractcode,
+			rptdate,
+			rptdatecode,
+			name,
+			idtype,
+			idnum,
+			mngmtorgcode,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_ctrctbssgmt_id},
+			#{item.infrectype},
+			#{item.contractcode},
+			#{item.rptdate},
+			#{item.rptdatecode},
+			#{item.name},
+			#{item.idtype},
+			#{item.idnum},
+			#{item.mngmtorgcode},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanCtrctbssgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_ctrctbssgmt
+			SET
+				infrectype = #{item.infrectype},
+				contractcode = #{item.contractcode},
+				rptdate = #{item.rptdate},
+				rptdatecode = #{item.rptdatecode},
+				name = #{item.name},
+				idtype = #{item.idtype},
+				idnum = #{item.idnum},
+				mngmtorgcode = #{item.mngmtorgcode},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_ctrctbssgmt_id=#{item.loan_ctrctbssgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanCtrctbssgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_ctrctbssgmt
+			<set>
+				<if test="item.infrectype != null">
+					infrectype = #{item.infrectype},
+				</if>
+				<if test="item.contractcode != null">
+					contractcode = #{item.contractcode},
+				</if>
+				<if test="item.rptdate != null">
+					rptdate = #{item.rptdate},
+				</if>
+				<if test="item.rptdatecode != null">
+					rptdatecode = #{item.rptdatecode},
+				</if>
+				<if test="item.name != null">
+					name = #{item.name},
+				</if>
+				<if test="item.idtype != null">
+					idtype = #{item.idtype},
+				</if>
+				<if test="item.idnum != null">
+					idnum = #{item.idnum},
+				</if>
+				<if test="item.mngmtorgcode != null">
+					mngmtorgcode = #{item.mngmtorgcode},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_ctrctbssgmt_id=#{item.loan_ctrctbssgmt_id}
+		</foreach>
+	</update>
+</mapper>

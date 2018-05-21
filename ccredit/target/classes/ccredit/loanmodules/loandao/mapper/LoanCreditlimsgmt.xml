@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt">
+	<!--初始化分页-->
+	<select id="getLoanCreditlimsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt" parameterType="map">
+		SELECT
+			loan_creditlimsgmt_id,
+			creditlimtype,
+			limloopflg,
+			creditlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_creditlimsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != creditlimtype">
+			AND creditlimtype = #{creditlimtype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanCreditlimsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt" parameterType="string">
+		SELECT
+			loan_creditlimsgmt_id,
+			creditlimtype,
+			limloopflg,
+			creditlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_creditlimsgmt
+		WHERE loan_creditlimsgmt_id=#{loan_creditlimsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanCreditlimsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt">
+		INSERT INTO
+			loan_creditlimsgmt
+			(
+			loan_creditlimsgmt_id,
+			creditlimtype,
+			limloopflg,
+			creditlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_creditlimsgmt_id},
+			#{creditlimtype},
+			#{limloopflg},
+			#{creditlim},
+			#{cy},
+			#{coneffdate},
+			#{conexpdate},
+			#{constatus},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanCreditlimsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt">
+		UPDATE
+			loan_creditlimsgmt
+		SET
+			creditlimtype = #{creditlimtype},
+			limloopflg = #{limloopflg},
+			creditlim = #{creditlim},
+			cy = #{cy},
+			coneffdate = #{coneffdate},
+			conexpdate = #{conexpdate},
+			constatus = #{constatus},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_creditlimsgmt_id=#{loan_creditlimsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanCreditlimsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanCreditlimsgmt">
+		UPDATE
+			loan_creditlimsgmt
+		<set>
+			<if test="creditlimtype != null">
+				creditlimtype = #{creditlimtype},
+			</if>
+			<if test="limloopflg != null">
+				limloopflg = #{limloopflg},
+			</if>
+			<if test="creditlim != null">
+				creditlim = #{creditlim},
+			</if>
+			<if test="cy != null">
+				cy = #{cy},
+			</if>
+			<if test="coneffdate != null">
+				coneffdate = #{coneffdate},
+			</if>
+			<if test="conexpdate != null">
+				conexpdate = #{conexpdate},
+			</if>
+			<if test="constatus != null">
+				constatus = #{constatus},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_creditlimsgmt_id=#{loan_creditlimsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanCreditlimsgmt" parameterType="map">
+		DELETE FROM loan_creditlimsgmt WHERE loan_creditlimsgmt_id IN
+		<foreach item="item" index="index" collection="loan_creditlimsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanCreditlimsgmt" parameterType="list">
+		INSERT INTO
+			loan_creditlimsgmt
+			(
+			loan_creditlimsgmt_id,
+			creditlimtype,
+			limloopflg,
+			creditlim,
+			cy,
+			coneffdate,
+			conexpdate,
+			constatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_creditlimsgmt_id},
+			#{item.creditlimtype},
+			#{item.limloopflg},
+			#{item.creditlim},
+			#{item.cy},
+			#{item.coneffdate},
+			#{item.conexpdate},
+			#{item.constatus},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanCreditlimsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_creditlimsgmt
+			SET
+				creditlimtype = #{item.creditlimtype},
+				limloopflg = #{item.limloopflg},
+				creditlim = #{item.creditlim},
+				cy = #{item.cy},
+				coneffdate = #{item.coneffdate},
+				conexpdate = #{item.conexpdate},
+				constatus = #{item.constatus},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_creditlimsgmt_id=#{item.loan_creditlimsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanCreditlimsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_creditlimsgmt
+			<set>
+				<if test="item.creditlimtype != null">
+					creditlimtype = #{item.creditlimtype},
+				</if>
+				<if test="item.limloopflg != null">
+					limloopflg = #{item.limloopflg},
+				</if>
+				<if test="item.creditlim != null">
+					creditlim = #{item.creditlim},
+				</if>
+				<if test="item.cy != null">
+					cy = #{item.cy},
+				</if>
+				<if test="item.coneffdate != null">
+					coneffdate = #{item.coneffdate},
+				</if>
+				<if test="item.conexpdate != null">
+					conexpdate = #{item.conexpdate},
+				</if>
+				<if test="item.constatus != null">
+					constatus = #{item.constatus},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_creditlimsgmt_id=#{item.loan_creditlimsgmt_id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt">
+	<!--初始化分页-->
+	<select id="getFinInstitutionbalancesheetsgmtListByCondition" resultType="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt" parameterType="map">
+		SELECT
+			fin_institutionbalancesheetsgmt_id,
+			currencyfunds,
+			shortterminvestments,
+			amountoffinancialreturn,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			otherreceivables,
+			inventories,
+			othercurrentassets,
+			totalcurrentassets,
+			longterminvestment,
+			fixedassets,
+			originalcostoffixedasset,
+			fixedassetaccumulateddepreciation,
+			constructioninprocess,
+			intangibleassets,
+			originalpriceofintangibleassets,
+			accumulatedamortization,
+			assetstobeprocessedpendingtheprofit,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			taxpayable,
+			treasurypayable,
+			payablefinancialspecialaccount,
+			employeebenefitspayable,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			otherpayables,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			longtermpayables,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			enterprisefund,
+			noncurrentassetsfund,
+			specialpurposefunds,
+			financialaidcarriedover,
+			financialaidbalance,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalance,
+			undertakingsbalance,
+			operatingbalance,
+			totalnetassets,
+			totalliabilitiesandnetassets,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_institutionbalancesheetsgmt
+		WHERE 1=1
+		<if test="null != customid">
+			AND customid LIKE CONCAT(CONCAT('%',#{customid}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getFinInstitutionbalancesheetsgmtById" resultType="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt" parameterType="string">
+		SELECT
+			fin_institutionbalancesheetsgmt_id,
+			currencyfunds,
+			shortterminvestments,
+			amountoffinancialreturn,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			otherreceivables,
+			inventories,
+			othercurrentassets,
+			totalcurrentassets,
+			longterminvestment,
+			fixedassets,
+			originalcostoffixedasset,
+			fixedassetaccumulateddepreciation,
+			constructioninprocess,
+			intangibleassets,
+			originalpriceofintangibleassets,
+			accumulatedamortization,
+			assetstobeprocessedpendingtheprofit,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			taxpayable,
+			treasurypayable,
+			payablefinancialspecialaccount,
+			employeebenefitspayable,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			otherpayables,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			longtermpayables,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			enterprisefund,
+			noncurrentassetsfund,
+			specialpurposefunds,
+			financialaidcarriedover,
+			financialaidbalance,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalance,
+			undertakingsbalance,
+			operatingbalance,
+			totalnetassets,
+			totalliabilitiesandnetassets,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			fin_institutionbalancesheetsgmt
+		WHERE fin_institutionbalancesheetsgmt_id=#{fin_institutionbalancesheetsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addFinInstitutionbalancesheetsgmt" parameterType="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt">
+		INSERT INTO
+			fin_institutionbalancesheetsgmt
+			(
+			fin_institutionbalancesheetsgmt_id,
+			currencyfunds,
+			shortterminvestments,
+			amountoffinancialreturn,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			otherreceivables,
+			inventories,
+			othercurrentassets,
+			totalcurrentassets,
+			longterminvestment,
+			fixedassets,
+			originalcostoffixedasset,
+			fixedassetaccumulateddepreciation,
+			constructioninprocess,
+			intangibleassets,
+			originalpriceofintangibleassets,
+			accumulatedamortization,
+			assetstobeprocessedpendingtheprofit,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			taxpayable,
+			treasurypayable,
+			payablefinancialspecialaccount,
+			employeebenefitspayable,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			otherpayables,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			longtermpayables,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			enterprisefund,
+			noncurrentassetsfund,
+			specialpurposefunds,
+			financialaidcarriedover,
+			financialaidbalance,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalance,
+			undertakingsbalance,
+			operatingbalance,
+			totalnetassets,
+			totalliabilitiesandnetassets,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{fin_institutionbalancesheetsgmt_id},
+			#{currencyfunds},
+			#{shortterminvestments},
+			#{amountoffinancialreturn},
+			#{notesreceivable},
+			#{accountsreceivable},
+			#{prepayments},
+			#{otherreceivables},
+			#{inventories},
+			#{othercurrentassets},
+			#{totalcurrentassets},
+			#{longterminvestment},
+			#{fixedassets},
+			#{originalcostoffixedasset},
+			#{fixedassetaccumulateddepreciation},
+			#{constructioninprocess},
+			#{intangibleassets},
+			#{originalpriceofintangibleassets},
+			#{accumulatedamortization},
+			#{assetstobeprocessedpendingtheprofit},
+			#{totalnoncurrentassets},
+			#{totalassets},
+			#{shorttermborrowings},
+			#{taxpayable},
+			#{treasurypayable},
+			#{payablefinancialspecialaccount},
+			#{employeebenefitspayable},
+			#{notespayable},
+			#{accountspayab1e},
+			#{receiptsinadvance},
+			#{otherpayables},
+			#{othercurrentliabilities},
+			#{totalcurrentliabilities},
+			#{longtermborrowings},
+			#{longtermpayables},
+			#{totalnoncurrentliabilities},
+			#{totalliabilities},
+			#{enterprisefund},
+			#{noncurrentassetsfund},
+			#{specialpurposefunds},
+			#{financialaidcarriedover},
+			#{financialaidbalance},
+			#{nonfinancialaidcarriedover},
+			#{nonfinancialaidbalance},
+			#{undertakingsbalance},
+			#{operatingbalance},
+			#{totalnetassets},
+			#{totalliabilitiesandnetassets},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateFinInstitutionbalancesheetsgmt" parameterType="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt">
+		UPDATE
+			fin_institutionbalancesheetsgmt
+		SET
+			currencyfunds = #{currencyfunds},
+			shortterminvestments = #{shortterminvestments},
+			amountoffinancialreturn = #{amountoffinancialreturn},
+			notesreceivable = #{notesreceivable},
+			accountsreceivable = #{accountsreceivable},
+			prepayments = #{prepayments},
+			otherreceivables = #{otherreceivables},
+			inventories = #{inventories},
+			othercurrentassets = #{othercurrentassets},
+			totalcurrentassets = #{totalcurrentassets},
+			longterminvestment = #{longterminvestment},
+			fixedassets = #{fixedassets},
+			originalcostoffixedasset = #{originalcostoffixedasset},
+			fixedassetaccumulateddepreciation = #{fixedassetaccumulateddepreciation},
+			constructioninprocess = #{constructioninprocess},
+			intangibleassets = #{intangibleassets},
+			originalpriceofintangibleassets = #{originalpriceofintangibleassets},
+			accumulatedamortization = #{accumulatedamortization},
+			assetstobeprocessedpendingtheprofit = #{assetstobeprocessedpendingtheprofit},
+			totalnoncurrentassets = #{totalnoncurrentassets},
+			totalassets = #{totalassets},
+			shorttermborrowings = #{shorttermborrowings},
+			taxpayable = #{taxpayable},
+			treasurypayable = #{treasurypayable},
+			payablefinancialspecialaccount = #{payablefinancialspecialaccount},
+			employeebenefitspayable = #{employeebenefitspayable},
+			notespayable = #{notespayable},
+			accountspayab1e = #{accountspayab1e},
+			receiptsinadvance = #{receiptsinadvance},
+			otherpayables = #{otherpayables},
+			othercurrentliabilities = #{othercurrentliabilities},
+			totalcurrentliabilities = #{totalcurrentliabilities},
+			longtermborrowings = #{longtermborrowings},
+			longtermpayables = #{longtermpayables},
+			totalnoncurrentliabilities = #{totalnoncurrentliabilities},
+			totalliabilities = #{totalliabilities},
+			enterprisefund = #{enterprisefund},
+			noncurrentassetsfund = #{noncurrentassetsfund},
+			specialpurposefunds = #{specialpurposefunds},
+			financialaidcarriedover = #{financialaidcarriedover},
+			financialaidbalance = #{financialaidbalance},
+			nonfinancialaidcarriedover = #{nonfinancialaidcarriedover},
+			nonfinancialaidbalance = #{nonfinancialaidbalance},
+			undertakingsbalance = #{undertakingsbalance},
+			operatingbalance = #{operatingbalance},
+			totalnetassets = #{totalnetassets},
+			totalliabilitiesandnetassets = #{totalliabilitiesandnetassets},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE fin_institutionbalancesheetsgmt_id=#{fin_institutionbalancesheetsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateFinInstitutionbalancesheetsgmtBySelective" parameterType="ccredit.finmodules.finmodel.FinInstitutionbalancesheetsgmt">
+		UPDATE
+			fin_institutionbalancesheetsgmt
+		<set>
+			<if test="currencyfunds != null">
+				currencyfunds = #{currencyfunds},
+			</if>
+			<if test="shortterminvestments != null">
+				shortterminvestments = #{shortterminvestments},
+			</if>
+			<if test="amountoffinancialreturn != null">
+				amountoffinancialreturn = #{amountoffinancialreturn},
+			</if>
+			<if test="notesreceivable != null">
+				notesreceivable = #{notesreceivable},
+			</if>
+			<if test="accountsreceivable != null">
+				accountsreceivable = #{accountsreceivable},
+			</if>
+			<if test="prepayments != null">
+				prepayments = #{prepayments},
+			</if>
+			<if test="otherreceivables != null">
+				otherreceivables = #{otherreceivables},
+			</if>
+			<if test="inventories != null">
+				inventories = #{inventories},
+			</if>
+			<if test="othercurrentassets != null">
+				othercurrentassets = #{othercurrentassets},
+			</if>
+			<if test="totalcurrentassets != null">
+				totalcurrentassets = #{totalcurrentassets},
+			</if>
+			<if test="longterminvestment != null">
+				longterminvestment = #{longterminvestment},
+			</if>
+			<if test="fixedassets != null">
+				fixedassets = #{fixedassets},
+			</if>
+			<if test="originalcostoffixedasset != null">
+				originalcostoffixedasset = #{originalcostoffixedasset},
+			</if>
+			<if test="fixedassetaccumulateddepreciation != null">
+				fixedassetaccumulateddepreciation = #{fixedassetaccumulateddepreciation},
+			</if>
+			<if test="constructioninprocess != null">
+				constructioninprocess = #{constructioninprocess},
+			</if>
+			<if test="intangibleassets != null">
+				intangibleassets = #{intangibleassets},
+			</if>
+			<if test="originalpriceofintangibleassets != null">
+				originalpriceofintangibleassets = #{originalpriceofintangibleassets},
+			</if>
+			<if test="accumulatedamortization != null">
+				accumulatedamortization = #{accumulatedamortization},
+			</if>
+			<if test="assetstobeprocessedpendingtheprofit != null">
+				assetstobeprocessedpendingtheprofit = #{assetstobeprocessedpendingtheprofit},
+			</if>
+			<if test="totalnoncurrentassets != null">
+				totalnoncurrentassets = #{totalnoncurrentassets},
+			</if>
+			<if test="totalassets != null">
+				totalassets = #{totalassets},
+			</if>
+			<if test="shorttermborrowings != null">
+				shorttermborrowings = #{shorttermborrowings},
+			</if>
+			<if test="taxpayable != null">
+				taxpayable = #{taxpayable},
+			</if>
+			<if test="treasurypayable != null">
+				treasurypayable = #{treasurypayable},
+			</if>
+			<if test="payablefinancialspecialaccount != null">
+				payablefinancialspecialaccount = #{payablefinancialspecialaccount},
+			</if>
+			<if test="employeebenefitspayable != null">
+				employeebenefitspayable = #{employeebenefitspayable},
+			</if>
+			<if test="notespayable != null">
+				notespayable = #{notespayable},
+			</if>
+			<if test="accountspayab1e != null">
+				accountspayab1e = #{accountspayab1e},
+			</if>
+			<if test="receiptsinadvance != null">
+				receiptsinadvance = #{receiptsinadvance},
+			</if>
+			<if test="otherpayables != null">
+				otherpayables = #{otherpayables},
+			</if>
+			<if test="othercurrentliabilities != null">
+				othercurrentliabilities = #{othercurrentliabilities},
+			</if>
+			<if test="totalcurrentliabilities != null">
+				totalcurrentliabilities = #{totalcurrentliabilities},
+			</if>
+			<if test="longtermborrowings != null">
+				longtermborrowings = #{longtermborrowings},
+			</if>
+			<if test="longtermpayables != null">
+				longtermpayables = #{longtermpayables},
+			</if>
+			<if test="totalnoncurrentliabilities != null">
+				totalnoncurrentliabilities = #{totalnoncurrentliabilities},
+			</if>
+			<if test="totalliabilities != null">
+				totalliabilities = #{totalliabilities},
+			</if>
+			<if test="enterprisefund != null">
+				enterprisefund = #{enterprisefund},
+			</if>
+			<if test="noncurrentassetsfund != null">
+				noncurrentassetsfund = #{noncurrentassetsfund},
+			</if>
+			<if test="specialpurposefunds != null">
+				specialpurposefunds = #{specialpurposefunds},
+			</if>
+			<if test="financialaidcarriedover != null">
+				financialaidcarriedover = #{financialaidcarriedover},
+			</if>
+			<if test="financialaidbalance != null">
+				financialaidbalance = #{financialaidbalance},
+			</if>
+			<if test="nonfinancialaidcarriedover != null">
+				nonfinancialaidcarriedover = #{nonfinancialaidcarriedover},
+			</if>
+			<if test="nonfinancialaidbalance != null">
+				nonfinancialaidbalance = #{nonfinancialaidbalance},
+			</if>
+			<if test="undertakingsbalance != null">
+				undertakingsbalance = #{undertakingsbalance},
+			</if>
+			<if test="operatingbalance != null">
+				operatingbalance = #{operatingbalance},
+			</if>
+			<if test="totalnetassets != null">
+				totalnetassets = #{totalnetassets},
+			</if>
+			<if test="totalliabilitiesandnetassets != null">
+				totalliabilitiesandnetassets = #{totalliabilitiesandnetassets},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE fin_institutionbalancesheetsgmt_id=#{fin_institutionbalancesheetsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delFinInstitutionbalancesheetsgmt" parameterType="map">
+		DELETE FROM fin_institutionbalancesheetsgmt WHERE fin_institutionbalancesheetsgmt_id IN
+		<foreach item="item" index="index" collection="fin_institutionbalancesheetsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchFinInstitutionbalancesheetsgmt" parameterType="list">
+		INSERT INTO
+			fin_institutionbalancesheetsgmt
+			(
+			fin_institutionbalancesheetsgmt_id,
+			currencyfunds,
+			shortterminvestments,
+			amountoffinancialreturn,
+			notesreceivable,
+			accountsreceivable,
+			prepayments,
+			otherreceivables,
+			inventories,
+			othercurrentassets,
+			totalcurrentassets,
+			longterminvestment,
+			fixedassets,
+			originalcostoffixedasset,
+			fixedassetaccumulateddepreciation,
+			constructioninprocess,
+			intangibleassets,
+			originalpriceofintangibleassets,
+			accumulatedamortization,
+			assetstobeprocessedpendingtheprofit,
+			totalnoncurrentassets,
+			totalassets,
+			shorttermborrowings,
+			taxpayable,
+			treasurypayable,
+			payablefinancialspecialaccount,
+			employeebenefitspayable,
+			notespayable,
+			accountspayab1e,
+			receiptsinadvance,
+			otherpayables,
+			othercurrentliabilities,
+			totalcurrentliabilities,
+			longtermborrowings,
+			longtermpayables,
+			totalnoncurrentliabilities,
+			totalliabilities,
+			enterprisefund,
+			noncurrentassetsfund,
+			specialpurposefunds,
+			financialaidcarriedover,
+			financialaidbalance,
+			nonfinancialaidcarriedover,
+			nonfinancialaidbalance,
+			undertakingsbalance,
+			operatingbalance,
+			totalnetassets,
+			totalliabilitiesandnetassets,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.fin_institutionbalancesheetsgmt_id},
+			#{item.currencyfunds},
+			#{item.shortterminvestments},
+			#{item.amountoffinancialreturn},
+			#{item.notesreceivable},
+			#{item.accountsreceivable},
+			#{item.prepayments},
+			#{item.otherreceivables},
+			#{item.inventories},
+			#{item.othercurrentassets},
+			#{item.totalcurrentassets},
+			#{item.longterminvestment},
+			#{item.fixedassets},
+			#{item.originalcostoffixedasset},
+			#{item.fixedassetaccumulateddepreciation},
+			#{item.constructioninprocess},
+			#{item.intangibleassets},
+			#{item.originalpriceofintangibleassets},
+			#{item.accumulatedamortization},
+			#{item.assetstobeprocessedpendingtheprofit},
+			#{item.totalnoncurrentassets},
+			#{item.totalassets},
+			#{item.shorttermborrowings},
+			#{item.taxpayable},
+			#{item.treasurypayable},
+			#{item.payablefinancialspecialaccount},
+			#{item.employeebenefitspayable},
+			#{item.notespayable},
+			#{item.accountspayab1e},
+			#{item.receiptsinadvance},
+			#{item.otherpayables},
+			#{item.othercurrentliabilities},
+			#{item.totalcurrentliabilities},
+			#{item.longtermborrowings},
+			#{item.longtermpayables},
+			#{item.totalnoncurrentliabilities},
+			#{item.totalliabilities},
+			#{item.enterprisefund},
+			#{item.noncurrentassetsfund},
+			#{item.specialpurposefunds},
+			#{item.financialaidcarriedover},
+			#{item.financialaidbalance},
+			#{item.nonfinancialaidcarriedover},
+			#{item.nonfinancialaidbalance},
+			#{item.undertakingsbalance},
+			#{item.operatingbalance},
+			#{item.totalnetassets},
+			#{item.totalliabilitiesandnetassets},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchFinInstitutionbalancesheetsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_institutionbalancesheetsgmt
+			SET
+				currencyfunds = #{item.currencyfunds},
+				shortterminvestments = #{item.shortterminvestments},
+				amountoffinancialreturn = #{item.amountoffinancialreturn},
+				notesreceivable = #{item.notesreceivable},
+				accountsreceivable = #{item.accountsreceivable},
+				prepayments = #{item.prepayments},
+				otherreceivables = #{item.otherreceivables},
+				inventories = #{item.inventories},
+				othercurrentassets = #{item.othercurrentassets},
+				totalcurrentassets = #{item.totalcurrentassets},
+				longterminvestment = #{item.longterminvestment},
+				fixedassets = #{item.fixedassets},
+				originalcostoffixedasset = #{item.originalcostoffixedasset},
+				fixedassetaccumulateddepreciation = #{item.fixedassetaccumulateddepreciation},
+				constructioninprocess = #{item.constructioninprocess},
+				intangibleassets = #{item.intangibleassets},
+				originalpriceofintangibleassets = #{item.originalpriceofintangibleassets},
+				accumulatedamortization = #{item.accumulatedamortization},
+				assetstobeprocessedpendingtheprofit = #{item.assetstobeprocessedpendingtheprofit},
+				totalnoncurrentassets = #{item.totalnoncurrentassets},
+				totalassets = #{item.totalassets},
+				shorttermborrowings = #{item.shorttermborrowings},
+				taxpayable = #{item.taxpayable},
+				treasurypayable = #{item.treasurypayable},
+				payablefinancialspecialaccount = #{item.payablefinancialspecialaccount},
+				employeebenefitspayable = #{item.employeebenefitspayable},
+				notespayable = #{item.notespayable},
+				accountspayab1e = #{item.accountspayab1e},
+				receiptsinadvance = #{item.receiptsinadvance},
+				otherpayables = #{item.otherpayables},
+				othercurrentliabilities = #{item.othercurrentliabilities},
+				totalcurrentliabilities = #{item.totalcurrentliabilities},
+				longtermborrowings = #{item.longtermborrowings},
+				longtermpayables = #{item.longtermpayables},
+				totalnoncurrentliabilities = #{item.totalnoncurrentliabilities},
+				totalliabilities = #{item.totalliabilities},
+				enterprisefund = #{item.enterprisefund},
+				noncurrentassetsfund = #{item.noncurrentassetsfund},
+				specialpurposefunds = #{item.specialpurposefunds},
+				financialaidcarriedover = #{item.financialaidcarriedover},
+				financialaidbalance = #{item.financialaidbalance},
+				nonfinancialaidcarriedover = #{item.nonfinancialaidcarriedover},
+				nonfinancialaidbalance = #{item.nonfinancialaidbalance},
+				undertakingsbalance = #{item.undertakingsbalance},
+				operatingbalance = #{item.operatingbalance},
+				totalnetassets = #{item.totalnetassets},
+				totalliabilitiesandnetassets = #{item.totalliabilitiesandnetassets},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE fin_institutionbalancesheetsgmt_id=#{item.fin_institutionbalancesheetsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchFinInstitutionbalancesheetsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				fin_institutionbalancesheetsgmt
+			<set>
+				<if test="item.currencyfunds != null">
+					currencyfunds = #{item.currencyfunds},
+				</if>
+				<if test="item.shortterminvestments != null">
+					shortterminvestments = #{item.shortterminvestments},
+				</if>
+				<if test="item.amountoffinancialreturn != null">
+					amountoffinancialreturn = #{item.amountoffinancialreturn},
+				</if>
+				<if test="item.notesreceivable != null">
+					notesreceivable = #{item.notesreceivable},
+				</if>
+				<if test="item.accountsreceivable != null">
+					accountsreceivable = #{item.accountsreceivable},
+				</if>
+				<if test="item.prepayments != null">
+					prepayments = #{item.prepayments},
+				</if>
+				<if test="item.otherreceivables != null">
+					otherreceivables = #{item.otherreceivables},
+				</if>
+				<if test="item.inventories != null">
+					inventories = #{item.inventories},
+				</if>
+				<if test="item.othercurrentassets != null">
+					othercurrentassets = #{item.othercurrentassets},
+				</if>
+				<if test="item.totalcurrentassets != null">
+					totalcurrentassets = #{item.totalcurrentassets},
+				</if>
+				<if test="item.longterminvestment != null">
+					longterminvestment = #{item.longterminvestment},
+				</if>
+				<if test="item.fixedassets != null">
+					fixedassets = #{item.fixedassets},
+				</if>
+				<if test="item.originalcostoffixedasset != null">
+					originalcostoffixedasset = #{item.originalcostoffixedasset},
+				</if>
+				<if test="item.fixedassetaccumulateddepreciation != null">
+					fixedassetaccumulateddepreciation = #{item.fixedassetaccumulateddepreciation},
+				</if>
+				<if test="item.constructioninprocess != null">
+					constructioninprocess = #{item.constructioninprocess},
+				</if>
+				<if test="item.intangibleassets != null">
+					intangibleassets = #{item.intangibleassets},
+				</if>
+				<if test="item.originalpriceofintangibleassets != null">
+					originalpriceofintangibleassets = #{item.originalpriceofintangibleassets},
+				</if>
+				<if test="item.accumulatedamortization != null">
+					accumulatedamortization = #{item.accumulatedamortization},
+				</if>
+				<if test="item.assetstobeprocessedpendingtheprofit != null">
+					assetstobeprocessedpendingtheprofit = #{item.assetstobeprocessedpendingtheprofit},
+				</if>
+				<if test="item.totalnoncurrentassets != null">
+					totalnoncurrentassets = #{item.totalnoncurrentassets},
+				</if>
+				<if test="item.totalassets != null">
+					totalassets = #{item.totalassets},
+				</if>
+				<if test="item.shorttermborrowings != null">
+					shorttermborrowings = #{item.shorttermborrowings},
+				</if>
+				<if test="item.taxpayable != null">
+					taxpayable = #{item.taxpayable},
+				</if>
+				<if test="item.treasurypayable != null">
+					treasurypayable = #{item.treasurypayable},
+				</if>
+				<if test="item.payablefinancialspecialaccount != null">
+					payablefinancialspecialaccount = #{item.payablefinancialspecialaccount},
+				</if>
+				<if test="item.employeebenefitspayable != null">
+					employeebenefitspayable = #{item.employeebenefitspayable},
+				</if>
+				<if test="item.notespayable != null">
+					notespayable = #{item.notespayable},
+				</if>
+				<if test="item.accountspayab1e != null">
+					accountspayab1e = #{item.accountspayab1e},
+				</if>
+				<if test="item.receiptsinadvance != null">
+					receiptsinadvance = #{item.receiptsinadvance},
+				</if>
+				<if test="item.otherpayables != null">
+					otherpayables = #{item.otherpayables},
+				</if>
+				<if test="item.othercurrentliabilities != null">
+					othercurrentliabilities = #{item.othercurrentliabilities},
+				</if>
+				<if test="item.totalcurrentliabilities != null">
+					totalcurrentliabilities = #{item.totalcurrentliabilities},
+				</if>
+				<if test="item.longtermborrowings != null">
+					longtermborrowings = #{item.longtermborrowings},
+				</if>
+				<if test="item.longtermpayables != null">
+					longtermpayables = #{item.longtermpayables},
+				</if>
+				<if test="item.totalnoncurrentliabilities != null">
+					totalnoncurrentliabilities = #{item.totalnoncurrentliabilities},
+				</if>
+				<if test="item.totalliabilities != null">
+					totalliabilities = #{item.totalliabilities},
+				</if>
+				<if test="item.enterprisefund != null">
+					enterprisefund = #{item.enterprisefund},
+				</if>
+				<if test="item.noncurrentassetsfund != null">
+					noncurrentassetsfund = #{item.noncurrentassetsfund},
+				</if>
+				<if test="item.specialpurposefunds != null">
+					specialpurposefunds = #{item.specialpurposefunds},
+				</if>
+				<if test="item.financialaidcarriedover != null">
+					financialaidcarriedover = #{item.financialaidcarriedover},
+				</if>
+				<if test="item.financialaidbalance != null">
+					financialaidbalance = #{item.financialaidbalance},
+				</if>
+				<if test="item.nonfinancialaidcarriedover != null">
+					nonfinancialaidcarriedover = #{item.nonfinancialaidcarriedover},
+				</if>
+				<if test="item.nonfinancialaidbalance != null">
+					nonfinancialaidbalance = #{item.nonfinancialaidbalance},
+				</if>
+				<if test="item.undertakingsbalance != null">
+					undertakingsbalance = #{item.undertakingsbalance},
+				</if>
+				<if test="item.operatingbalance != null">
+					operatingbalance = #{item.operatingbalance},
+				</if>
+				<if test="item.totalnetassets != null">
+					totalnetassets = #{item.totalnetassets},
+				</if>
+				<if test="item.totalliabilitiesandnetassets != null">
+					totalliabilitiesandnetassets = #{item.totalliabilitiesandnetassets},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE fin_institutionbalancesheetsgmt_id=#{item.fin_institutionbalancesheetsgmt_id}
+		</foreach>
+	</update>
+</mapper>

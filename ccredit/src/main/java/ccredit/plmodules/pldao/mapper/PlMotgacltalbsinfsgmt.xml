@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt">
+	<!--初始化分页-->
+	<select id="getPlMotgacltalbsinfsgmtListByCondition" resultType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt" parameterType="map">
+		SELECT
+			pl_motgacltalbsinfsgmt_id,
+			guartype,
+			ccamt,
+			cy,
+			ccvaldate,
+			ccexpdate,
+			maxguar,
+			ccstatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgacltalbsinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != guartype">
+			AND guartype = #{guartype}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getPlMotgacltalbsinfsgmtById" resultType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt" parameterType="string">
+		SELECT
+			pl_motgacltalbsinfsgmt_id,
+			guartype,
+			ccamt,
+			cy,
+			ccvaldate,
+			ccexpdate,
+			maxguar,
+			ccstatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			pl_motgacltalbsinfsgmt
+		WHERE pl_motgacltalbsinfsgmt_id=#{pl_motgacltalbsinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addPlMotgacltalbsinfsgmt" parameterType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt">
+		INSERT INTO
+			pl_motgacltalbsinfsgmt
+			(
+			pl_motgacltalbsinfsgmt_id,
+			guartype,
+			ccamt,
+			cy,
+			ccvaldate,
+			ccexpdate,
+			maxguar,
+			ccstatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{pl_motgacltalbsinfsgmt_id},
+			#{guartype},
+			#{ccamt},
+			#{cy},
+			#{ccvaldate},
+			#{ccexpdate},
+			#{maxguar},
+			#{ccstatus},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updatePlMotgacltalbsinfsgmt" parameterType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt">
+		UPDATE
+			pl_motgacltalbsinfsgmt
+		SET
+			guartype = #{guartype},
+			ccamt = #{ccamt},
+			cy = #{cy},
+			ccvaldate = #{ccvaldate},
+			ccexpdate = #{ccexpdate},
+			maxguar = #{maxguar},
+			ccstatus = #{ccstatus},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE pl_motgacltalbsinfsgmt_id=#{pl_motgacltalbsinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updatePlMotgacltalbsinfsgmtBySelective" parameterType="ccredit.plmodules.plmodel.PlMotgacltalbsinfsgmt">
+		UPDATE
+			pl_motgacltalbsinfsgmt
+		<set>
+			<if test="guartype != null">
+				guartype = #{guartype},
+			</if>
+			<if test="ccamt != null">
+				ccamt = #{ccamt},
+			</if>
+			<if test="cy != null">
+				cy = #{cy},
+			</if>
+			<if test="ccvaldate != null">
+				ccvaldate = #{ccvaldate},
+			</if>
+			<if test="ccexpdate != null">
+				ccexpdate = #{ccexpdate},
+			</if>
+			<if test="maxguar != null">
+				maxguar = #{maxguar},
+			</if>
+			<if test="ccstatus != null">
+				ccstatus = #{ccstatus},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE pl_motgacltalbsinfsgmt_id=#{pl_motgacltalbsinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delPlMotgacltalbsinfsgmt" parameterType="map">
+		DELETE FROM pl_motgacltalbsinfsgmt WHERE pl_motgacltalbsinfsgmt_id IN
+		<foreach item="item" index="index" collection="pl_motgacltalbsinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchPlMotgacltalbsinfsgmt" parameterType="list">
+		INSERT INTO
+			pl_motgacltalbsinfsgmt
+			(
+			pl_motgacltalbsinfsgmt_id,
+			guartype,
+			ccamt,
+			cy,
+			ccvaldate,
+			ccexpdate,
+			maxguar,
+			ccstatus,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.pl_motgacltalbsinfsgmt_id},
+			#{item.guartype},
+			#{item.ccamt},
+			#{item.cy},
+			#{item.ccvaldate},
+			#{item.ccexpdate},
+			#{item.maxguar},
+			#{item.ccstatus},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchPlMotgacltalbsinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgacltalbsinfsgmt
+			SET
+				guartype = #{item.guartype},
+				ccamt = #{item.ccamt},
+				cy = #{item.cy},
+				ccvaldate = #{item.ccvaldate},
+				ccexpdate = #{item.ccexpdate},
+				maxguar = #{item.maxguar},
+				ccstatus = #{item.ccstatus},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE pl_motgacltalbsinfsgmt_id=#{item.pl_motgacltalbsinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchPlMotgacltalbsinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				pl_motgacltalbsinfsgmt
+			<set>
+				<if test="item.guartype != null">
+					guartype = #{item.guartype},
+				</if>
+				<if test="item.ccamt != null">
+					ccamt = #{item.ccamt},
+				</if>
+				<if test="item.cy != null">
+					cy = #{item.cy},
+				</if>
+				<if test="item.ccvaldate != null">
+					ccvaldate = #{item.ccvaldate},
+				</if>
+				<if test="item.ccexpdate != null">
+					ccexpdate = #{item.ccexpdate},
+				</if>
+				<if test="item.maxguar != null">
+					maxguar = #{item.maxguar},
+				</if>
+				<if test="item.ccstatus != null">
+					ccstatus = #{item.ccstatus},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE pl_motgacltalbsinfsgmt_id=#{item.pl_motgacltalbsinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.xmlmodules.xmlmodel.Xmlnode">
+	<!--初始化分页-->
+	<select id="getXmlnodeListByCondition" resultType="ccredit.xmlmodules.xmlmodel.Xmlnode" parameterType="map">
+		SELECT
+			id,
+			nodeid,
+			parentid,
+			nodename,
+			nodecode,
+			sortno,
+			segmentid,
+			remark
+		FROM 
+			xmlnode
+		WHERE 1=1
+		<if test="null != segmentid">
+			AND segmentid = #{segmentid}
+		</if>
+		<if test="null != nodename">
+			AND nodename LIKE CONCAT(CONCAT('%',#{nodename}),'%')
+		</if>
+		   order by sortno
+	</select>
+
+	<!--查询对象-->
+	<select id="getXmlnodeById" resultType="ccredit.xmlmodules.xmlmodel.Xmlnode" parameterType="string">
+		SELECT
+			id,
+			nodeid,
+			parentid,
+			nodename,
+			nodecode,
+			sortno,
+			segmentid,
+			remark
+		FROM 
+			xmlnode
+		WHERE id=#{id}
+	</select>
+<!--查询-->
+	<select id="getMaxNodeid" resultType="java.lang.String" parameterType="map">
+	 SELECT max(nodeid) FROM xmlnode
+		WHERE 1=1
+		<if test="null != segmentid">
+			AND segmentid = #{segmentid}
+		</if>
+		<if test="null != parentid">
+			AND parentid = #{parentid}
+		</if>
+	</select>
+	<!--添加-->
+	<insert id="addXmlnode" parameterType="ccredit.xmlmodules.xmlmodel.Xmlnode">
+		INSERT INTO
+			xmlnode
+			(
+			id,
+			nodeid,
+			parentid,
+			nodename,
+			nodecode,
+			sortno,
+			segmentid,
+			remark
+			)
+			VALUES
+			(
+			#{id},
+			#{nodeid},
+			#{parentid},
+			#{nodename},
+			#{nodecode},
+			#{sortno},
+			#{segmentid},
+			#{remark}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateXmlnode" parameterType="ccredit.xmlmodules.xmlmodel.Xmlnode">
+		UPDATE
+			xmlnode
+		SET
+			nodeid = #{nodeid},
+			parentid = #{parentid},
+			nodename = #{nodename},
+			nodecode = #{nodecode},
+			sortno = #{sortno},
+			segmentid = #{segmentid},
+			remark = #{remark}
+		WHERE id=#{id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateXmlnodeBySelective" parameterType="ccredit.xmlmodules.xmlmodel.Xmlnode">
+		UPDATE
+			xmlnode
+		<set>
+			<if test="nodeid != null">
+				nodeid = #{nodeid},
+			</if>
+			<if test="parentid != null">
+				parentid = #{parentid},
+			</if>
+			<if test="nodename != null">
+				nodename = #{nodename},
+			</if>
+			<if test="nodecode != null">
+				nodecode = #{nodecode},
+			</if>
+			<if test="sortno != null">
+				sortno = #{sortno},
+			</if>
+			<if test="segmentid != null">
+				segmentid = #{segmentid},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+
+	<!--删除-->
+	<delete id="delXmlnode" parameterType="map">
+		DELETE FROM xmlnode WHERE id IN
+		<foreach item="item" index="index" collection="id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchXmlnode" parameterType="list">
+		INSERT INTO
+			xmlnode
+			(
+			id,
+			nodeid,
+			parentid,
+			nodename,
+			nodecode,
+			sortno,
+			segmentid,
+			remark
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.id},
+			#{item.nodeid},
+			#{item.parentid},
+			#{item.nodename},
+			#{item.nodecode},
+			#{item.sortno},
+			#{item.segmentid},
+			#{item.remark}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchXmlnode" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmlnode
+			SET
+				nodeid = #{item.nodeid},
+				parentid = #{item.parentid},
+				nodename = #{item.nodename},
+				nodecode = #{item.nodecode},
+				sortno = #{item.sortno},
+				segmentid = #{item.segmentid},
+				remark = #{item.remark}
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchXmlnodeBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				xmlnode
+			<set>
+				<if test="item.nodeid != null">
+					nodeid = #{item.nodeid},
+				</if>
+				<if test="item.parentid != null">
+					parentid = #{item.parentid},
+				</if>
+				<if test="item.nodename != null">
+					nodename = #{item.nodename},
+				</if>
+				<if test="item.nodecode != null">
+					nodecode = #{item.nodecode},
+				</if>
+				<if test="item.sortno != null">
+					sortno = #{item.sortno},
+				</if>
+				<if test="item.segmentid != null">
+					segmentid = #{item.segmentid},
+				</if>
+				<if test="item.remark != null">
+					remark = #{item.remark},
+				</if>
+			</set>
+			WHERE id=#{item.id}
+		</foreach>
+	</update>
+</mapper>

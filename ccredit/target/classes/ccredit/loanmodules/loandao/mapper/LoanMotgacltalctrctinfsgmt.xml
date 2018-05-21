@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt">
+	<!--初始化分页-->
+	<select id="getLoanMotgacltalctrctinfsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt" parameterType="map">
+		SELECT
+			loan_motgacltalctrctinfsgmt_id,
+			ccnm,
+			ccc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_motgacltalctrctinfsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != ccc">
+			AND ccc LIKE CONCAT(CONCAT('%',#{ccc}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanMotgacltalctrctinfsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt" parameterType="string">
+		SELECT
+			loan_motgacltalctrctinfsgmt_id,
+			ccnm,
+			ccc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_motgacltalctrctinfsgmt
+		WHERE loan_motgacltalctrctinfsgmt_id=#{loan_motgacltalctrctinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanMotgacltalctrctinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt">
+		INSERT INTO
+			loan_motgacltalctrctinfsgmt
+			(
+			loan_motgacltalctrctinfsgmt_id,
+			ccnm,
+			ccc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_motgacltalctrctinfsgmt_id},
+			#{ccnm},
+			#{ccc},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanMotgacltalctrctinfsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt">
+		UPDATE
+			loan_motgacltalctrctinfsgmt
+		SET
+			ccnm = #{ccnm},
+			ccc = #{ccc},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_motgacltalctrctinfsgmt_id=#{loan_motgacltalctrctinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanMotgacltalctrctinfsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanMotgacltalctrctinfsgmt">
+		UPDATE
+			loan_motgacltalctrctinfsgmt
+		<set>
+			<if test="ccnm != null">
+				ccnm = #{ccnm},
+			</if>
+			<if test="ccc != null">
+				ccc = #{ccc},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_motgacltalctrctinfsgmt_id=#{loan_motgacltalctrctinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanMotgacltalctrctinfsgmt" parameterType="map">
+		DELETE FROM loan_motgacltalctrctinfsgmt WHERE loan_motgacltalctrctinfsgmt_id IN
+		<foreach item="item" index="index" collection="loan_motgacltalctrctinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanMotgacltalctrctinfsgmt" parameterType="list">
+		INSERT INTO
+			loan_motgacltalctrctinfsgmt
+			(
+			loan_motgacltalctrctinfsgmt_id,
+			ccnm,
+			ccc,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_motgacltalctrctinfsgmt_id},
+			#{item.ccnm},
+			#{item.ccc},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanMotgacltalctrctinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_motgacltalctrctinfsgmt
+			SET
+				ccnm = #{item.ccnm},
+				ccc = #{item.ccc},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_motgacltalctrctinfsgmt_id=#{item.loan_motgacltalctrctinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanMotgacltalctrctinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_motgacltalctrctinfsgmt
+			<set>
+				<if test="item.ccnm != null">
+					ccnm = #{item.ccnm},
+				</if>
+				<if test="item.ccc != null">
+					ccc = #{item.ccc},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_motgacltalctrctinfsgmt_id=#{item.loan_motgacltalctrctinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt">
+	<!--初始化分页-->
+	<select id="getLoanAcctspectrstdspnsgmtListByCondition" resultType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt" parameterType="map">
+		SELECT
+			loan_acctspectrstdspnsgmt_id,
+			cagoftrdnm,
+			chantrantype,
+			trandate,
+			tranamt,
+			duetranmon,
+			detinfo,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_acctspectrstdspnsgmt
+		WHERE 1=1
+		<if test="null != serialno">
+			AND serialno LIKE CONCAT(CONCAT('%',#{serialno}),'%')
+		</if>
+		<if test="null != chantrantype">
+			AND chantrantype LIKE CONCAT(CONCAT('%',#{chantrantype}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getLoanAcctspectrstdspnsgmtById" resultType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt" parameterType="string">
+		SELECT
+			loan_acctspectrstdspnsgmt_id,
+			cagoftrdnm,
+			chantrantype,
+			trandate,
+			tranamt,
+			duetranmon,
+			detinfo,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			loan_acctspectrstdspnsgmt
+		WHERE loan_acctspectrstdspnsgmt_id=#{loan_acctspectrstdspnsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addLoanAcctspectrstdspnsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt">
+		INSERT INTO
+			loan_acctspectrstdspnsgmt
+			(
+			loan_acctspectrstdspnsgmt_id,
+			cagoftrdnm,
+			chantrantype,
+			trandate,
+			tranamt,
+			duetranmon,
+			detinfo,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{loan_acctspectrstdspnsgmt_id},
+			#{cagoftrdnm},
+			#{chantrantype},
+			#{trandate},
+			#{tranamt},
+			#{duetranmon},
+			#{detinfo},
+			#{serialno},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateLoanAcctspectrstdspnsgmt" parameterType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt">
+		UPDATE
+			loan_acctspectrstdspnsgmt
+		SET
+			cagoftrdnm = #{cagoftrdnm},
+			chantrantype = #{chantrantype},
+			trandate = #{trandate},
+			tranamt = #{tranamt},
+			duetranmon = #{duetranmon},
+			detinfo = #{detinfo},
+			serialno = #{serialno},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE loan_acctspectrstdspnsgmt_id=#{loan_acctspectrstdspnsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateLoanAcctspectrstdspnsgmtBySelective" parameterType="ccredit.loanmodules.loanmodel.LoanAcctspectrstdspnsgmt">
+		UPDATE
+			loan_acctspectrstdspnsgmt
+		<set>
+			<if test="cagoftrdnm != null">
+				cagoftrdnm = #{cagoftrdnm},
+			</if>
+			<if test="chantrantype != null">
+				chantrantype = #{chantrantype},
+			</if>
+			<if test="trandate != null">
+				trandate = #{trandate},
+			</if>
+			<if test="tranamt != null">
+				tranamt = #{tranamt},
+			</if>
+			<if test="duetranmon != null">
+				duetranmon = #{duetranmon},
+			</if>
+			<if test="detinfo != null">
+				detinfo = #{detinfo},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE loan_acctspectrstdspnsgmt_id=#{loan_acctspectrstdspnsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delLoanAcctspectrstdspnsgmt" parameterType="map">
+		DELETE FROM loan_acctspectrstdspnsgmt WHERE loan_acctspectrstdspnsgmt_id IN
+		<foreach item="item" index="index" collection="loan_acctspectrstdspnsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchLoanAcctspectrstdspnsgmt" parameterType="list">
+		INSERT INTO
+			loan_acctspectrstdspnsgmt
+			(
+			loan_acctspectrstdspnsgmt_id,
+			cagoftrdnm,
+			chantrantype,
+			trandate,
+			tranamt,
+			duetranmon,
+			detinfo,
+			serialno,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.loan_acctspectrstdspnsgmt_id},
+			#{item.cagoftrdnm},
+			#{item.chantrantype},
+			#{item.trandate},
+			#{item.tranamt},
+			#{item.duetranmon},
+			#{item.detinfo},
+			#{item.serialno},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchLoanAcctspectrstdspnsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_acctspectrstdspnsgmt
+			SET
+				cagoftrdnm = #{item.cagoftrdnm},
+				chantrantype = #{item.chantrantype},
+				trandate = #{item.trandate},
+				tranamt = #{item.tranamt},
+				duetranmon = #{item.duetranmon},
+				detinfo = #{item.detinfo},
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE loan_acctspectrstdspnsgmt_id=#{item.loan_acctspectrstdspnsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchLoanAcctspectrstdspnsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				loan_acctspectrstdspnsgmt
+			<set>
+				<if test="item.cagoftrdnm != null">
+					cagoftrdnm = #{item.cagoftrdnm},
+				</if>
+				<if test="item.chantrantype != null">
+					chantrantype = #{item.chantrantype},
+				</if>
+				<if test="item.trandate != null">
+					trandate = #{item.trandate},
+				</if>
+				<if test="item.tranamt != null">
+					tranamt = #{item.tranamt},
+				</if>
+				<if test="item.duetranmon != null">
+					duetranmon = #{item.duetranmon},
+				</if>
+				<if test="item.detinfo != null">
+					detinfo = #{item.detinfo},
+				</if>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE loan_acctspectrstdspnsgmt_id=#{item.loan_acctspectrstdspnsgmt_id}
+		</foreach>
+	</update>
+</mapper>

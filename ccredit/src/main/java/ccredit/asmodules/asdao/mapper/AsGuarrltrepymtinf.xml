@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.asmodules.asmodel.AsGuarrltrepymtinf">
+	<!--初始化分页-->
+	<select id="getAsGuarrltrepymtinfListByCondition" resultType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf" parameterType="map">
+		SELECT
+			guarrltrepymtinf_id,
+			serialno,
+			customid,
+			acctstatus,
+			loanamt,
+			repayprd,
+			fivecate,
+			fivecateadjdate,
+			riex,
+			compadvflag,
+			closedate,
+			lastdate,
+			changeflag
+		FROM 
+			as_guarrltrepymtinf
+		WHERE 1=1
+		<if test="null != acctstatus">
+			AND acctstatus = #{acctstatus}
+		</if>
+		<if test="null != fivecate">
+			AND fivecate = #{fivecate}
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getAsGuarrltrepymtinfById" resultType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf" parameterType="string">
+		SELECT
+			guarrltrepymtinf_id,
+			serialno,
+			customid,
+			acctstatus,
+			loanamt,
+			repayprd,
+			fivecate,
+			fivecateadjdate,
+			riex,
+			compadvflag,
+			closedate,
+			lastdate,
+			changeflag
+		FROM 
+			as_guarrltrepymtinf
+		WHERE guarrltrepymtinf_id=#{guarrltrepymtinf_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addAsGuarrltrepymtinf" parameterType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf">
+		INSERT INTO
+			as_guarrltrepymtinf
+			(
+			guarrltrepymtinf_id,
+			serialno,
+			customid,
+			acctstatus,
+			loanamt,
+			repayprd,
+			fivecate,
+			fivecateadjdate,
+			riex,
+			compadvflag,
+			closedate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{guarrltrepymtinf_id},
+			#{serialno},
+			#{customid},
+			#{acctstatus},
+			#{loanamt},
+			#{repayprd},
+			#{fivecate},
+			#{fivecateadjdate},
+			#{riex},
+			#{compadvflag},
+			#{closedate},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateAsGuarrltrepymtinf" parameterType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf">
+		UPDATE
+			as_guarrltrepymtinf
+		SET
+			serialno = #{serialno},
+			customid = #{customid},
+			acctstatus = #{acctstatus},
+			loanamt = #{loanamt},
+			repayprd = #{repayprd},
+			fivecate = #{fivecate},
+			fivecateadjdate = #{fivecateadjdate},
+			riex = #{riex},
+			compadvflag = #{compadvflag},
+			closedate = #{closedate},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE guarrltrepymtinf_id=#{guarrltrepymtinf_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateAsGuarrltrepymtinfBySelective" parameterType="ccredit.asmodules.asmodel.AsGuarrltrepymtinf">
+		UPDATE
+			as_guarrltrepymtinf
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="acctstatus != null">
+				acctstatus = #{acctstatus},
+			</if>
+			<if test="loanamt != null">
+				loanamt = #{loanamt},
+			</if>
+			<if test="repayprd != null">
+				repayprd = #{repayprd},
+			</if>
+			<if test="fivecate != null">
+				fivecate = #{fivecate},
+			</if>
+			<if test="fivecateadjdate != null">
+				fivecateadjdate = #{fivecateadjdate},
+			</if>
+			<if test="riex != null">
+				riex = #{riex},
+			</if>
+			<if test="compadvflag != null">
+				compadvflag = #{compadvflag},
+			</if>
+			<if test="closedate != null">
+				closedate = #{closedate},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE guarrltrepymtinf_id=#{guarrltrepymtinf_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delAsGuarrltrepymtinf" parameterType="map">
+		DELETE FROM as_guarrltrepymtinf WHERE guarrltrepymtinf_id IN
+		<foreach item="item" index="index" collection="guarrltrepymtinf_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchAsGuarrltrepymtinf" parameterType="list">
+		INSERT INTO
+			as_guarrltrepymtinf
+			(
+			guarrltrepymtinf_id,
+			serialno,
+			customid,
+			acctstatus,
+			loanamt,
+			repayprd,
+			fivecate,
+			fivecateadjdate,
+			riex,
+			compadvflag,
+			closedate,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.guarrltrepymtinf_id},
+			#{item.serialno},
+			#{item.customid},
+			#{item.acctstatus},
+			#{item.loanamt},
+			#{item.repayprd},
+			#{item.fivecate},
+			#{item.fivecateadjdate},
+			#{item.riex},
+			#{item.compadvflag},
+			#{item.closedate},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchAsGuarrltrepymtinf" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guarrltrepymtinf
+			SET
+				serialno = #{item.serialno},
+				customid = #{item.customid},
+				acctstatus = #{item.acctstatus},
+				loanamt = #{item.loanamt},
+				repayprd = #{item.repayprd},
+				fivecate = #{item.fivecate},
+				fivecateadjdate = #{item.fivecateadjdate},
+				riex = #{item.riex},
+				compadvflag = #{item.compadvflag},
+				closedate = #{item.closedate},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE guarrltrepymtinf_id=#{item.guarrltrepymtinf_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchAsGuarrltrepymtinfBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				as_guarrltrepymtinf
+			<set>
+				<if test="item.serialno != null">
+					serialno = #{item.serialno},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.acctstatus != null">
+					acctstatus = #{item.acctstatus},
+				</if>
+				<if test="item.loanamt != null">
+					loanamt = #{item.loanamt},
+				</if>
+				<if test="item.repayprd != null">
+					repayprd = #{item.repayprd},
+				</if>
+				<if test="item.fivecate != null">
+					fivecate = #{item.fivecate},
+				</if>
+				<if test="item.fivecateadjdate != null">
+					fivecateadjdate = #{item.fivecateadjdate},
+				</if>
+				<if test="item.riex != null">
+					riex = #{item.riex},
+				</if>
+				<if test="item.compadvflag != null">
+					compadvflag = #{item.compadvflag},
+				</if>
+				<if test="item.closedate != null">
+					closedate = #{item.closedate},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE guarrltrepymtinf_id=#{item.guarrltrepymtinf_id}
+		</foreach>
+	</update>
+</mapper>

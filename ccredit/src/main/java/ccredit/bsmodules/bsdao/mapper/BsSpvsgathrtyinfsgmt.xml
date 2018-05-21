@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt">
+	<!--初始化分页-->
+	<select id="getBsSpvsgathrtyinfsgmtListByCondition" resultType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt" parameterType="map">
+		SELECT
+			bs_spvsgathrtyinfsgmt_id,
+			suporgtype,
+			suporgname,
+			suporgcerttype,
+			suporgcertnum,
+			suporginfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_spvsgathrtyinfsgmt
+		WHERE 1=1
+		<if test="null != suporgtype">
+			AND suporgtype = #{suporgtype}
+		</if>
+		<if test="null != suporgname">
+			AND suporgname LIKE CONCAT(CONCAT('%',#{suporgname}),'%')
+		</if>
+	</select>
+
+	<!--查询对象-->
+	<select id="getBsSpvsgathrtyinfsgmtById" resultType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt" parameterType="string">
+		SELECT
+			bs_spvsgathrtyinfsgmt_id,
+			suporgtype,
+			suporgname,
+			suporgcerttype,
+			suporgcertnum,
+			suporginfoupdate,
+			customid,
+			lastdate,
+			changeflag
+		FROM 
+			bs_spvsgathrtyinfsgmt
+		WHERE bs_spvsgathrtyinfsgmt_id=#{bs_spvsgathrtyinfsgmt_id}
+	</select>
+
+	<!--添加-->
+	<insert id="addBsSpvsgathrtyinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt">
+		INSERT INTO
+			bs_spvsgathrtyinfsgmt
+			(
+			bs_spvsgathrtyinfsgmt_id,
+			suporgtype,
+			suporgname,
+			suporgcerttype,
+			suporgcertnum,
+			suporginfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+			(
+			#{bs_spvsgathrtyinfsgmt_id},
+			#{suporgtype},
+			#{suporgname},
+			#{suporgcerttype},
+			#{suporgcertnum},
+			#{suporginfoupdate},
+			#{customid},
+			#{lastdate},
+			#{changeflag}
+			)
+	</insert>
+
+	<!--修改-->
+	<update id="updateBsSpvsgathrtyinfsgmt" parameterType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt">
+		UPDATE
+			bs_spvsgathrtyinfsgmt
+		SET
+			suporgtype = #{suporgtype},
+			suporgname = #{suporgname},
+			suporgcerttype = #{suporgcerttype},
+			suporgcertnum = #{suporgcertnum},
+			suporginfoupdate = #{suporginfoupdate},
+			customid = #{customid},
+			lastdate = #{lastdate},
+			changeflag = #{changeflag}
+		WHERE bs_spvsgathrtyinfsgmt_id=#{bs_spvsgathrtyinfsgmt_id}
+	</update>
+
+	<!--修改（根据动态条件）-->
+	<update id="updateBsSpvsgathrtyinfsgmtBySelective" parameterType="ccredit.bsmodules.bsmodel.BsSpvsgathrtyinfsgmt">
+		UPDATE
+			bs_spvsgathrtyinfsgmt
+		<set>
+			<if test="suporgtype != null">
+				suporgtype = #{suporgtype},
+			</if>
+			<if test="suporgname != null">
+				suporgname = #{suporgname},
+			</if>
+			<if test="suporgcerttype != null">
+				suporgcerttype = #{suporgcerttype},
+			</if>
+			<if test="suporgcertnum != null">
+				suporgcertnum = #{suporgcertnum},
+			</if>
+			<if test="suporginfoupdate != null">
+				suporginfoupdate = #{suporginfoupdate},
+			</if>
+			<if test="customid != null">
+				customid = #{customid},
+			</if>
+			<if test="lastdate != null">
+				lastdate = #{lastdate},
+			</if>
+			<if test="changeflag != null">
+				changeflag = #{changeflag},
+			</if>
+		</set>
+		WHERE bs_spvsgathrtyinfsgmt_id=#{bs_spvsgathrtyinfsgmt_id}
+	</update>
+
+	<!--删除-->
+	<delete id="delBsSpvsgathrtyinfsgmt" parameterType="map">
+		DELETE FROM bs_spvsgathrtyinfsgmt WHERE bs_spvsgathrtyinfsgmt_id IN
+		<foreach item="item" index="index" collection="bs_spvsgathrtyinfsgmt_id" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!--批量添加-->
+	<insert id="addBatchBsSpvsgathrtyinfsgmt" parameterType="list">
+		INSERT INTO
+			bs_spvsgathrtyinfsgmt
+			(
+			bs_spvsgathrtyinfsgmt_id,
+			suporgtype,
+			suporgname,
+			suporgcerttype,
+			suporgcertnum,
+			suporginfoupdate,
+			customid,
+			lastdate,
+			changeflag
+			)
+			VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.bs_spvsgathrtyinfsgmt_id},
+			#{item.suporgtype},
+			#{item.suporgname},
+			#{item.suporgcerttype},
+			#{item.suporgcertnum},
+			#{item.suporginfoupdate},
+			#{item.customid},
+			#{item.lastdate},
+			#{item.changeflag}
+			)
+		</foreach>
+	</insert>
+
+	<!--批量修改-->
+	<update id="updateBatchBsSpvsgathrtyinfsgmt" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_spvsgathrtyinfsgmt
+			SET
+				suporgtype = #{item.suporgtype},
+				suporgname = #{item.suporgname},
+				suporgcerttype = #{item.suporgcerttype},
+				suporgcertnum = #{item.suporgcertnum},
+				suporginfoupdate = #{item.suporginfoupdate},
+				customid = #{item.customid},
+				lastdate = #{item.lastdate},
+				changeflag = #{item.changeflag}
+			WHERE bs_spvsgathrtyinfsgmt_id=#{item.bs_spvsgathrtyinfsgmt_id}
+		</foreach>
+	</update>
+
+	<!--批量修改（根据动态条件）-->
+	<update id="updateBatchBsSpvsgathrtyinfsgmtBySelective" parameterType="list">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			UPDATE
+				bs_spvsgathrtyinfsgmt
+			<set>
+				<if test="item.suporgtype != null">
+					suporgtype = #{item.suporgtype},
+				</if>
+				<if test="item.suporgname != null">
+					suporgname = #{item.suporgname},
+				</if>
+				<if test="item.suporgcerttype != null">
+					suporgcerttype = #{item.suporgcerttype},
+				</if>
+				<if test="item.suporgcertnum != null">
+					suporgcertnum = #{item.suporgcertnum},
+				</if>
+				<if test="item.suporginfoupdate != null">
+					suporginfoupdate = #{item.suporginfoupdate},
+				</if>
+				<if test="item.customid != null">
+					customid = #{item.customid},
+				</if>
+				<if test="item.lastdate != null">
+					lastdate = #{item.lastdate},
+				</if>
+				<if test="item.changeflag != null">
+					changeflag = #{item.changeflag},
+				</if>
+			</set>
+			WHERE bs_spvsgathrtyinfsgmt_id=#{item.bs_spvsgathrtyinfsgmt_id}
+		</foreach>
+	</update>
+</mapper>
