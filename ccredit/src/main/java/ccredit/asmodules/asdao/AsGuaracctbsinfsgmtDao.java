@@ -26,6 +26,8 @@ public interface AsGuaracctbsinfsgmtDao{
 	* @return
 	*/
 	public int addAsGuaracctbsinfsgmt(AsGuaracctbsinfsgmt asGuaracctbsinfsgmt);
+	
+	
 	/**
 	* 修改
 	* @param as_guaracctbsinfsgmt 
