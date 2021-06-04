@@ -68,7 +68,7 @@
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		<jstl.version>1.2</jstl.version>
  		<standar.version>1.1.2</standar.version>
-		<httpclient.version>4.4.1</httpclient.version>
+		<httpclient.version>4.5.13</httpclient.version>
 		<httpcore.version>4.4.8</httpcore.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>
 		<commons.io.version>2.4</commons.io.version>
