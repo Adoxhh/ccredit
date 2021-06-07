@@ -31,7 +31,7 @@
         <!-- solr全文检索版本号 -->
         <solr.version>4.10.1</solr.version>
         <!-- logback日志版本 -->
-        <logback-classic.version>1.1.2</logback-classic.version>
+        <logback-classic.version>1.2.0</logback-classic.version>
 		<logback-core.version>1.1.2</logback-core.version>
 		<logback-ext-spring.version>0.1.2</logback-ext-spring.version>
         <!-- rabbitMq日志版本 -->
