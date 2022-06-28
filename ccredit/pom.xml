@@ -75,7 +75,7 @@
 		<userAgent.version>1.14</userAgent.version>
 		<hibernate-validator.version>5.1.1.Final</hibernate-validator.version>
 		<guava.version>18.0</guava.version>
-		<poi.version>3.14</poi.version>
+		<poi.version>4.1.1</poi.version>
 		<cxf.version>2.5.2</cxf.version>
 		<ftp.version>3.4</ftp.version>
 		<memcached-java-client.version>3.0.2</memcached-java-client.version>
