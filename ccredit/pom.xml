@@ -94,7 +94,7 @@
 		<!-- 
 		<iTextAsian.version>1.0</iTextAsian.version>
 		 -->
-		<itextpdf.version>5.1.2</itextpdf.version>
+		<itextpdf.version>5.5.12</itextpdf.version>
 		<groovy-all.version>2.4.5</groovy-all.version>
 		<mybatis-pagehelper.version>4.2.1</mybatis-pagehelper.version>
 		<dom4j.version>1.6.1</dom4j.version>
