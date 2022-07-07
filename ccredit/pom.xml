@@ -37,7 +37,7 @@
         <!-- rabbitMq日志版本 -->
         <rabbitMq.version>4.1.0</rabbitMq.version>
         <!-- hibernate.validator验证框架 -->
-        <hibernate.validator>4.3.1.Final</hibernate.validator>
+        <hibernate.validator>6.0.23.Final</hibernate.validator>
         <!-- 调度器org.quartz-scheduler版本 -->
         <quartz.validator>2.2.1</quartz.validator>
         <!-- redis版本 -->
