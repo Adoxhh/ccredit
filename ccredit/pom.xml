@@ -84,7 +84,7 @@
 		<activeMQ.version>5.13.2</activeMQ.version>
 		<swagger-springmvc.version>1.0.2</swagger-springmvc.version>
 		<jackson-annotations.version>2.6.2</jackson-annotations.version>
-		<jackson-databind.version>2.6.2</jackson-databind.version>
+		<jackson-databind.version>2.12.7.1</jackson-databind.version>
 		<jackson-core.version>2.6.2</jackson-core.version>
 		<!-- 
 		<spring-data-elasticsearch.version>2.0.0.RELEASE</spring-data-elasticsearch.version>
